@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="cs" translate="no" class="notranslate">
   <head>
     <script>
       (function () {
@@ -7,6 +7,13 @@
         if (!p.endsWith("/") && !/\.[a-zA-Z0-9]+$/.test(p)) {
           location.replace(p + "/" + location.search + location.hash);
         }
+        try {
+          var k = "ee-theme";
+          var s = localStorage.getItem(k);
+          var t = s === "light" || s === "dark" ? s : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+          document.documentElement.setAttribute("data-theme", t);
+          document.documentElement.style.colorScheme = t;
+        } catch (e) {}
       })();
     </script>
 
@@ -25,7 +32,7 @@
       <main id="main" class="container">
         <header class="page-hero reveal">
           <h1>Kontakty</h1>
-          <p>Napište poptávku nebo volejte. Ozveme se co nejdřív.</p>
+          <p>Napište poptávku nebo volejte. Ozveme se co nejdříve.</p>
         </header>
 
         <div class="contact-layout reveal">
@@ -120,7 +127,7 @@
             <h2>Sídlo a prodejna Cheb</h2>
             <div class="photo-collage photo-collage--2" role="group" aria-label="Fotografie sídla Cheb" style="margin: 0 0 1.25rem">
               <img src="../assets/media/cheb_sidlo.jpg" alt="Sídlo Elektro Euron Cheb" width="720" height="540" />
-              <img src="../assets/media/velkoobchodcheb__03f096da5b.png" alt="Velkoobchod Cheb" width="640" height="480" />
+              <img src="../assets/media/cheb1__401fedd7dd.jpg" alt="Areál sídla Cheb" width="640" height="480" />
             </div>
             <ul class="contact-list">
               <li>

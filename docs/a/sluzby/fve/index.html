@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="cs" translate="no" class="notranslate">
   <head>
     <script>
       (function () {
@@ -7,6 +7,13 @@
         if (!p.endsWith("/") && !/\.[a-zA-Z0-9]+$/.test(p)) {
           location.replace(p + "/" + location.search + location.hash);
         }
+        try {
+          var k = "ee-theme";
+          var s = localStorage.getItem(k);
+          var t = s === "light" || s === "dark" ? s : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+          document.documentElement.setAttribute("data-theme", t);
+          document.documentElement.style.colorScheme = t;
+        } catch (e) {}
       })();
     </script>
 
@@ -30,8 +37,8 @@
         <div class="prose reveal">
           <p>
             Dodáváme celky i jednotlivé komponenty — moduly, měniče, kabeláž a monitoring.
-            Technickou podporu poskytujeme po celou dobu provozu. Máme zkušenost od střešních mikrozdrojů
-            po větší instalace na výrobních objektech a desítky projektů podpořených z EU fondů.
+            Technickou podporu poskytujeme po celou dobu provozu. Máme zkušenosti od střešních mikrozdrojů
+            po větší instalace na výrobních objektech a desítky projektů podpořených z fondů EU.
           </p>
           <h2>Pro koho</h2>
           <ul>
@@ -44,11 +51,13 @@
             <a class="btn btn-secondary on-light" href="../">Zpět na služby</a>
           </div>
         </div>
-        <div class="photo-collage photo-collage--3 reveal" role="group" aria-label="Fotografie fotovoltaiky" style="margin: 0 0 clamp(2.5rem, 5vw, 4rem)">
+        <div class="photo-collage photo-collage--2 reveal" role="group" aria-label="Fotografie fotovoltaiky" style="margin: 0 0 clamp(2.5rem, 5vw, 4rem)">
           <img src="../../assets/media/alternativnizdroje__5679b1bc4a.png" alt="Fotovoltaické panely" width="800" height="600" />
-          <img src="../../assets/media/prezentaceFVE__734ef6e255.jpg" alt="Informace o projektu FVE" width="800" height="600" />
-          <img src="../../assets/media/cheb_sidlo.jpg" alt="Sídlo firmy s FVE v Chebu" width="1440" height="1080" />
+          <img src="../../assets/media/cheb1__401fedd7dd.jpg" alt="FVE na střeše sídla Elektro Euron v Chebu" width="800" height="600" />
         </div>
+        <p class="form-note" style="margin: 0 0 2rem">
+          Projekt FVE na sídle firmy byl spolufinancován Evropskou unií (Evropský fond pro regionální rozvoj).
+        </p>
       </main>
       <div data-footer></div>
     </div>

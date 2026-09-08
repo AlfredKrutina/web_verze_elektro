@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="cs" translate="no" class="notranslate">
   <head>
     <script>
       (function () {
         var p = location.pathname;
         if (!p.endsWith("/") && !/\.[a-zA-Z0-9]+$/.test(p)) {
           location.replace(p + "/" + location.search + location.hash);
-        }
+        try {
+          var k = "ee-theme";
+          var s = localStorage.getItem(k);
+          var t = s === "light" || s === "dark" ? s : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+          document.documentElement.setAttribute("data-theme", t);
+          document.documentElement.style.colorScheme = t;
+        } catch (e) {}
       })();
     </script>
     <meta charset="utf-8" />
@@ -44,9 +50,9 @@
           </header>
           <div class="aktualita-body">
             <p>
-              ELEKTRO EURON realizoval dílčí rekonstrukci hradní kaple (úprava podlahy, nátěr střechy
+              Společnost ELEKTRO EURON realizovala dílčí rekonstrukci hradní kaple (úprava podlahy, nátěr střechy
               a oprava osvětlení), Černé věže a kasemat. Při příležitosti 20 let firmy a ve spolupráci
-              s Městem Cheb a kastelánem Chebského hradu se kaple otevřela veřejnosti ještě před
+              s městem Cheb a kastelánem Chebského hradu se kaple otevřela veřejnosti ještě před
               zahájením sezóny.
             </p>
             <p>
@@ -55,7 +61,7 @@
               autobusovém terminálu — a také na veřejných památkách v regionu.
             </p>
             <p>
-              <a href="../../reference/">Reference</a>
+              <a href="../../reference/">Realizace</a>
               ·
               <a href="../../kontakt/">Kontakt</a>
             </p>

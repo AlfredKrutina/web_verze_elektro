@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 72" role="img" aria-label="Elektro Euron">
+  <g fill="none" fill-rule="evenodd">
+    <path fill="#111" stroke="#1FA03A" stroke-width="2.5" d="M48 8 L78 58 L18 58 Z"/>
+    <path fill="#1FA03A" stroke="#1FA03A" stroke-width="2.5" d="M98 58 L128 8 L158 58 Z"/>
+    <path fill="#111" stroke="#1FA03A" stroke-width="2.5" d="M178 8 L208 58 L148 58 Z"/>
+  </g>
+  <text x="0" y="70" font-family="Cabinet Grotesk, Satoshi, system-ui, sans-serif" font-weight="800" font-size="14" letter-spacing="0.08em" fill="#1FA03A">ELEKTRO EURON</text>
+</svg>

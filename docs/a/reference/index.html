@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="cs" translate="no" class="notranslate">
   <head>
     <script>
       (function () {
@@ -7,12 +7,19 @@
         if (!p.endsWith("/") && !/\.[a-zA-Z0-9]+$/.test(p)) {
           location.replace(p + "/" + location.search + location.hash);
         }
+        try {
+          var k = "ee-theme";
+          var s = localStorage.getItem(k);
+          var t = s === "light" || s === "dark" ? s : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+          document.documentElement.setAttribute("data-theme", t);
+          document.documentElement.style.colorScheme = t;
+        } catch (e) {}
       })();
     </script>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>Reference | Elektro Euron</title>
+    <title>Realizace | Elektro Euron</title>
     <meta name="description" content="Vybrané realizace Elektro Euron — TOSTA Plesná, Národní muzeum, Skalná a další." />
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=cabinet-grotesk@700,800&display=swap" rel="stylesheet" />
@@ -24,7 +31,7 @@
       <div data-header></div>
       <main id="main">
         <header class="page-hero container reveal">
-          <h1>Reference</h1>
+          <h1>Realizace</h1>
           <p>Vybrané projekty, které ukazují šíři naší práce — od industriálních objektů po kulturní instituce.</p>
         </header>
 
@@ -45,15 +52,14 @@
                 <img src="../assets/media/IMG_20211020_110258__13f3822493.jpg" alt="Detail montáže TOSTA" width="800" height="600" />
                 <img src="../assets/media/IMG_20211020_102604__04a992ee5f.jpg" alt="Rozvaděče TOSTA" width="800" height="600" />
               </div>
+              <div class="ref-gallery" role="group" aria-label="Další fotografie TOSTA Plesná">
+                <img src="../assets/media/IMG_20211020_095052__1738bdfa71.jpg" alt="Rozvaděč TOSTA" width="800" height="600" />
+                <img src="../assets/media/IMG_20211020_104635__248943aa56.jpg" alt="Instalace v hale TOSTA" width="800" height="600" />
+                <img src="../assets/media/IMG_20211020_110239__0da587ee81.jpg" alt="Elektroinstalace TOSTA" width="800" height="600" />
+              </div>
             </article>
 
-            <div class="media-row reveal-child" data-stagger>
-              <img src="../assets/media/IMG_20211020_095052__1738bdfa71.jpg" alt="Průmyslový prostor TOSTA" width="800" height="600" />
-              <img src="../assets/media/IMG_20211020_104635__248943aa56.jpg" alt="Instalace v hale TOSTA" width="800" height="600" />
-              <img src="../assets/media/IMG_20211020_110239__0da587ee81.jpg" alt="Elektroinstalace TOSTA" width="800" height="600" />
-            </div>
-
-            <article class="ref-feature reverse reveal-child" data-stagger>
+            <article class="ref-feature reveal-child" data-stagger>
               <div class="ref-copy">
                 <h3>Národní muzeum — Dějiny 20. století</h3>
                 <p>
@@ -70,7 +76,7 @@
                 />
                 <img
                   src="../assets/media/NMsilnoproud__661ae89d7d.png"
-                  alt="Silnoproud a instalace — Národní muzeum"
+                  alt="Projektová dokumentace — Národní muzeum"
                   width="1200"
                   height="720"
                 />
@@ -81,8 +87,8 @@
               <div class="ref-copy">
                 <h3>Chebský hrad — hradní kaple</h3>
                 <p>
-                  Realizace v kapli sv. Erharda a Uršuly na Chebském hradě (podlahy, střecha, osvětlení)
-                  a další veřejné i soukromé objekty v regionu — od pokladen po průmysl a FVE.
+                  Realizace v kapli sv. Erharda a Uršuly na Chebském hradě — úprava podlahy, nátěr střechy
+                  a oprava osvětlení v historickém objektu.
                 </p>
                 <a class="btn btn-secondary on-light" href="../kontakt/">Poptat podobnou zakázku</a>
               </div>
@@ -96,7 +102,7 @@
               </div>
             </article>
 
-            <article class="ref-feature reverse reveal-child" data-stagger>
+            <article class="ref-feature reveal-child" data-stagger>
               <div class="ref-copy">
                 <h3>Veřejné osvětlení — Skalná</h3>
                 <p>
@@ -129,24 +135,18 @@
                 </p>
                 <a class="btn btn-secondary on-light" href="../sluzby/fve/">Více o FVE</a>
               </div>
-              <div class="ref-media photo-collage photo-collage--3" role="group" aria-label="Fotografie fotovoltaiky Elektro Euron">
+              <div class="ref-media photo-collage photo-collage--2" role="group" aria-label="Fotografie fotovoltaiky Elektro Euron">
                 <img
                   src="../assets/media/alternativnizdroje__5679b1bc4a.png"
-                  alt="Fotovoltaická elektrárna Elektro Euron"
+                  alt="Fotovoltaické panely"
                   width="1200"
                   height="800"
                 />
                 <img
-                  src="../assets/media/prezentaceFVE__734ef6e255.jpg"
-                  alt="Informace o projektu FVE"
+                  src="../assets/media/cheb1__401fedd7dd.jpg"
+                  alt="FVE na střeše sídla Elektro Euron v Chebu"
                   width="800"
                   height="600"
-                />
-                <img
-                  src="../assets/media/cheb_sidlo.jpg"
-                  alt="Sídlo firmy s FVE v Chebu"
-                  width="1440"
-                  height="1080"
                 />
               </div>
             </article>

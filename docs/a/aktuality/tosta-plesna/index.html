@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="cs" translate="no" class="notranslate">
   <head>
     <script>
       (function () {
         var p = location.pathname;
         if (!p.endsWith("/") && !/\.[a-zA-Z0-9]+$/.test(p)) {
           location.replace(p + "/" + location.search + location.hash);
-        }
+        try {
+          var k = "ee-theme";
+          var s = localStorage.getItem(k);
+          var t = s === "light" || s === "dark" ? s : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+          document.documentElement.setAttribute("data-theme", t);
+          document.documentElement.style.colorScheme = t;
+        } catch (e) {}
       })();
     </script>
     <meta charset="utf-8" />
@@ -45,12 +51,12 @@
             <p>
               Podíleli jsme se na kompletní realizaci elektroinstalace (silnoproudé rozvody, požární
               rozvody, nouzové osvětlení, elektronická požární signalizace — EPS, zabezpečení — EZS,
-              systém přivolání pomoci) v nově zrekonstruované budově bývalé textilní továrny TOSTA ve
-              městě Plesná.
+              systém přivolání pomoci) v nově zrekonstruované budově bývalé textilní továrny TOSTA
+              v Plesné.
             </p>
             <p>
-              Kompletní elektroinstalace je vedena přiznaná v průmyslovém duchu s důrazem na zachování
-              historie objektu. Industriální instalace neznamenala ustoupení z požadavků na estetický
+              Kompletní elektroinstalace je vedena přiznaně v průmyslovém duchu s důrazem na zachování
+              historie objektu. Industriální instalace neznamenala ústup od požadavků na estetický
               vzhled odpovídající výstavním prostorám. Instalace prokázala řemeslnou zručnost a
               zkušenost našich pracovníků.
             </p>
@@ -59,7 +65,7 @@
               společná geologická minulost“.
             </p>
             <p>
-              <a href="../../reference/">Další fotografie v Referencích</a>
+              <a href="../../reference/">Další fotografie v Realizacích</a>
               ·
               <a href="../../kontakt/?typ=Montáž">Poptat podobnou zakázku</a>
             </p>

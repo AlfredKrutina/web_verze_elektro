@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="cs" translate="no" class="notranslate">
   <head>
     <script>
       (function () {
         var p = location.pathname;
         if (!p.endsWith("/") && !/\.[a-zA-Z0-9]+$/.test(p)) {
           location.replace(p + "/" + location.search + location.hash);
-        }
+        try {
+          var k = "ee-theme";
+          var s = localStorage.getItem(k);
+          var t = s === "light" || s === "dark" ? s : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+          document.documentElement.setAttribute("data-theme", t);
+          document.documentElement.style.colorScheme = t;
+        } catch (e) {}
       })();
     </script>
     <meta charset="utf-8" />
@@ -51,7 +57,7 @@
             </p>
             <p>
               Projekt byl unikátní rozsahem spolupráce s investorem, autorem interiérového návrhu,
-              ostatními profesemi, zhotovitelem i kurátory sbírek — a počtem verzí podle změn
+              ostatními profesemi, zhotovitelem i kurátory sbírek — a také počtem verzí podle změn
               exponátů. Jsme hrdí, že jsme mohli být součástí nové stálé výstavy Národního muzea.
             </p>
             <p>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="cs" translate="no" class="notranslate">
   <head>
     <script>
       (function () {
@@ -7,6 +7,13 @@
         if (!p.endsWith("/") && !/\.[a-zA-Z0-9]+$/.test(p)) {
           location.replace(p + "/" + location.search + location.hash);
         }
+        try {
+          var k = "ee-theme";
+          var s = localStorage.getItem(k);
+          var t = s === "light" || s === "dark" ? s : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+          document.documentElement.setAttribute("data-theme", t);
+          document.documentElement.style.colorScheme = t;
+        } catch (e) {}
       })();
     </script>
 
@@ -27,7 +34,7 @@
           <h1>Obchod</h1>
           <p>
             Velkoobchodní i maloobchodní prodej elektroinstalačního materiálu, přístrojů a spotřebičů.
-            Přijďte osobně — nejsme e-shop, jsme sklad s lidmi.
+            Přijďte k nám osobně — nejsme e-shop, jsme sklad s lidmi.
           </p>
         </header>
 
@@ -35,11 +42,7 @@
           <div class="container reveal">
             <div class="stores">
               <article class="store">
-                <div class="store-media photo-collage photo-collage--3" role="group" aria-label="Fotografie provozovny Cheb">
-                  <img src="../assets/media/cheb_sidlo.jpg" alt="Sídlo a prodejna Elektro Euron Cheb" width="1440" height="1080" />
-                  <img src="../assets/media/velkoobchodcheb__03f096da5b.png" alt="Velkoobchodní budova Cheb" width="800" height="600" />
-                  <img src="../assets/media/cheb2__14644a3bc9.jpg" alt="Prodejna Elektro Euron Cheb" width="800" height="600" />
-                </div>
+                <img src="../assets/media/cheb_sidlo.jpg" alt="Sídlo a prodejna Elektro Euron Cheb" width="1440" height="1080" />
                 <div class="store-body">
                   <h3>Velkoobchod a maloobchod Cheb</h3>
                   <p>Zelená 1844/6, 350 02 Cheb</p>
@@ -51,11 +54,7 @@
                 </div>
               </article>
               <article class="store">
-                <div class="store-media photo-collage photo-collage--3" role="group" aria-label="Fotografie prodejny Aš">
-                  <img src="../assets/media/shop_as_enhanced.jpg" alt="Maloobchod Aš — průčelí" width="640" height="640" />
-                  <img src="../assets/media/as1__21cc836684.jpg" alt="Prodejna Elektro Euron Aš" width="800" height="600" />
-                  <img src="../assets/media/as3__1cc7df396b.jpg" alt="Vstup do prodejny Aš" width="800" height="600" />
-                </div>
+                <img src="../assets/media/shop_as_enhanced.jpg" alt="Maloobchod Aš" width="640" height="640" />
                 <div class="store-body">
                   <h3>Maloobchod Aš</h3>
                   <p>Hlavní 1066/37, 352 01 Aš</p>
@@ -66,12 +65,6 @@
                   </div>
                 </div>
               </article>
-            </div>
-
-            <div class="media-row reveal" style="margin-top: clamp(1.5rem, 3vw, 2.25rem)">
-              <img src="../assets/media/cheb3__19d67c969a.jpg" alt="Detail provozovny Cheb" width="800" height="600" />
-              <img src="../assets/media/as2__7dfc3bcf55.jpg" alt="Interiér prodejny Aš" width="800" height="600" />
-              <img src="../assets/media/as3__1cc7df396b.jpg" alt="Vstup maloobchodu Aš" width="800" height="600" />
             </div>
           </div>
         </section>
@@ -99,7 +92,7 @@
                 <li>rozvaděče a úložný materiál</li>
                 <li>topení a ohřev vody</li>
               </ul>
-              <p>Nabízíme také výkup kabelových bubnů dle podmínek dodavatelů a informace ke zpětnému odběru EEZ.</p>
+              <p>Nabízíme také výkup kabelových bubnů podle podmínek dodavatelů a informace ke zpětnému odběru EEZ.</p>
             </div>
           </div>
         </section>

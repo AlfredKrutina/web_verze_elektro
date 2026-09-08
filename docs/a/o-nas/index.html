@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="cs" translate="no" class="notranslate">
   <head>
     <script>
       (function () {
@@ -7,13 +7,20 @@
         if (!p.endsWith("/") && !/\.[a-zA-Z0-9]+$/.test(p)) {
           location.replace(p + "/" + location.search + location.hash);
         }
+        try {
+          var k = "ee-theme";
+          var s = localStorage.getItem(k);
+          var t = s === "light" || s === "dark" ? s : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+          document.documentElement.setAttribute("data-theme", t);
+          document.documentElement.style.colorScheme = t;
+        } catch (e) {}
       })();
     </script>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>O nás | Elektro Euron</title>
-    <meta name="description" content="Elektro Euron spol. s r.o. — historie od 1993, certifikáty a tým." />
+    <meta name="description" content="Elektro Euron spol. s r.o. — historie od roku 1993, certifikáty a tým." />
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=cabinet-grotesk@700,800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/css/main.css" />
@@ -33,8 +40,8 @@
 
         <div class="photo-collage photo-collage--3 reveal" role="group" aria-label="Provozovny Elektro Euron" style="margin: 0 0 2.5rem">
           <img src="../assets/media/cheb_sidlo.jpg" alt="Sídlo Elektro Euron Cheb" width="1440" height="1080" />
+          <img src="../assets/media/cheb1__401fedd7dd.jpg" alt="Areál sídla Cheb s FVE" width="800" height="600" />
           <img src="../assets/media/shop_as_enhanced.jpg" alt="Maloobchod Aš" width="640" height="640" />
-          <img src="../assets/media/velkoobchodcheb__03f096da5b.png" alt="Velkoobchod Cheb" width="800" height="600" />
         </div>
 
         <div class="prose reveal">
@@ -44,7 +51,7 @@
           </p>
           <h2>Zajišťujeme</h2>
           <ul>
-            <li>velkoobchod a maloobchod elektroinstalačního materiálu</li>
+            <li>velkoobchodní a maloobchodní prodej elektroinstalačního materiálu</li>
             <li>montáž elektrických zařízení nízkého napětí (NN) i vysokého napětí (VN)</li>
             <li>výrobu a montáž rozvaděčů</li>
             <li>projekci a revize nízkého i vysokého napětí</li>

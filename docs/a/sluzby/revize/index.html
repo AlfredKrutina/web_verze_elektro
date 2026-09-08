@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="cs" translate="no" class="notranslate">
   <head>
     <script>
       (function () {
@@ -7,6 +7,13 @@
         if (!p.endsWith("/") && !/\.[a-zA-Z0-9]+$/.test(p)) {
           location.replace(p + "/" + location.search + location.hash);
         }
+        try {
+          var k = "ee-theme";
+          var s = localStorage.getItem(k);
+          var t = s === "light" || s === "dark" ? s : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+          document.documentElement.setAttribute("data-theme", t);
+          document.documentElement.style.colorScheme = t;
+        } catch (e) {}
       })();
     </script>
 
@@ -41,7 +48,18 @@
           </div>
         </div>
         <div class="media-row reveal">
-          <img src="../../assets/media/revize__0686bebeae.jpg" alt="Měřicí přístroj pro elektrorevize" width="800" height="600" />
+          <img
+            src="../../assets/media/IMG_20211020_095052__1738bdfa71.jpg"
+            alt="Rozvaděč při kontrole — popisky a hlavní vypínač"
+            width="1200"
+            height="900"
+          />
+          <img
+            src="../../assets/media/IMG_20211020_102604__04a992ee5f.jpg"
+            alt="Instalace připravená k měření a revizi"
+            width="1200"
+            height="900"
+          />
         </div>
       </main>
       <div data-footer></div>

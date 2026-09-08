@@ -1,6 +1,10 @@
 (() => {
   const root = document.body.dataset.root || ".";
 
+  // Web je česky — vypnout automatický překlad prohlížeče (plovoucí Czech/English lišta)
+  document.documentElement.setAttribute("translate", "no");
+  document.documentElement.classList.add("notranslate");
+
   function logo(height = 44) {
     const w = Math.round((height * 261) / 95);
     return `<img src="${root}/assets/media/logo_nove.png" width="${w}" height="${height}" alt="ELEKTRO EURON spol. s r.o." />`;
@@ -23,11 +27,15 @@
           <ul class="nav-links" id="site-nav">
             ${item("/sluzby/", "Služby", "sluzby")}
             ${item("/obchod/", "Obchod", "obchod")}
-            ${item("/reference/", "Reference", "reference")}
+            ${item("/reference/", "Realizace", "reference")}
             ${item("/aktuality/", "Aktuality", "aktuality")}
             ${item("/o-nas/", "O nás", "onas")}
             ${item("/kontakt/", "Kontakty", "kontakt")}
           </ul>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Přepnout světlý a tmavý režim">
+            <span class="theme-icon icon-sun" aria-hidden="true"></span>
+            <span class="theme-icon icon-moon" aria-hidden="true"></span>
+          </button>
           <a class="nav-phone" href="tel:+420354437476">+420 354 437 476</a>
         </div>
       </header>
@@ -53,7 +61,7 @@
             <ul>
               <li><a href="${root}/sluzby/">Služby</a></li>
               <li><a href="${root}/obchod/">Obchod</a></li>
-              <li><a href="${root}/reference/">Reference</a></li>
+              <li><a href="${root}/reference/">Realizace</a></li>
               <li><a href="${root}/aktuality/">Aktuality</a></li>
               <li><a href="${root}/o-nas/">O nás</a></li>
               <li><a href="${root}/kontakt/">Kontakty</a></li>
@@ -70,7 +78,7 @@
           </div>
         </div>
         <div class="container footer-meta">
-          © ${new Date().getFullYear()} Elektro Euron spol. s r.o. · Elektromontáže, projekce a prodej materiálu od 1993
+          © ${new Date().getFullYear()} Elektro Euron spol. s r.o. · Elektromontáže, projekce a prodej materiálu od roku 1993
         </div>
       </footer>
     `;
@@ -85,9 +93,47 @@
     mountFooter.outerHTML = footerHtml();
   }
 
+  const THEME_KEY = "ee-theme";
+
+  function resolveTheme(stored) {
+    if (stored === "light" || stored === "dark") return stored;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+    document.documentElement.style.colorScheme = theme;
+    const btn = document.querySelector("[data-theme-toggle]");
+    if (btn) {
+      btn.setAttribute(
+        "aria-label",
+        theme === "dark" ? "Přepnout na světlý režim" : "Přepnout na tmavý režim"
+      );
+    }
+  }
+
+  applyTheme(resolveTheme(localStorage.getItem(THEME_KEY)));
+
+  document.querySelectorAll("[data-theme-toggle]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const next =
+        document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      localStorage.setItem(THEME_KEY, next);
+      applyTheme(next);
+    });
+  });
+
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+    if (localStorage.getItem(THEME_KEY) === "light" || localStorage.getItem(THEME_KEY) === "dark") {
+      return;
+    }
+    applyTheme(resolveTheme(null));
+  });
+
   const header = document.querySelector(".site-header");
   if (header) {
     const onScroll = () => {
+      if (document.body.classList.contains("nav-locked")) return;
       header.classList.toggle("is-scrolled", window.scrollY > 12);
     };
     onScroll();
@@ -97,10 +143,23 @@
   const nav = document.querySelector("[data-nav]");
   const toggle = document.querySelector(".nav-toggle");
   if (nav && toggle) {
+    let lockScrollY = 0;
+
     const setOpen = (open) => {
       nav.classList.toggle("is-open", open);
       toggle.setAttribute("aria-expanded", String(open));
-      document.body.classList.toggle("nav-locked", open);
+      toggle.setAttribute("aria-label", open ? "Zavřít menu" : "Menu");
+
+      if (open) {
+        lockScrollY = window.scrollY || window.pageYOffset || 0;
+        document.body.style.top = `-${lockScrollY}px`;
+        document.body.classList.add("nav-locked");
+        if (header) header.classList.add("is-scrolled");
+      } else {
+        document.body.classList.remove("nav-locked");
+        document.body.style.top = "";
+        window.scrollTo(0, lockScrollY);
+      }
     };
 
     toggle.addEventListener("click", () => {

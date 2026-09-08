@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="cs" translate="no" class="notranslate">
   <head>
     <script>
       (function () {
@@ -7,6 +7,13 @@
         if (!p.endsWith("/") && !/\.[a-zA-Z0-9]+$/.test(p)) {
           location.replace(p + "/" + location.search + location.hash);
         }
+        try {
+          var k = "ee-theme";
+          var s = localStorage.getItem(k);
+          var t = s === "light" || s === "dark" ? s : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+          document.documentElement.setAttribute("data-theme", t);
+          document.documentElement.style.colorScheme = t;
+        } catch (e) {}
       })();
     </script>
 
@@ -16,6 +23,29 @@
     <meta
       name="description"
       content="Elektro Euron spol. s r.o. — elektromontáže nízkého i vysokého napětí, fotovoltaika, projekce, revize a prodej elektromateriálu v Chebu a Aši od roku 1993."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="cs_CZ" />
+    <meta property="og:site_name" content="Elektro Euron" />
+    <meta property="og:title" content="Elektro Euron | Elektromontáže, projekce a prodej materiálu" />
+    <meta
+      property="og:description"
+      content="Elektro Euron spol. s r.o. — elektromontáže nízkého i vysokého napětí, fotovoltaika, projekce, revize a prodej elektromateriálu v Chebu a Aši od roku 1993."
+    />
+    <meta
+      property="og:image"
+      content="https://alfredkrutina.github.io/web_verze_elektro/a/assets/media/cheb_sidlo.jpg"
+    />
+    <meta property="og:url" content="https://alfredkrutina.github.io/web_verze_elektro/a/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Elektro Euron | Elektromontáže, projekce a prodej materiálu" />
+    <meta
+      name="twitter:description"
+      content="Elektromontáže, projekce a prodej materiálu v Chebu a Aši od roku 1993."
+    />
+    <meta
+      name="twitter:image"
+      content="https://alfredkrutina.github.io/web_verze_elektro/a/assets/media/cheb_sidlo.jpg"
     />
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
     <link
@@ -48,17 +78,20 @@
                 height="95"
               />
             </a>
-            <h1>Elektromontáže, projekce a prodej materiálu v Chebu a Aši od 1993.</h1>
+            <h1>Elektromontáže, projekce a prodej materiálu v Chebu a Aši od roku 1993.</h1>
             <p class="hero-lead">Od jističe po trafostanici — nechte elektriku na nás.</p>
-            <div class="btn-group">
+            <div class="hero-actions">
               <a class="btn btn-primary" href="kontakt/">Poptat montáž</a>
-              <a class="btn btn-secondary" href="#prodejny">Otevírací doba / prodejny</a>
+              <a class="hero-secondary" href="#prodejny">Otevírací doba / prodejny</a>
             </div>
           </div>
+          <a class="hero-continue" href="#cesty" aria-label="Pokračovat na obsah webu">
+            <span aria-hidden="true"></span>
+          </a>
         </section>
 
-        <section class="paths reveal" aria-label="Vyberte cestu" data-delay="0ms">
-          <a class="path reveal-child" href="sluzby/" data-stagger>
+        <section class="paths reveal" id="cesty" aria-label="Vyberte cestu">
+          <a class="path" href="sluzby/">
             <img
               src="assets/media/20130515_161317__4dd0f8c0d0.jpg"
               alt=""
@@ -71,7 +104,7 @@
               <span class="path-cta">Prohlédnout služby →</span>
             </div>
           </a>
-          <a class="path reveal-child path-shop" href="obchod/" data-stagger>
+          <a class="path path-shop" href="obchod/">
             <img
               src="assets/media/cheb_sidlo.jpg"
               alt="Sídlo Elektro Euron Cheb"
@@ -87,87 +120,77 @@
         </section>
 
         <section class="section section-comp">
-          <div class="container reveal">
-            <div class="section-head reveal-child" data-stagger>
+          <div class="container">
+            <div class="section-head">
               <h2>Kompetence pod jednou střechou</h2>
               <p>Komplexní elektro partner pro firmy, obce i domácnosti v Karlovarském kraji.</p>
             </div>
-            <div class="comp-grid">
-              <a class="comp-tile reveal-child" data-stagger href="sluzby/nizke-napeti/">
+            <div class="comp-featured">
+              <a class="comp-feature" href="sluzby/nizke-napeti/">
                 <span class="comp-media">
-                  <img src="assets/media/IMG_20211020_110258__13f3822493.jpg" alt="" />
+                  <img src="assets/media/IMG_20211020_110258__13f3822493.jpg" alt="" width="1200" height="750" />
                 </span>
-                <span class="comp-tile-label">
+                <span class="comp-feature-label">
                   <strong>Nízké napětí</strong>
                   <small>NN — instalace v domech, firmách i průmyslu</small>
                 </span>
               </a>
-              <a class="comp-tile reveal-child" data-stagger href="sluzby/vysoke-napeti/">
+              <a class="comp-feature" href="sluzby/vysoke-napeti/">
                 <span class="comp-media">
-                  <img src="assets/media/VN__55be26fb82.png" alt="" />
+                  <img src="assets/media/VN__55be26fb82.png" alt="" width="1200" height="750" />
                 </span>
-                <span class="comp-tile-label">
+                <span class="comp-feature-label">
                   <strong>Vysoké napětí</strong>
                   <small>VN — trafostanice, vedení, veřejné osvětlení</small>
                 </span>
               </a>
-              <a class="comp-tile reveal-child" data-stagger href="sluzby/fve/">
+              <a class="comp-feature" href="sluzby/fve/">
                 <span class="comp-media">
-                  <img src="assets/media/alternativnizdroje__5679b1bc4a.png" alt="" />
+                  <img src="assets/media/alternativnizdroje__5679b1bc4a.png" alt="" width="1200" height="750" />
                 </span>
-                <span class="comp-tile-label">
+                <span class="comp-feature-label">
                   <strong>Fotovoltaika</strong>
                   <small>FVE — solární elektrárny na klíč</small>
                 </span>
               </a>
-              <a class="comp-tile reveal-child" data-stagger href="sluzby/rozvadece/">
-                <span class="comp-media">
-                  <img src="assets/media/IMG_20211020_102604__04a992ee5f.jpg" alt="" />
-                </span>
-                <span class="comp-tile-label">
-                  <strong>Rozvaděče</strong>
-                  <small>Výroba a montáž rozvaděčů</small>
-                </span>
-              </a>
-              <a class="comp-tile reveal-child" data-stagger href="sluzby/slaboproud/">
-                <span class="comp-media">
-                  <img src="assets/media/opticky-rozvadec__454b33af6c.jpg" alt="" />
-                </span>
-                <span class="comp-tile-label">
-                  <strong>Slaboproud</strong>
-                  <small>Data, kamery, zabezpečení, požární signalizace</small>
-                </span>
-              </a>
-              <a class="comp-tile reveal-child" data-stagger href="sluzby/projekce/">
-                <span class="comp-media">
-                  <img src="assets/media/IMG_20211020_104529__3049ae1e64.jpg" alt="" />
-                </span>
-                <span class="comp-tile-label">
-                  <strong>Projekce</strong>
-                  <small>Projektová dokumentace elektroinstalací</small>
-                </span>
-              </a>
-              <a class="comp-tile reveal-child" data-stagger href="sluzby/revize/">
-                <span class="comp-media">
-                  <img src="assets/media/revize__0686bebeae.jpg" alt="" />
-                </span>
-                <span class="comp-tile-label">
-                  <strong>Revize</strong>
-                  <small>Kontroly a měření elektrických zařízení</small>
-                </span>
-              </a>
             </div>
+            <ul class="comp-list">
+              <li>
+                <a href="sluzby/rozvadece/">
+                  <strong>Rozvaděče</strong>
+                  <span>Výroba a montáž rozvaděčů</span>
+                </a>
+              </li>
+              <li>
+                <a href="sluzby/slaboproud/">
+                  <strong>Slaboproud</strong>
+                  <span>Data, kamery, zabezpečení, požární signalizace</span>
+                </a>
+              </li>
+              <li>
+                <a href="sluzby/projekce/">
+                  <strong>Projekce</strong>
+                  <span>Projektová dokumentace elektroinstalací</span>
+                </a>
+              </li>
+              <li>
+                <a href="sluzby/revize/">
+                  <strong>Revize</strong>
+                  <span>Kontroly a měření elektrických zařízení</span>
+                </a>
+              </li>
+            </ul>
           </div>
         </section>
 
         <section class="section section-refs">
-          <div class="container reveal">
-            <div class="section-head reveal-child" data-stagger>
-              <h2>Reference</h2>
+          <div class="container">
+            <div class="section-head">
+              <h2>Realizace</h2>
               <p>Řemeslo, které obstojí i ve výstavních a industriálních prostorech.</p>
             </div>
 
-            <article class="ref-feature reveal-child" data-stagger>
+            <article class="ref-feature reveal">
               <div class="ref-copy">
                 <h3>TOSTA Plesná — industriální elektroinstalace</h3>
                 <p>
@@ -199,33 +222,27 @@
               </div>
             </article>
 
-            <article class="ref-feature reverse reveal-child" data-stagger>
+            <article class="ref-feature">
               <div class="ref-copy">
                 <h3>Veřejné osvětlení — Skalná</h3>
                 <p>
-                  Modernizace veřejného osvětlení ve Skalné a další veřejné zakázky
-                  v Karlovarském kraji — včetně elektroinstalace v kapli Chebského hradu.
+                  Modernizace veřejného osvětlení ve Skalné — stožáry, svítidla a napájení
+                  pro bezpečnější a úspornější provoz obce.
                 </p>
-                <a class="btn btn-secondary on-light" href="reference/">Zobrazit reference</a>
+                <a class="btn btn-secondary on-light" href="reference/">Zobrazit realizace</a>
               </div>
-              <div class="ref-media photo-collage photo-collage--3" role="group" aria-label="Fotografie veřejných realizací">
+              <div class="ref-media photo-collage photo-collage--2" role="group" aria-label="Fotografie veřejného osvětlení Skalná">
                 <img
                   src="assets/media/skalna1__32816c2a01.png"
-                  alt="Veřejné osvětlení Skalná"
+                  alt="Veřejné osvětlení na výjezdu ze Skalné"
                   width="1200"
                   height="800"
                 />
                 <img
                   src="assets/media/skalna2__08f13037d9.png"
-                  alt="Stožáry veřejného osvětlení"
+                  alt="Stožáry veřejného osvětlení Skalná"
                   width="800"
                   height="600"
-                />
-                <img
-                  src="assets/media/kaple_na_hrade4__646f374ccc.png"
-                  alt="Hradní kaple na Chebském hradě"
-                  width="1536"
-                  height="1024"
                 />
               </div>
             </article>
@@ -233,18 +250,14 @@
         </section>
 
         <section class="section" id="prodejny">
-          <div class="container reveal">
+          <div class="container">
             <div class="section-head">
               <h2>Prodejny</h2>
-              <p>Přijďte pro materiál osobně — sklad v Chebu a maloobchod v Aši.</p>
+              <p>Přijďte si pro materiál osobně — sklad v Chebu a maloobchod v Aši.</p>
             </div>
             <div class="stores">
-              <article class="store reveal-child" data-stagger>
-                <div class="store-media photo-collage photo-collage--3" role="group" aria-label="Fotografie provozovny Cheb">
-                  <img src="assets/media/cheb_sidlo.jpg" alt="Provozovna Elektro Euron Cheb" width="1440" height="1080" />
-                  <img src="assets/media/velkoobchodcheb__03f096da5b.png" alt="Velkoobchodní budova Cheb" width="800" height="600" />
-                  <img src="assets/media/cheb2__14644a3bc9.jpg" alt="Prodejna Cheb" width="800" height="600" />
-                </div>
+              <article class="store">
+                <img src="assets/media/cheb_sidlo.jpg" alt="Provozovna Elektro Euron Cheb" width="1440" height="1080" />
                 <div class="store-body">
                   <h3>Velkoobchod a maloobchod Cheb</h3>
                   <p>Zelená 1844/6, 350 02 Cheb</p>
@@ -256,12 +269,8 @@
                   </div>
                 </div>
               </article>
-              <article class="store reveal-child" data-stagger>
-                <div class="store-media photo-collage photo-collage--3" role="group" aria-label="Fotografie prodejny Aš">
-                  <img src="assets/media/shop_as_enhanced.jpg" alt="Prodejna Elektro Euron Aš" width="640" height="640" />
-                  <img src="assets/media/as1__21cc836684.jpg" alt="Maloobchod Aš" width="800" height="600" />
-                  <img src="assets/media/as3__1cc7df396b.jpg" alt="Vstup prodejny Aš" width="800" height="600" />
-                </div>
+              <article class="store">
+                <img src="assets/media/shop_as_enhanced.jpg" alt="Prodejna Elektro Euron Aš" width="640" height="640" />
                 <div class="store-body">
                   <h3>Maloobchod Aš</h3>
                   <p>Hlavní 1066/37, 352 01 Aš</p>
@@ -274,16 +283,9 @@
                 </div>
               </article>
             </div>
-          </div>
-        </section>
-
-        <section class="section section-trust">
-          <div class="container reveal">
-            <div class="trust">
-              <span><strong>Od 1993</strong> na trhu</span>
-              <span><strong>ISO 9001 · 14001 · OHSAS 18001</strong></span>
-              <span><strong>Cheb · Aš · Karlovarský kraj</strong></span>
-            </div>
+            <p class="trust-line">
+              <strong>Od roku 1993</strong> · ISO 9001 · 14001 · OHSAS 18001 · Cheb · Aš · Karlovarský kraj
+            </p>
           </div>
         </section>
       </main>
