@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <script>
+      (function () {
+        var p = location.pathname;
+        if (!p.endsWith("/") && !/\.[a-zA-Z0-9]+$/.test(p)) {
+          location.replace(p + "/" + location.search + location.hash);
+        }
+      })();
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Národní muzeum | Aktuality | Elektro Euron</title>
+    <meta
+      name="description"
+      content="Projekční příprava elektroinstalace výstavy Dějiny 20. století v Národním muzeu — Elektro Euron."
+    />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=cabinet-grotesk@700,800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <link rel="icon" href="../../assets/media/logo_nove.png" type="image/png" />
+  </head>
+  <body data-root="../.." data-page="aktuality">
+    <div class="site">
+      <div data-header></div>
+      <main id="main" class="container">
+        <article class="aktualita-detail reveal">
+          <p class="aktualita-back"><a href="../">← Všechny aktuality</a></p>
+          <img
+            class="aktualita-cover aktualita-cover--detail"
+            src="../../assets/media/NMsilnoproud__661ae89d7d.png"
+            alt="Projekce elektroinstalace — Národní muzeum"
+            width="1200"
+            height="800"
+          />
+          <header class="aktualita-header">
+            <time datetime="2021-07-25">25. 7. 2021</time>
+            <h1>Otevření výstavy Dějiny 20. století</h1>
+            <p class="aktualita-lead">Projekční podíl Elektro Euron na stálé výstavě Historického muzea.</p>
+          </header>
+          <div class="aktualita-body">
+            <p>
+              Na projekční přípravě elektroinstalace jsme se podíleli od vzniku architektonického modelu
+              po realizační úpravy v dokončovacích fázích. V projektu jsme připravili podklady pro
+              moderní řízení osvětlení a aktivních multimediálních prvků přes systém DALI a napojení
+              na řídicí systém Národního muzea.
+            </p>
+            <p>
+              Projekt byl unikátní rozsahem spolupráce s investorem, autorem interiérového návrhu,
+              ostatními profesemi, zhotovitelem i kurátory sbírek — a počtem verzí podle změn
+              exponátů. Jsme hrdí, že jsme mohli být součástí nové stálé výstavy Národního muzea.
+            </p>
+            <p>
+              <a href="https://www.nm.cz/historicke-muzeum/dejiny-20-stoleti" target="_blank" rel="noopener"
+                >Výstava na webu Národního muzea</a
+              >
+              ·
+              <a href="../../sluzby/projekce/">Více o projekci</a>
+              ·
+              <a href="../../kontakt/?typ=Projekce">Poptat projekci</a>
+            </p>
+          </div>
+        </article>
+      </main>
+      <div data-footer></div>
+    </div>
+    <script src="../../assets/js/main.js"></script>
+  </body>
+</html>

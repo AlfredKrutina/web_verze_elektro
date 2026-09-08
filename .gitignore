@@ -3,6 +3,9 @@
 Thumbs.db
 *.tmp
 .cursor/
+.env
+.env.*
+!.env.example
 
 # Zaheslovaný editor aktualit + backend (nepatří do veřejného mockupu / GH Pages)
 docs/a/ops-redakce/

@@ -22,18 +22,18 @@ Otevřete http://localhost:5173/
 
 ## GitHub Pages (deploy)
 
-1. Pushněte větev `main` na GitHub.
-2. **Settings → Pages → Build and deployment**
-   - Source: **Deploy from a branch**
-   - Branch: **main**
-   - Folder: **/docs**
-3. Uložte a počkejte ~1 minutu. Odkaz se zobrazí nahoře na stránce Pages.
+Deploy běží přes GitHub Actions (`.github/workflows/pages.yml`).
 
-Volitelně (CLI, pokud máte `gh`):
+1. Repo musí být **public** (nebo mít plán s Pages pro private).
+2. **Settings → Pages → Build and deployment → Source: GitHub Actions**
+3. Push na `main` (nebo Actions → *Deploy GitHub Pages* → Run workflow).
+
+Mockup URL: `https://<uzivatel>.github.io/web_verze_elektro/`
+
+Ověření lokálně (stejný obsah jako Pages):
 
 ```bash
-gh repo create web_verze_elektro --public --source=. --remote=origin --push
-gh api -X PUT "repos/{owner}/{repo}/pages" -f build_type=legacy -f source[branch]=main -f source[path]=/docs
+npx --yes serve docs -l 5173
 ```
 
 ## Co je v mockupu
