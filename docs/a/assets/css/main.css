@@ -1290,6 +1290,14 @@ html.scroll-fast .reveal-child {
   height: auto;
 }
 
+.contact-side .photo-collage--2 {
+  min-height: 9.5rem;
+}
+
+.contact-side .photo-collage img {
+  border-radius: 0.65rem;
+}
+
 .ref-media.photo-collage {
   background: transparent;
   border: none;
@@ -2103,7 +2111,9 @@ html.scroll-fast .reveal-child {
   .brand img,
   .btn,
   .store,
-  .store img,
+  .store > img,
+  .store-media img,
+  .photo-collage img,
   .service-link,
   .comp-tile-label,
   .path-cta,
@@ -2117,6 +2127,8 @@ html.scroll-fast .reveal-child {
 
   .btn:hover,
   .store:hover,
+  .store:hover > img,
+  .store:hover .store-media img,
   .service-link:hover,
   .brand:hover,
   .brand:hover img,
