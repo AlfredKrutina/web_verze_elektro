@@ -7,8 +7,9 @@ Thumbs.db
 .env.*
 !.env.example
 
-# Zaheslovaný editor aktualit + backend (nepatří do veřejného mockupu / GH Pages)
+# Zaheslovaný editor aktualit + backend (nesmí do public repa / GH Pages)
 docs/a/ops-redakce/
+**/ops-redakce/
 docs/a/aktuality/_backend/
 docs/a/assets/js/aktuality-admin.js
 docs/a/assets/js/aktuality-config.js
@@ -16,7 +17,10 @@ docs/a/assets/js/aktuality-config.example.js
 docs/a/assets/js/aktuality-public.js
 docs/a/assets/js/aktuality-shared.js
 docs/a/assets/js/vendor/
+**/aktuality-config.js
 context/aktuality_security.md
+*.pem
+*service_role*
 
 # Lokální zálohy originálů (nepotřebné pro Pages)
 docs/a/assets/media/originals_backup/

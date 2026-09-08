@@ -41,6 +41,12 @@ npx --yes serve docs -l 5173
 - Kompletní navigace: služby, obchod, reference, aktuality (statické ukázky), o nás, kontakt
 - Varianty B/C v `docs/b/` a `docs/c/` zůstávají jako archiv návrhů
 
-## Co záměrně není na Pages
+## Co záměrně není v public gitu
 
-Zaheslovaný editor aktualit, Supabase backend a scrapované starší exporty (`web_assets/`, `site/`) jsou v `.gitignore` — do veřejného repa nepatří.
+V `.gitignore` (nepůjde na GitHub):
+
+- zaheslovaný editor (`ops-redakce/`, admin JS, Supabase vendor)
+- `aktuality-config.js` (klíče)
+- SQL backend, scrapy (`web_assets/`, `site/`), zálohy fotek
+
+Mockup je čistě statické HTML/CSS/JS — vhodné pro **public** repo.
