@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <script>
+      (function () {
+        var p = location.pathname;
+        if (!p.endsWith("/") && !/\.[a-zA-Z0-9]+$/.test(p)) {
+          location.replace(p + "/" + location.search + location.hash);
+        }
+      })();
+    </script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Revize | Elektro Euron</title>
+    <meta name="description" content="Revize elektrických zařízení, hromosvodů, zabezpečení (EZS) a požární signalizace (EPS)." />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=cabinet-grotesk@700,800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <link rel="icon" href="../../assets/media/logo_nove.png" type="image/png" />
+  </head>
+  <body data-root="../.." data-page="sluzby">
+    <div class="site">
+      <div data-header></div>
+      <main id="main" class="container">
+        <header class="page-hero reveal">
+          <h1>Revize</h1>
+          <p>Výchozí, pravidelné i mimořádné revize — včetně objektů třídy A i B a bez omezení napětí.</p>
+        </header>
+        <div class="prose reveal">
+          <h2>Revizujeme</h2>
+          <ul>
+            <li>elektrická zařízení a hromosvody</li>
+            <li>elektrické ruční nářadí</li>
+            <li>zabezpečovací systémy (EZS) a požární signalizaci (EPS), zařízení s funkčností při požáru</li>
+          </ul>
+          <p>Postup: prohlídka, měření izolačního stavu, ověření ochrany před úrazem, funkční zkoušky a zpráva o revizi. Pracujeme v souladu s ČSN 33 1500, ČSN 33 2000 a souvisejícími normami.</p>
+          <div class="btn-group" style="margin: 2rem 0 3rem">
+            <a class="btn btn-primary" href="../../kontakt/?typ=Revize">Objednat revizi</a>
+            <a class="btn btn-secondary on-light" href="../">Zpět na služby</a>
+          </div>
+        </div>
+        <div class="media-row reveal">
+          <img src="../../assets/media/revize__0686bebeae.jpg" alt="Měřicí přístroj pro elektrorevize" width="800" height="600" />
+        </div>
+      </main>
+      <div data-footer></div>
+    </div>
+    <script src="../../assets/js/main.js"></script>
+  </body>
+</html>

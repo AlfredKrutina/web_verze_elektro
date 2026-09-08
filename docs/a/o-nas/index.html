@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <script>
+      (function () {
+        var p = location.pathname;
+        if (!p.endsWith("/") && !/\.[a-zA-Z0-9]+$/.test(p)) {
+          location.replace(p + "/" + location.search + location.hash);
+        }
+      })();
+    </script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>O nás | Elektro Euron</title>
+    <meta name="description" content="Elektro Euron spol. s r.o. — historie od 1993, certifikáty a tým." />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=cabinet-grotesk@700,800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="icon" href="../assets/media/logo_nove.png" type="image/png" />
+  </head>
+  <body data-root=".." data-page="onas">
+    <div class="site">
+      <div data-header></div>
+      <main id="main" class="container">
+        <header class="page-hero reveal">
+          <h1>O nás</h1>
+          <p>
+            Od roku 1993 děláme elektromontáže nízkého i vysokého napětí a prodáváme materiál v Chebu, Aši a okolí.
+            Specializujeme se na průmysl, zemědělství, bytovou výstavbu i lázeňské objekty — včetně projekce.
+          </p>
+        </header>
+
+        <div class="prose reveal">
+          <p>
+            Snažíme se, abyste se mohli věnovat své práci a starosti s elektrikou nechali na nás.
+            Služby rozšiřujeme a přizpůsobujeme individuálním potřebám zákazníků.
+          </p>
+          <h2>Zajišťujeme</h2>
+          <ul>
+            <li>velkoobchod a maloobchod elektroinstalačního materiálu</li>
+            <li>montáž elektrických zařízení nízkého napětí (NN) i vysokého napětí (VN)</li>
+            <li>výrobu a montáž rozvaděčů</li>
+            <li>projekci a revize nízkého i vysokého napětí</li>
+            <li>montáž fotovoltaických systémů (FVE)</li>
+          </ul>
+        </div>
+
+        <section class="reveal" style="margin: 3rem 0">
+          <h2 style="font-family: var(--font-display); margin: 0 0 0.75rem">Certifikáty</h2>
+          <p style="color: var(--muted); margin: 0 0 1rem">Pravidelně obnovované systémy managementu.</p>
+          <div class="certs">
+            <img src="../assets/media/certifikat9001_2016__144eca3be1.png" alt="ISO 9001" />
+            <img src="../assets/media/certifikat14001_2016__2a2b08efc1.png" alt="ISO 14001" />
+            <img src="../assets/media/certifikat18001_2008__1fedbec3f3.png" alt="OHSAS 18001" />
+          </div>
+        </section>
+
+        <section class="reveal" style="margin-bottom: 4rem">
+          <h2 style="font-family: var(--font-display); margin: 0">Tým</h2>
+          <div class="team">
+            <article>
+              <h3>Radovan Liďák</h3>
+              <p>Jednatel · <a href="tel:+420602425529">+420 602 425 529</a></p>
+            </article>
+            <article>
+              <h3>Petr Kýček</h3>
+              <p>Realizace zakázek · <a href="tel:+420733641628">+420 733 641 628</a></p>
+            </article>
+            <article>
+              <h3>Veronika Papoušková</h3>
+              <p>Koordinace zakázek · <a href="tel:+420735175969">+420 735 175 969</a></p>
+            </article>
+            <article>
+              <h3>Karel Rossmüller</h3>
+              <p>Revize · <a href="tel:+420737266952">+420 737 266 952</a></p>
+            </article>
+            <article>
+              <h3>David Domčík</h3>
+              <p>Cenové nabídky · <a href="tel:+420602120929">+420 602 120 929</a></p>
+            </article>
+            <article>
+              <h3>Ing. Radek Pupák</h3>
+              <p>Projekce · <a href="tel:+420606726452">+420 606 726 452</a></p>
+            </article>
+          </div>
+          <p style="margin-top: 1.5rem"><a class="btn btn-primary" href="../kontakt/">Kompletní kontakty</a></p>
+        </section>
+      </main>
+      <div data-footer></div>
+    </div>
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>

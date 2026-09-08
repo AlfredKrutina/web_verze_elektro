@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 64" fill="none" aria-hidden="true">
+  <!-- left up triangle -->
+  <path d="M40 4 L66 56 H14 Z" fill="#111111" stroke="#1FA03A" stroke-width="2.4" stroke-linejoin="round"/>
+  <!-- center down triangle overlapping -->
+  <path d="M70 56 L105 4 L140 56 Z" fill="#1FA03A" stroke="#1FA03A" stroke-width="2.4" stroke-linejoin="round"/>
+  <!-- right up triangle -->
+  <path d="M170 4 L196 56 H144 Z" fill="#111111" stroke="#1FA03A" stroke-width="2.4" stroke-linejoin="round"/>
+</svg>

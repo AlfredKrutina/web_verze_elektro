@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /a/ops-redakce/
+Disallow: /ops-redakce/
+
+Sitemap: https://REPLACE_WITH_YOUR_DOMAIN/a/index.html

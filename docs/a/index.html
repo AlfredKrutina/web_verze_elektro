@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <script>
+      (function () {
+        var p = location.pathname;
+        if (!p.endsWith("/") && !/\.[a-zA-Z0-9]+$/.test(p)) {
+          location.replace(p + "/" + location.search + location.hash);
+        }
+      })();
+    </script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Elektro Euron | Elektromontáže, projekce a prodej materiálu</title>
+    <meta
+      name="description"
+      content="Elektro Euron spol. s r.o. — elektromontáže nízkého i vysokého napětí, fotovoltaika, projekce, revize a prodej elektromateriálu v Chebu a Aši od roku 1993."
+    />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=cabinet-grotesk@700,800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="icon" href="assets/media/logo_nove.png" type="image/png" />
+  </head>
+  <body data-root="." data-page="home">
+    <div class="site">
+      <div data-header></div>
+
+      <main id="main">
+        <section class="hero" aria-label="Úvod">
+          <div class="hero-media" aria-hidden="true">
+            <img
+              src="assets/media/IMG_20211020_124231__025795fbf4.jpg"
+              alt=""
+              width="1600"
+              height="1066"
+            />
+          </div>
+          <div class="hero-content">
+            <a class="hero-brand" href="index.html" aria-label="Elektro Euron — úvodní stránka">
+              <img
+                src="assets/media/logo_nove.png"
+                alt="ELEKTRO EURON spol. s r.o."
+                width="261"
+                height="95"
+              />
+            </a>
+            <h1>Elektromontáže, projekce a prodej materiálu v Chebu a Aši od 1993.</h1>
+            <p class="hero-lead">Od jističe po trafostanici — nechte elektriku na nás.</p>
+            <div class="btn-group">
+              <a class="btn btn-primary" href="kontakt/">Poptat montáž</a>
+              <a class="btn btn-secondary" href="#prodejny">Otevírací doba / prodejny</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="paths reveal" aria-label="Vyberte cestu" data-delay="0ms">
+          <a class="path reveal-child" href="sluzby/" data-stagger>
+            <img
+              src="assets/media/20130515_161317__4dd0f8c0d0.jpg"
+              alt=""
+              width="1600"
+              height="1200"
+            />
+            <div class="path-body">
+              <h2>Potřebuji montáž nebo projekt</h2>
+              <p>Nízké i vysoké napětí, fotovoltaika, rozvaděče, slaboproud, projekce i revize.</p>
+              <span class="path-cta">Prohlédnout služby →</span>
+            </div>
+          </a>
+          <a class="path reveal-child path-shop" href="obchod/" data-stagger>
+            <img
+              src="assets/media/cheb_sidlo.jpg"
+              alt="Sídlo Elektro Euron Cheb"
+              width="1440"
+              height="1080"
+            />
+            <div class="path-body">
+              <h2>Jdu nakoupit materiál</h2>
+              <p>Velkoobchod a maloobchod v Chebu, maloobchod v Aši.</p>
+              <span class="path-cta">Prodejny a sortiment →</span>
+            </div>
+          </a>
+        </section>
+
+        <section class="section section-comp">
+          <div class="container reveal">
+            <div class="section-head reveal-child" data-stagger>
+              <h2>Kompetence pod jednou střechou</h2>
+              <p>Komplexní elektro partner pro firmy, obce i domácnosti v Karlovarském kraji.</p>
+            </div>
+            <div class="comp-grid">
+              <a class="comp-tile reveal-child" data-stagger href="sluzby/nizke-napeti/">
+                <span class="comp-media">
+                  <img src="assets/media/IMG_20211020_110258__13f3822493.jpg" alt="" />
+                </span>
+                <span class="comp-tile-label">
+                  <strong>Nízké napětí</strong>
+                  <small>NN — instalace v domech, firmách i průmyslu</small>
+                </span>
+              </a>
+              <a class="comp-tile reveal-child" data-stagger href="sluzby/vysoke-napeti/">
+                <span class="comp-media">
+                  <img src="assets/media/VN__55be26fb82.png" alt="" />
+                </span>
+                <span class="comp-tile-label">
+                  <strong>Vysoké napětí</strong>
+                  <small>VN — trafostanice, vedení, veřejné osvětlení</small>
+                </span>
+              </a>
+              <a class="comp-tile reveal-child" data-stagger href="sluzby/fve/">
+                <span class="comp-media">
+                  <img src="assets/media/alternativnizdroje__5679b1bc4a.png" alt="" />
+                </span>
+                <span class="comp-tile-label">
+                  <strong>Fotovoltaika</strong>
+                  <small>FVE — solární elektrárny na klíč</small>
+                </span>
+              </a>
+              <a class="comp-tile reveal-child" data-stagger href="sluzby/rozvadece/">
+                <span class="comp-media">
+                  <img src="assets/media/IMG_20211020_102604__04a992ee5f.jpg" alt="" />
+                </span>
+                <span class="comp-tile-label">
+                  <strong>Rozvaděče</strong>
+                  <small>Výroba a montáž rozvaděčů</small>
+                </span>
+              </a>
+              <a class="comp-tile reveal-child" data-stagger href="sluzby/slaboproud/">
+                <span class="comp-media">
+                  <img src="assets/media/opticky-rozvadec__454b33af6c.jpg" alt="" />
+                </span>
+                <span class="comp-tile-label">
+                  <strong>Slaboproud</strong>
+                  <small>Data, kamery, zabezpečení, požární signalizace</small>
+                </span>
+              </a>
+              <a class="comp-tile reveal-child" data-stagger href="sluzby/projekce/">
+                <span class="comp-media">
+                  <img src="assets/media/IMG_20211020_104529__3049ae1e64.jpg" alt="" />
+                </span>
+                <span class="comp-tile-label">
+                  <strong>Projekce</strong>
+                  <small>Projektová dokumentace elektroinstalací</small>
+                </span>
+              </a>
+              <a class="comp-tile reveal-child" data-stagger href="sluzby/revize/">
+                <span class="comp-media">
+                  <img src="assets/media/revize__0686bebeae.jpg" alt="" />
+                </span>
+                <span class="comp-tile-label">
+                  <strong>Revize</strong>
+                  <small>Kontroly a měření elektrických zařízení</small>
+                </span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section class="section section-refs">
+          <div class="container reveal">
+            <div class="section-head reveal-child" data-stagger>
+              <h2>Reference</h2>
+              <p>Řemeslo, které obstojí i ve výstavních a industriálních prostorech.</p>
+            </div>
+
+            <article class="ref-feature reveal-child" data-stagger>
+              <div class="ref-copy">
+                <h3>TOSTA Plesná — industriální elektroinstalace</h3>
+                <p>
+                  Kompletní realizace silnoproudu, požárních rozvodů, nouzového osvětlení,
+                  elektronické požární signalizace (EPS) a zabezpečení (EZS)
+                  v rekonstruované textilní továrně.
+                </p>
+                <a class="btn btn-secondary on-light" href="reference/">Další realizace</a>
+              </div>
+              <div class="ref-media photo-collage photo-collage--3" role="group" aria-label="Fotografie TOSTA Plesná">
+                <img
+                  src="assets/media/IMG_20211020_124231__025795fbf4.jpg"
+                  alt="Industriální elektroinstalace TOSTA Plesná"
+                  width="1200"
+                  height="800"
+                />
+                <img
+                  src="assets/media/IMG_20211020_104529__3049ae1e64.jpg"
+                  alt="Kabelové rozvody TOSTA"
+                  width="800"
+                  height="600"
+                />
+                <img
+                  src="assets/media/IMG_20211020_102604__04a992ee5f.jpg"
+                  alt="Rozvaděče TOSTA"
+                  width="800"
+                  height="600"
+                />
+              </div>
+            </article>
+
+            <article class="ref-feature reverse reveal-child" data-stagger>
+              <div class="ref-copy">
+                <h3>Chebský hrad — hradní kaple</h3>
+                <p>
+                  Elektroinstalace a osvětlení v kapli sv. Erharda a Uršuly na Chebském hradě
+                  i další veřejné a regionální zakázky v Karlovarském kraji.
+                </p>
+                <a class="btn btn-secondary on-light" href="reference/">Zobrazit reference</a>
+              </div>
+              <div class="ref-media photo-collage photo-collage--2" role="group" aria-label="Fotografie referenčních realizací">
+                <img
+                  src="assets/media/kaple_na_hrade4__646f374ccc.png"
+                  alt="Interiér hradní kaple sv. Erharda a Uršuly na Chebském hradě"
+                  width="1536"
+                  height="1024"
+                />
+                <img
+                  src="assets/media/skalna1__32816c2a01.png"
+                  alt="Veřejné osvětlení Skalná"
+                  width="1200"
+                  height="800"
+                />
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="prodejny">
+          <div class="container reveal">
+            <div class="section-head">
+              <h2>Prodejny</h2>
+              <p>Přijďte pro materiál osobně — sklad v Chebu a maloobchod v Aši.</p>
+            </div>
+            <div class="stores">
+              <article class="store reveal-child" data-stagger>
+                <div class="store-media photo-collage photo-collage--3" role="group" aria-label="Fotografie provozovny Cheb">
+                  <img src="assets/media/cheb_sidlo.jpg" alt="Provozovna Elektro Euron Cheb" width="1440" height="1080" />
+                  <img src="assets/media/velkoobchodcheb__03f096da5b.png" alt="Velkoobchodní budova Cheb" width="800" height="600" />
+                  <img src="assets/media/cheb2__14644a3bc9.jpg" alt="Prodejna Cheb" width="800" height="600" />
+                </div>
+                <div class="store-body">
+                  <h3>Velkoobchod a maloobchod Cheb</h3>
+                  <p>Zelená 1844/6, 350 02 Cheb</p>
+                  <p><a href="tel:+420354437476">+420 354 437 476</a></p>
+                  <p class="hours">po–pá 7:00–17:00<br />so 8:00–12:00</p>
+                  <div class="store-actions">
+                    <a class="btn btn-primary" href="https://www.google.com/maps/place/Elektro+Euron+spol.+s.r.o./@50.0843032,12.3693536,17z/data=!4m6!3m5!1s0x47a0f6a338801ae7:0xe449dc1f2c91838e!8m2!3d50.0843032!4d12.3693536!16s%2Fg%2F1tftq2g3" target="_blank" rel="noopener">Navigovat</a>
+                    <a class="btn btn-secondary on-light" href="obchod/">Více o obchodě</a>
+                  </div>
+                </div>
+              </article>
+              <article class="store reveal-child" data-stagger>
+                <div class="store-media photo-collage photo-collage--3" role="group" aria-label="Fotografie prodejny Aš">
+                  <img src="assets/media/shop_as_enhanced.jpg" alt="Prodejna Elektro Euron Aš" width="640" height="640" />
+                  <img src="assets/media/as1__21cc836684.jpg" alt="Maloobchod Aš" width="800" height="600" />
+                  <img src="assets/media/as3__1cc7df396b.jpg" alt="Vstup prodejny Aš" width="800" height="600" />
+                </div>
+                <div class="store-body">
+                  <h3>Maloobchod Aš</h3>
+                  <p>Hlavní 1066/37, 352 01 Aš</p>
+                  <p><a href="tel:+420354525284">+420 354 525 284</a></p>
+                  <p class="hours">po, st–pá 8:00–12:00 a 12:30–16:00<br />úterý do 14:30</p>
+                  <div class="store-actions">
+                    <a class="btn btn-primary" href="https://www.google.com/maps/place/Elektro+-+Elektro+Proton/@50.2217884,12.1877606,17z/data=!4m6!3m5!1s0x47a0e33f6724823d:0xcdea6dcdfbe4cec0!8m2!3d50.2217884!4d12.1877606!16s%2Fg%2F113h343df" target="_blank" rel="noopener">Navigovat</a>
+                    <a class="btn btn-secondary on-light" href="obchod/">Více o obchodě</a>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section section-trust">
+          <div class="container reveal">
+            <div class="trust">
+              <span><strong>Od 1993</strong> na trhu</span>
+              <span><strong>ISO 9001 · 14001 · OHSAS 18001</strong></span>
+              <span><strong>Cheb · Aš · Karlovarský kraj</strong></span>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <div data-footer></div>
+    </div>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

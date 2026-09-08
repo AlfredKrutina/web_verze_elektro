@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <script>
+      (function () {
+        var p = location.pathname;
+        if (!p.endsWith("/") && !/\.[a-zA-Z0-9]+$/.test(p)) {
+          location.replace(p + "/" + location.search + location.hash);
+        }
+      })();
+    </script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Služby | Elektro Euron</title>
+    <meta name="description" content="Elektromontáže nízkého i vysokého napětí, fotovoltaika, rozvaděče, slaboproud, projekce a revize — Elektro Euron Cheb." />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=cabinet-grotesk@700,800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="icon" href="../assets/media/logo_nove.png" type="image/png" />
+  </head>
+  <body data-root=".." data-page="sluzby">
+    <div class="site">
+      <div data-header></div>
+      <main id="main">
+        <header class="page-hero container reveal">
+          <h1>Služby</h1>
+          <p>
+            Silnoproud i slaboproud, výroba rozvaděčů, fotovoltaika, projekce a revize.
+            Mobilní montážní týmy pro Karlovarský kraj.
+          </p>
+          <div class="btn-group" style="margin-top: 1.25rem">
+            <a class="btn btn-primary" href="../kontakt/">Poptat montáž</a>
+            <a class="btn btn-secondary on-light" href="tel:+420354437476">Zavolat</a>
+          </div>
+        </header>
+
+        <section class="section" style="padding-top: 0">
+          <div class="container reveal">
+            <div class="service-grid">
+              <a class="service-link" href="nizke-napeti/">
+                <h3>Nízké napětí (NN)</h3>
+                <p>Instalace, rekonstrukce a servis pro domácnosti, firmy i průmysl.</p>
+              </a>
+              <a class="service-link" href="vysoke-napeti/">
+                <h3>Vysoké napětí (VN)</h3>
+                <p>Trafostanice, vedení, veřejné osvětlení a kabelové soubory.</p>
+              </a>
+              <a class="service-link" href="fve/">
+                <h3>Fotovoltaika (FVE)</h3>
+                <p>Solární elektrárny na klíč včetně administrativy a připojení k síti.</p>
+              </a>
+              <a class="service-link" href="rozvadece/">
+                <h3>Rozvaděče</h3>
+                <p>Kusová výroba průmyslových, staveništních i speciálních rozvaděčů.</p>
+              </a>
+              <a class="service-link" href="slaboproud/">
+                <h3>Slaboproud</h3>
+                <p>Datové sítě, kamery, zabezpečení (EZS), požární signalizace (EPS), zvonky a automatizace.</p>
+              </a>
+              <a class="service-link" href="projekce/">
+                <h3>Projekce</h3>
+                <p>Dokumentace od přípojky po trafostanici a slaboproud.</p>
+              </a>
+              <a class="service-link" href="revize/">
+                <h3>Revize</h3>
+                <p>Výchozí, pravidelné i mimořádné revize bez omezení napětí.</p>
+              </a>
+              <a class="service-link" href="zemni-prace/">
+                <h3>Zemní a stavební práce</h3>
+                <p>Výkopy, protlaky, plošiny a zednické doprovodné práce.</p>
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+      <div data-footer></div>
+    </div>
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>

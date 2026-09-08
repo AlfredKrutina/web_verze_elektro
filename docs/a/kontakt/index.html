@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <script>
+      (function () {
+        var p = location.pathname;
+        if (!p.endsWith("/") && !/\.[a-zA-Z0-9]+$/.test(p)) {
+          location.replace(p + "/" + location.search + location.hash);
+        }
+      })();
+    </script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Kontakty | Elektro Euron</title>
+    <meta name="description" content="Poptávka montáže, telefony a adresy Elektro Euron Cheb a Aš." />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=cabinet-grotesk@700,800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="icon" href="../assets/media/logo_nove.png" type="image/png" />
+  </head>
+  <body data-root=".." data-page="kontakt">
+    <div class="site">
+      <div data-header></div>
+      <main id="main" class="container">
+        <header class="page-hero reveal">
+          <h1>Kontakty</h1>
+          <p>Napište poptávku nebo volejte. Ozveme se co nejdřív.</p>
+        </header>
+
+        <div class="contact-layout reveal">
+          <div class="form-card">
+            <div class="form-success" role="status" hidden>Připravujeme e-mailovou aplikaci…</div>
+            <form data-inquiry-form novalidate>
+              <label for="typ">Typ poptávky</label>
+              <select id="typ" name="typ" required>
+                <option value="Montáž">Montáž</option>
+                <option value="FVE">Fotovoltaika (FVE)</option>
+                <option value="Projekce">Projekce</option>
+                <option value="Revize">Revize</option>
+                <option value="Rozvaděče">Rozvaděče</option>
+                <option value="Slaboproud">Slaboproud</option>
+                <option value="Obchod">Obchod / materiál</option>
+                <option value="Jiné">Jiné</option>
+              </select>
+
+              <label for="jmeno">Jméno a firma</label>
+              <input
+                id="jmeno"
+                name="jmeno"
+                type="text"
+                autocomplete="name"
+                required
+                minlength="2"
+                maxlength="120"
+                spellcheck="false"
+              />
+              <p class="field-error" id="jmeno-error" hidden></p>
+
+              <label for="telefon">Telefon</label>
+              <input
+                id="telefon"
+                name="telefon"
+                type="tel"
+                inputmode="tel"
+                autocomplete="tel"
+                required
+                maxlength="20"
+                placeholder="+420 123 456 789"
+                spellcheck="false"
+                aria-describedby="telefon-error"
+              />
+              <p class="field-error" id="telefon-error" hidden></p>
+
+              <label for="email">E-mail</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                inputmode="email"
+                autocomplete="email"
+                maxlength="120"
+                placeholder="jmeno@firma.cz"
+                spellcheck="false"
+                aria-describedby="email-error"
+              />
+              <p class="field-error" id="email-error" hidden></p>
+
+              <label for="lokalita">Lokalita zakázky</label>
+              <input
+                id="lokalita"
+                name="lokalita"
+                type="text"
+                maxlength="80"
+                placeholder="např. Cheb, Aš…"
+                spellcheck="false"
+              />
+
+              <label for="zprava">Zpráva</label>
+              <textarea
+                id="zprava"
+                name="zprava"
+                required
+                minlength="10"
+                maxlength="2000"
+                placeholder="Stručně popište, co potřebujete…"
+                aria-describedby="zprava-error"
+              ></textarea>
+              <p class="field-error" id="zprava-error" hidden></p>
+
+              <div class="btn-group" style="margin-top: 1.25rem">
+                <button class="btn btn-primary" type="submit">Odeslat poptávku</button>
+                <a class="btn btn-secondary on-light" href="tel:+420354437476">Zavolat</a>
+              </div>
+              <p class="form-note">Odesláním se otevře váš e-mailový klient na adresu info@elektro-euron.cz.</p>
+            </form>
+          </div>
+
+          <aside class="contact-side">
+            <h2>Sídlo a prodejna Cheb</h2>
+            <ul class="contact-list">
+              <li>
+                <strong>ELEKTRO EURON spol. s r.o.</strong>
+                Zelená 1844/6, 350 02 Cheb<br />
+                <a href="tel:+420354437476">+420 354 437 476</a><br />
+                <a href="mailto:info@elektro-euron.cz">info@elektro-euron.cz</a>
+              </li>
+              <li>
+                <strong>Fakturace</strong>
+                <a href="mailto:fakturace@elektro-euron.cz">fakturace@elektro-euron.cz</a><br />
+                Datová schránka: c3t3kpd
+              </li>
+              <li>
+                <strong>Maloobchod Aš</strong>
+                Hlavní 1066/37<br />
+                <a href="tel:+420354525284">+420 354 525 284</a>
+              </li>
+            </ul>
+
+            <h2>Podle agendy</h2>
+            <ul class="contact-list">
+              <li>
+                <strong>Jednatel — Radovan Liďák</strong>
+                <a href="tel:+420602425529">+420 602 425 529</a>
+              </li>
+              <li>
+                <strong>Realizace — Petr Kýček</strong>
+                <a href="tel:+420733641628">+420 733 641 628</a>
+              </li>
+              <li>
+                <strong>Cenové nabídky — David Domčík</strong>
+                <a href="tel:+420602120929">+420 602 120 929</a>
+              </li>
+              <li>
+                <strong>Revize — Karel Rossmüller</strong>
+                <a href="tel:+420737266952">+420 737 266 952</a>
+              </li>
+              <li>
+                <strong>Projekce — Ing. Radek Pupák</strong>
+                <a href="tel:+420606726452">+420 606 726 452</a>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </main>
+      <div data-footer></div>
+    </div>
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>

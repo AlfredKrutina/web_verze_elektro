@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <script>
+      (function () {
+        var p = location.pathname;
+        if (!p.endsWith("/") && !/\.[a-zA-Z0-9]+$/.test(p)) {
+          location.replace(p + "/" + location.search + location.hash);
+        }
+      })();
+    </script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Zvonkové systémy | Elektro Euron</title>
+    <meta name="description" content="Audio a video zvonkové systémy a domovní telefony." />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=cabinet-grotesk@700,800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../assets/css/main.css" />
+    <link rel="icon" href="../../../assets/media/logo_nove.png" type="image/png" />
+  </head>
+  <body data-root="../../.." data-page="sluzby">
+    <div class="site">
+      <div data-header></div>
+      <main id="main" class="container">
+        <header class="page-hero reveal">
+          <h1>Zvonkové systémy</h1>
+          <p>Audio i video telefony pro bytové i komerční objekty.</p>
+        </header>
+        <div class="prose reveal">
+          <p>Dodáme a namontujeme zvonkové tabulky, vnitřní jednotky a napájení. Poradíme s výběrem podle dispozice domu.</p>
+          <div class="btn-group" style="margin: 2rem 0 3rem">
+            <a class="btn btn-primary" href="../../../kontakt/?typ=Slaboproud">Poptat zvonky</a>
+            <a class="btn btn-secondary on-light" href="../">Zpět na slaboproud</a>
+          </div>
+        </div>
+      </main>
+      <div data-footer></div>
+    </div>
+    <script src="../../../assets/js/main.js"></script>
+  </body>
+</html>

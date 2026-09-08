@@ -1,0 +1,23 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.tmp
+.cursor/
+
+# Zaheslovaný editor aktualit + backend (nepatří do veřejného mockupu / GH Pages)
+docs/a/ops-redakce/
+docs/a/aktuality/_backend/
+docs/a/assets/js/aktuality-admin.js
+docs/a/assets/js/aktuality-config.js
+docs/a/assets/js/aktuality-config.example.js
+docs/a/assets/js/aktuality-public.js
+docs/a/assets/js/aktuality-shared.js
+docs/a/assets/js/vendor/
+context/aktuality_security.md
+
+# Lokální zálohy originálů (nepotřebné pro Pages)
+docs/a/assets/media/originals_backup/
+
+# Scrapy / starší exporty — mockup běží z docs/
+web_assets/
+site/

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <script>
+      (function () {
+        var p = location.pathname;
+        if (!p.endsWith("/") && !/\.[a-zA-Z0-9]+$/.test(p)) {
+          location.replace(p + "/" + location.search + location.hash);
+        }
+      })();
+    </script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Slaboproud | Elektro Euron</title>
+    <meta name="description" content="Datové sítě, kamery, zabezpečení (EZS), požární signalizace (EPS), zvonkové systémy a domovní automatizace." />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=cabinet-grotesk@700,800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <link rel="icon" href="../../assets/media/logo_nove.png" type="image/png" />
+  </head>
+  <body data-root="../.." data-page="sluzby">
+    <div class="site">
+      <div data-header></div>
+      <main id="main">
+        <header class="page-hero container reveal">
+          <h1>Slaboproudé instalace</h1>
+          <p>
+            Od návrhu po otestování a certifikaci. Pomůžeme i s dokumentací pro připojení na pult centrální ochrany.
+          </p>
+        </header>
+        <section class="section" style="padding-top: 0">
+          <div class="container reveal">
+            <div class="service-grid">
+              <a class="service-link" href="datove-site/">
+                <h3>Datové sítě</h3>
+                <p>UTP i optika, racky a aktivní prvky.</p>
+              </a>
+              <a class="service-link" href="kamerove-systemy/">
+                <h3>Kamerové systémy</h3>
+                <p>Návrh a montáž kamerových systémů (CCTV) pro objekty i areály.</p>
+              </a>
+              <a class="service-link" href="ezs/">
+                <h3>Zabezpečení (EZS)</h3>
+                <p>Elektronické zabezpečovací systémy.</p>
+              </a>
+              <a class="service-link" href="eps/">
+                <h3>Požární signalizace (EPS)</h3>
+                <p>Elektronická požární signalizace.</p>
+              </a>
+              <a class="service-link" href="zvonky/">
+                <h3>Zvonky a videotelefony</h3>
+                <p>Audio i video zvonkové systémy.</p>
+              </a>
+              <a class="service-link" href="automatizace/">
+                <h3>Domovní automatizace</h3>
+                <p>Řízení a komfortní instalace.</p>
+              </a>
+            </div>
+            <div class="btn-group" style="margin-top: 2rem">
+              <a class="btn btn-primary" href="../../kontakt/?typ=Slaboproud">Poptat slaboproud</a>
+              <a class="btn btn-secondary on-light" href="../">Zpět na služby</a>
+            </div>
+          </div>
+        </section>
+      </main>
+      <div data-footer></div>
+    </div>
+    <script src="../../assets/js/main.js"></script>
+  </body>
+</html>
