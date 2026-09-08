@@ -6,7 +6,7 @@
   document.documentElement.classList.add("notranslate");
 
   function logo(height = 44) {
-    const w = Math.round((height * 261) / 95);
+    const w = Math.round((height * 1100) / 484);
     return `<img src="${root}/assets/media/logo_nove.png" width="${w}" height="${height}" alt="ELEKTRO EURON spol. s r.o." />`;
   }
 
@@ -21,9 +21,6 @@
           <a class="brand" href="${root === "." ? "index.html" : root + "/index.html"}">
             ${logo(44)}
           </a>
-          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
-            <span></span><span></span><span></span>
-          </button>
           <ul class="nav-links" id="site-nav">
             ${item("/sluzby/", "Služby", "sluzby")}
             ${item("/obchod/", "Obchod", "obchod")}
@@ -32,11 +29,16 @@
             ${item("/o-nas/", "O nás", "onas")}
             ${item("/kontakt/", "Kontakty", "kontakt")}
           </ul>
-          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Přepnout světlý a tmavý režim">
-            <span class="theme-icon icon-sun" aria-hidden="true"></span>
-            <span class="theme-icon icon-moon" aria-hidden="true"></span>
-          </button>
-          <a class="nav-phone" href="tel:+420354437476">+420 354 437 476</a>
+          <div class="nav-actions">
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="Přepnout světlý a tmavý režim">
+              <span class="theme-icon icon-sun" aria-hidden="true"></span>
+              <span class="theme-icon icon-moon" aria-hidden="true"></span>
+            </button>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+              <span></span><span></span><span></span>
+            </button>
+            <a class="nav-phone" href="tel:+420354437476">+420 354 437 476</a>
+          </div>
         </div>
       </header>
     `;
@@ -204,12 +206,8 @@
     });
   }
 
-  reveals.forEach((el, i) => {
+  reveals.forEach((el) => {
     prepareStagger(el);
-    if (!el.style.getPropertyValue("--reveal-delay") && el.dataset.delay == null) {
-      // light cascade between adjacent section reveals
-      el.style.setProperty("--reveal-delay", `${Math.min((i % 3) * 60, 180)}ms`);
-    }
     if (el.dataset.delay) {
       el.style.setProperty("--reveal-delay", el.dataset.delay);
     }
