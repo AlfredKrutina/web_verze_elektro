@@ -931,7 +931,7 @@ html.scroll-fast .reveal-child {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   width: min(100% - (var(--gutter) * 2), var(--max));
   margin-inline: auto;
-  border-radius: 1.15rem;
+  border-radius: 0.25rem;
   overflow: hidden;
   min-height: clamp(15rem, 28vw, 20rem);
 }
