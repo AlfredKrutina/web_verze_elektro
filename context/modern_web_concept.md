@@ -1,8 +1,8 @@
 # Moderní web Elektro Euron — koncept
 
 Schválený koncept pro novou verzi webu. Živý podklad: https://www.elektro-euron.cz/  
-Archiv: `web_assets/` · analýza: `context/site_elektro_euron.md`  
-Implementace showcase (3 designy): `docs/` — hub + varianty A/B/C pro GitHub Pages.
+Archiv: lokálně `web_assets/` (gitignore, není v public gitu) · analýza: `context/site_elektro_euron.md`  
+Implementace: `docs/` pro GitHub Pages. Primární demo = **varianta A** (`docs/a/`). B/C jsou archiv. Kořen `docs/index.html` jen přesměruje na `a/`.
 
 ## Problém dnešního webu
 
@@ -22,14 +22,15 @@ Katalog služeb z éry ~2012: homepage = starý blog, hluboké menu, slabé CTA.
 
 ## IA
 
-Navigace: Služby · Obchod · Reference · O nás · Kontakty (+ telefon)
+Navigace: Služby · Obchod · Reference · Aktuality · O nás · Kontakty (+ telefon)
 
 ```
-/                  Homepage
+/                  Homepage (v Pages: /a/)
 /sluzby/           Přehled služeb
 /sluzby/[tema]/   VN, NN, FVE, rozvaděče, slaboproud (+ podstránky), projekce, revize, zemní práce
 /obchod/           Prodejny + sortiment
 /reference/        Realizace
+/aktuality/        Statické novinky (viz context/aktuality_static.md)
 /o-nas/            Historie, certifikáty, tým
 /kontakt/          Poptávka + kontakty
 ```

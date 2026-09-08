@@ -2,7 +2,7 @@
 
 Poslední audit a archiv: 2026-09-08  
 Živý web: https://www.elektro-euron.cz/  
-Lokální archiv: `web_assets/`
+Lokální archiv (volitelný, v `.gitignore`): `web_assets/`
 
 ---
 

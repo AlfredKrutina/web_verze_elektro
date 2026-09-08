@@ -1,4 +1,11 @@
 # docs/ — kořen GitHub Pages
 
-Po zapnutí Pages (branch `main`, folder `/docs`) je mockup na
-`https://<user>.github.io/<repo>/` → přesměruje na variantu **A**.
+Tato složka je to, co Actions nasadí na Pages (`path: docs` ve workflow).
+
+- `index.html` — okamžité přesměrování na variantu **A** (`a/`)
+- `a/` — finální mockup pro firmu
+- `b/`, `c/` — archiv dalších designů
+- `shared/` — sdílená média pro B/C
+- `.nojekyll` — vypíná Jekyll (soubory s `_` a tečkou se servírují jak jsou)
+
+Lokálně: `npx --yes serve docs -l 5173` z kořene repa.
