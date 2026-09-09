@@ -6,6 +6,7 @@
         var p = location.pathname;
         if (!p.endsWith("/") && !/\.[a-zA-Z0-9]+$/.test(p)) {
           location.replace(p + "/" + location.search + location.hash);
+        }
         try {
           var k = "ee-theme";
           var s = localStorage.getItem(k);
@@ -45,6 +46,9 @@
           <h1>Zemní a stavební práce</h1>
           <p>Doprovodné práce, díky kterým dodáme elektrozakázku kompletně.</p>
         </header>
+        <figure class="page-cover">
+          <img src="../../assets/media/DSC_0020__1c3744f436.jpg" alt="Zemní a stavební práce u elektroinstalace" width="800" height="600" />
+        </figure>
         <div class="prose">
           <ul>
             <li>zemní a výkopové práce</li>

@@ -6,6 +6,7 @@
         var p = location.pathname;
         if (!p.endsWith("/") && !/\.[a-zA-Z0-9]+$/.test(p)) {
           location.replace(p + "/" + location.search + location.hash);
+        }
         try {
           var k = "ee-theme";
           var s = localStorage.getItem(k);
@@ -51,28 +52,58 @@
           <div class="container">
             <div class="service-grid">
               <a class="service-link" href="datove-site/">
-                <h3>Datové sítě</h3>
-                <p>UTP i optika, racky a aktivní prvky.</p>
+                <span class="service-link-media" aria-hidden="true">
+                  <img src="../../assets/media/brands/kopos-kpk.jpg" alt="" width="1600" height="356" />
+                </span>
+                <span class="service-link-copy">
+                  <h3>Datové sítě</h3>
+                  <p>UTP i optika, racky a aktivní prvky.</p>
+                </span>
               </a>
               <a class="service-link" href="kamerove-systemy/">
-                <h3>Kamerové systémy</h3>
-                <p>Návrh a montáž kamerových systémů (CCTV) pro objekty i areály.</p>
+                <span class="service-link-media" aria-hidden="true">
+                  <img src="../../assets/media/brands/jablotron-kamery.jpg" alt="" width="500" height="500" />
+                </span>
+                <span class="service-link-copy">
+                  <h3>Kamerové systémy</h3>
+                  <p>Návrh a montáž kamerových systémů (CCTV) pro objekty i areály.</p>
+                </span>
               </a>
               <a class="service-link" href="ezs/">
-                <h3>Zabezpečení (EZS)</h3>
-                <p>Elektronické zabezpečovací systémy.</p>
+                <span class="service-link-media" aria-hidden="true">
+                  <img src="../../assets/media/brands/jablotron-ezs.jpg" alt="" width="1600" height="467" />
+                </span>
+                <span class="service-link-copy">
+                  <h3>Zabezpečení (EZS)</h3>
+                  <p>Elektronické zabezpečovací systémy.</p>
+                </span>
               </a>
               <a class="service-link" href="eps/">
-                <h3>Požární signalizace (EPS)</h3>
-                <p>Elektronická požární signalizace.</p>
+                <span class="service-link-media" aria-hidden="true">
+                  <img src="../../assets/media/brands/jablotron-detektory.jpg" alt="" width="500" height="500" />
+                </span>
+                <span class="service-link-copy">
+                  <h3>Požární signalizace (EPS)</h3>
+                  <p>Elektronická požární signalizace.</p>
+                </span>
               </a>
               <a class="service-link" href="zvonky/">
-                <h3>Zvonky a videotelefony</h3>
-                <p>Audio i video zvonkové systémy.</p>
+                <span class="service-link-media" aria-hidden="true">
+                  <img src="../../assets/media/brands/jablotron-ovladani.jpg" alt="" width="500" height="500" />
+                </span>
+                <span class="service-link-copy">
+                  <h3>Zvonky a videotelefony</h3>
+                  <p>Audio i video zvonkové systémy.</p>
+                </span>
               </a>
               <a class="service-link" href="automatizace/">
-                <h3>Domovní automatizace</h3>
-                <p>Řízení a komfortní instalace.</p>
+                <span class="service-link-media" aria-hidden="true">
+                  <img src="../../assets/media/brands/jablotron-klavesnice.jpg" alt="" width="633" height="600" />
+                </span>
+                <span class="service-link-copy">
+                  <h3>Domovní automatizace</h3>
+                  <p>Řízení a komfortní instalace.</p>
+                </span>
               </a>
             </div>
             <div class="btn-group" style="margin-top: 2rem">

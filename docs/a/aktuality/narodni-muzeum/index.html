@@ -6,6 +6,7 @@
         var p = location.pathname;
         if (!p.endsWith("/") && !/\.[a-zA-Z0-9]+$/.test(p)) {
           location.replace(p + "/" + location.search + location.hash);
+        }
         try {
           var k = "ee-theme";
           var s = localStorage.getItem(k);
