@@ -890,6 +890,12 @@ html.scroll-fast .reveal.is-visible {
   transition-delay: 0ms !important;
 }
 
+/* Photo blocks must not visually slide over the next heading */
+.ref-feature.reveal,
+.ref-feature.reveal.is-visible {
+  transform: none;
+}
+
 .reveal-child {
   opacity: 0;
   transform: translateY(18px);
@@ -1383,6 +1389,7 @@ html.scroll-fast .reveal-child {
   line-height: 1.15;
   letter-spacing: -0.02em;
   text-wrap: balance;
+  overflow-wrap: anywhere;
   color: var(--ink);
 }
 
@@ -1674,6 +1681,8 @@ html.scroll-fast .reveal-child {
   gap: 0.55rem;
   width: 100%;
   min-width: 0;
+  position: relative;
+  contain: layout;
   border-radius: 1.15rem;
   overflow: hidden;
   background: transparent;
@@ -1772,7 +1781,7 @@ html.scroll-fast .reveal-child {
   border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
 }
 
-@media (max-width: 760px) {
+@media (max-width: 900px) {
   .photo-collage--2,
   .photo-collage--3,
   .photo-collage--4,
