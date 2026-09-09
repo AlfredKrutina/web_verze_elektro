@@ -1328,8 +1328,9 @@ html.scroll-fast .reveal-child {
   gap: clamp(0.85rem, 2vw, 1.25rem);
   background: transparent;
   color: var(--ink);
-  overflow: visible;
+  isolation: isolate;
   width: 100%;
+  min-width: 0;
   margin: 0;
   padding: clamp(1.5rem, 3.5vw, 2.5rem) 0;
   border-top: 1px solid var(--line);
@@ -1666,15 +1667,22 @@ html.scroll-fast .reveal-child {
   }
 }
 
-/* Photo collage — bento layouts for projects & branches */
+/* Photo collage — bento on desktop, stacked/wrapping on small screens.
+   Never clip the grid shorter than its photos (that spilled onto the next heading). */
 .photo-collage {
   display: grid;
   gap: 0.55rem;
   width: 100%;
+  min-width: 0;
   border-radius: 1.15rem;
   overflow: hidden;
   background: transparent;
   border: none;
+}
+
+.photo-collage > * {
+  min-width: 0;
+  min-height: 0;
 }
 
 .photo-collage img {
@@ -1688,10 +1696,9 @@ html.scroll-fast .reveal-child {
 }
 
 .photo-collage--3 {
-  grid-template-columns: 1.55fr 1fr;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
   grid-template-rows: repeat(2, minmax(0, 1fr));
-  min-height: clamp(13rem, 28vw, 18rem);
-  max-height: 20rem;
+  height: clamp(13rem, 28vw, 20rem);
 }
 
 .photo-collage--3 > :first-child {
@@ -1699,10 +1706,9 @@ html.scroll-fast .reveal-child {
 }
 
 .photo-collage--4 {
-  grid-template-columns: 1.45fr 1fr 1fr;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr) minmax(0, 1fr);
   grid-template-rows: repeat(2, minmax(0, 1fr));
-  min-height: clamp(13.5rem, 30vw, 19rem);
-  max-height: 21rem;
+  height: clamp(13.5rem, 30vw, 21rem);
 }
 
 .photo-collage--4 > :first-child {
@@ -1714,15 +1720,15 @@ html.scroll-fast .reveal-child {
 }
 
 .photo-collage--2 {
-  grid-template-columns: 1.25fr 1fr;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
   grid-template-rows: minmax(0, 1fr);
-  min-height: clamp(12rem, 26vw, 16.5rem);
-  max-height: 18rem;
+  height: clamp(12rem, 26vw, 18rem);
 }
 
 .photo-collage--stack {
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   grid-template-rows: auto;
+  height: auto;
   min-height: 0;
 }
 
@@ -1732,7 +1738,7 @@ html.scroll-fast .reveal-child {
 }
 
 .contact-side .photo-collage--2 {
-  min-height: 9.5rem;
+  height: 9.5rem;
 }
 
 .contact-side .photo-collage img {
@@ -1742,7 +1748,7 @@ html.scroll-fast .reveal-child {
 .ref-media.photo-collage {
   background: transparent;
   border: none;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .ref-media.photo-collage img {
@@ -1756,8 +1762,7 @@ html.scroll-fast .reveal-child {
 
 .store-media.photo-collage {
   border-radius: 0;
-  min-height: clamp(14rem, 24vw, 17rem);
-  max-height: 18rem;
+  height: clamp(14rem, 24vw, 18rem);
 }
 
 .store-media.photo-collage img {
@@ -1770,10 +1775,21 @@ html.scroll-fast .reveal-child {
 @media (max-width: 760px) {
   .photo-collage--2,
   .photo-collage--3,
-  .photo-collage--4 {
-    grid-template-columns: 1fr 1fr;
+  .photo-collage--4,
+  .store-media.photo-collage,
+  .contact-side .photo-collage--2 {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-rows: auto;
+    height: auto;
+    max-height: none;
     min-height: 0;
+  }
+
+  .photo-collage--2 img,
+  .photo-collage--3 img,
+  .photo-collage--4 img {
+    height: auto;
+    max-height: none;
   }
 
   .photo-collage--2 > :first-child,
@@ -1782,13 +1798,11 @@ html.scroll-fast .reveal-child {
     grid-column: 1 / -1;
     grid-row: auto;
     aspect-ratio: 16 / 10;
-    max-height: 16rem;
   }
 
   .photo-collage--2 > :last-child {
     grid-column: 1 / -1;
     aspect-ratio: 16 / 10;
-    max-height: 14rem;
   }
 
   .photo-collage--4 > :nth-child(2) {
@@ -1798,15 +1812,6 @@ html.scroll-fast .reveal-child {
   .photo-collage--3 > :not(:first-child),
   .photo-collage--4 > :not(:first-child) {
     aspect-ratio: 4 / 3;
-    max-height: 10rem;
-  }
-
-  .store-media.photo-collage {
-    min-height: 0;
-  }
-
-  .store-media.photo-collage--3 > :first-child {
-    max-height: 12rem;
   }
 }
 
