@@ -241,8 +241,6 @@ h4 {
   z-index: 1;
   width: 100%;
   min-width: 0;
-  overflow-x: hidden;
-  overflow-x: clip;
   padding-top: calc(var(--nav-h) + env(safe-area-inset-top));
 }
 
@@ -300,11 +298,9 @@ a:hover {
 @keyframes headerIn {
   from {
     opacity: 0;
-    transform: translateY(-12px);
   }
   to {
     opacity: 1;
-    transform: none;
   }
 }
 
@@ -590,10 +586,10 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
   .nav-links {
     display: none;
     position: fixed;
-    left: 0;
-    right: 0;
-    top: calc(var(--nav-h) + env(safe-area-inset-top));
-    bottom: 0;
+    inset: calc(var(--nav-h) + env(safe-area-inset-top)) 0 0;
+    width: 100%;
+    height: calc(100dvh - var(--nav-h) - env(safe-area-inset-top));
+    max-height: calc(100dvh - var(--nav-h) - env(safe-area-inset-top));
     transform: none;
     margin: 0;
     z-index: 55;
@@ -607,6 +603,7 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
     padding: 0.75rem var(--gutter) calc(1.25rem + env(safe-area-inset-bottom));
     border-bottom: 1px solid var(--line);
     gap: 0.15rem;
+    overflow-x: hidden;
     overflow-y: auto;
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
