@@ -3,6 +3,12 @@
   <head>
     <script>
       (function () {
+        document.documentElement.classList.add("js");
+        window.setTimeout(function () {
+          if (!document.documentElement.hasAttribute("data-reveals")) {
+            document.documentElement.classList.add("reveals-fallback");
+          }
+        }, 3200);
         var p = location.pathname;
         if (!p.endsWith("/") && !/\.[a-zA-Z0-9]+$/.test(p)) {
           location.replace(p + "/" + location.search + location.hash);

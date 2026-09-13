@@ -486,8 +486,53 @@
     });
   }
 
+  function markPageReveals() {
+    const mark = (nodes, stagger) => {
+      nodes.forEach((el, i) => {
+        if (el.classList.contains("reveal") || el.closest(".page-hero") || el.closest(".reveal")) {
+          return;
+        }
+        el.classList.add("reveal");
+        if (stagger) {
+          el.style.setProperty("--reveal-delay", `${Math.min(i * 70, 420)}ms`);
+        }
+      });
+    };
+
+    document.querySelectorAll(".ref-feature").forEach((el, i) => {
+      if (el.classList.contains("reveal")) return;
+      el.classList.add("reveal");
+      if (i % 2 === 1) el.classList.add("reveal--soft");
+    });
+
+    mark(document.querySelectorAll(".service-grid > .service-link"), true);
+    mark(document.querySelectorAll(".aktualita-card"), true);
+    mark(document.querySelectorAll(".sortiment-card"), true);
+    mark(document.querySelectorAll(".about-split > .about-card"), true);
+    mark(document.querySelectorAll(".cert-grid > .cert"), true);
+    mark(document.querySelectorAll(".team > article"), true);
+    mark(document.querySelectorAll(".stores .store"), false);
+    mark(document.querySelectorAll(".about-photo"), false);
+    mark(document.querySelectorAll(".form-card, .contact-side"), false);
+    mark(document.querySelectorAll(".aktualita-detail"), false);
+    mark(
+      document.querySelectorAll("main > .prose, .section .container > .prose, .about-band .prose"),
+      false
+    );
+    mark(document.querySelectorAll(".brand-strip"), false);
+    mark(
+      document.querySelectorAll("main > .photo-collage, .section .container > .photo-collage"),
+      false
+    );
+    mark(document.querySelectorAll("main > .media-row"), false);
+    mark(document.querySelectorAll(".section-head:not(.reveal), .certs-group"), false);
+  }
+
+  markPageReveals();
+
   const reveals = document.querySelectorAll(".reveal");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const fallbackOn = document.documentElement.classList.contains("reveals-fallback");
 
   function revealNow(el, instant) {
     if (!el || el.classList.contains("is-visible")) return;
@@ -496,8 +541,36 @@
   }
 
   function revealAllPending(instant) {
+    reveals.forEach((el) => revealNow(el, instant));
+  }
+
+  function inView(el, bottomRatio) {
+    const rect = el.getBoundingClientRect();
+    return rect.top < window.innerHeight * bottomRatio && rect.bottom > -48;
+  }
+
+  function revealVisible(instant, bottomRatio) {
     reveals.forEach((el) => {
-      if (!el.classList.contains("is-visible")) revealNow(el, instant);
+      if (!el.classList.contains("is-visible") && inView(el, bottomRatio)) {
+        revealNow(el, instant);
+      }
+    });
+  }
+
+  function revealHash() {
+    const id = location.hash.slice(1);
+    if (!id) return;
+    let target = null;
+    try {
+      target = document.getElementById(id);
+    } catch (e) {
+      return;
+    }
+    if (!target) return;
+    reveals.forEach((el) => {
+      if (el === target || el.contains(target) || target.contains(el)) {
+        revealNow(el, true);
+      }
     });
   }
 
@@ -518,9 +591,11 @@
     }
   });
 
-  if (reduceMotion) {
+  document.documentElement.setAttribute("data-reveals", "");
+
+  if (fallbackOn || reduceMotion || !reveals.length || !("IntersectionObserver" in window)) {
     revealAllPending(true);
-  } else if (reveals.length && "IntersectionObserver" in window) {
+  } else {
     let lastY = window.scrollY;
     let lastT = performance.now();
     let fast = false;
@@ -530,32 +605,6 @@
       fast = on;
       document.documentElement.classList.toggle("scroll-fast", on);
     };
-
-    window.addEventListener(
-      "scroll",
-      () => {
-        const now = performance.now();
-        const y = window.scrollY;
-        const dt = Math.max(now - lastT, 1);
-        const speed = Math.abs(y - lastY) / dt; // px/ms
-        lastY = y;
-        lastT = now;
-
-        if (speed > 1.8) {
-          setFast(true);
-          // Flush anything already near/above viewport so searchers aren't blocked
-          const flushLine = y + window.innerHeight * 1.15;
-          reveals.forEach((el) => {
-            if (el.classList.contains("is-visible")) return;
-            const top = el.getBoundingClientRect().top + y;
-            if (top < flushLine) revealNow(el, true);
-          });
-          window.clearTimeout(fastTimer);
-          fastTimer = window.setTimeout(() => setFast(false), 140);
-        }
-      },
-      { passive: true }
-    );
 
     const io = new IntersectionObserver(
       (entries) => {
@@ -567,33 +616,60 @@
       },
       {
         threshold: 0.01,
-        rootMargin: window.matchMedia("(max-width: 700px)").matches
-          ? "0px 0px 0px 0px"
-          : "0px 0px -6% 0px",
+        rootMargin: "12% 0px 18% 0px",
       }
     );
 
+    revealHash();
+    revealVisible(false, 0.98);
+
     reveals.forEach((el) => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight * 0.96 && rect.bottom > 0) {
-        window.requestAnimationFrame(() => revealNow(el, false));
-      } else {
-        io.observe(el);
-      }
+      if (!el.classList.contains("is-visible")) io.observe(el);
     });
 
-    window.setTimeout(() => {
-      reveals.forEach((el) => {
-        if (el.classList.contains("is-visible")) return;
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 1.05 && rect.bottom > -40) {
-          revealNow(el, false);
-          io.unobserve(el);
+    window.addEventListener(
+      "scroll",
+      () => {
+        const now = performance.now();
+        const y = window.scrollY;
+        const dt = Math.max(now - lastT, 1);
+        const speed = Math.abs(y - lastY) / dt;
+        lastY = y;
+        lastT = now;
+
+        if (speed > 1.8) {
+          setFast(true);
+          revealVisible(true, 1.15);
+          window.clearTimeout(fastTimer);
+          fastTimer = window.setTimeout(() => setFast(false), 140);
+        } else {
+          revealVisible(false, 1.02);
         }
+      },
+      { passive: true }
+    );
+
+    const flush = (instant) => {
+      revealHash();
+      revealVisible(instant, 1.08);
+      reveals.forEach((el) => {
+        if (el.classList.contains("is-visible")) io.unobserve(el);
       });
-    }, 1400);
-  } else {
-    revealAllPending(true);
+    };
+
+    window.addEventListener("load", () => flush(false));
+    window.addEventListener("pageshow", (e) => {
+      if (e.persisted) flush(true);
+    });
+    window.addEventListener("hashchange", () => revealHash());
+    window.addEventListener(
+      "resize",
+      () => {
+        revealVisible(true, 1.02);
+      },
+      { passive: true }
+    );
+    window.setTimeout(() => flush(false), 1200);
   }
 
   // Lightbox pro dokumenty (certifikáty). Bez JS odkaz otevře obrázek napřímo.

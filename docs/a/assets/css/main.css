@@ -1315,7 +1315,30 @@ html[data-theme="dark"] .hero--split .hero-continue {
   font-weight: 700;
 }
 
-.reveal {
+html.js :is(
+  .reveal,
+  .ref-feature,
+  .service-grid > .service-link,
+  .aktualita-card,
+  .sortiment-card,
+  .about-split > .about-card,
+  .cert-grid > .cert,
+  .team > article,
+  .stores .store,
+  .about-photo,
+  .form-card,
+  .contact-side,
+  .aktualita-detail,
+  main > .prose,
+  .section .container > .prose,
+  .about-band .prose,
+  .brand-strip,
+  main > .photo-collage,
+  .section .container > .photo-collage,
+  main > .media-row,
+  .section-head,
+  .certs-group
+):not(.is-visible) {
   opacity: 0;
   transform: translate3d(-28px, 8px, 0);
   transition:
@@ -1325,13 +1348,37 @@ html[data-theme="dark"] .hero--split .hero-continue {
   will-change: opacity, transform;
 }
 
-.reveal.reveal--right {
+.reveal.reveal--right:not(.is-visible) {
   transform: translate3d(28px, 8px, 0);
 }
 
-.reveal.is-visible {
+html.js :is(
+  .reveal,
+  .ref-feature,
+  .service-grid > .service-link,
+  .aktualita-card,
+  .sortiment-card,
+  .about-split > .about-card,
+  .cert-grid > .cert,
+  .team > article,
+  .stores .store,
+  .about-photo,
+  .form-card,
+  .contact-side,
+  .aktualita-detail,
+  main > .prose,
+  .section .container > .prose,
+  .about-band .prose,
+  .brand-strip,
+  main > .photo-collage,
+  .section .container > .photo-collage,
+  main > .media-row,
+  .section-head,
+  .certs-group
+).is-visible {
   opacity: 1;
   transform: none;
+  will-change: auto;
 }
 
 .reveal.is-instant,
@@ -1341,10 +1388,19 @@ html.scroll-fast .reveal.is-visible {
   transition-delay: 0ms !important;
 }
 
-/* Photo blocks must not visually slide over the next heading */
-.ref-feature.reveal,
-.ref-feature.reveal.is-visible {
-  transform: none;
+html.js :is(
+  .ref-feature,
+  .store,
+  .about-photo,
+  main > .photo-collage,
+  main > .media-row
+):not(.is-visible),
+html.js .photo-collage.reveal:not(.is-visible) {
+  transform: translate3d(0, 18px, 0);
+}
+
+html.js .reveal.reveal--soft:not(.is-visible) {
+  transform: translate3d(0, 16px, 0);
 }
 
 .reveal-child {
@@ -1369,9 +1425,60 @@ html.scroll-fast .reveal-child {
   transition-delay: 0ms !important;
 }
 
+html.reveals-fallback :is(
+  .reveal,
+  .reveal-child,
+  .ref-feature,
+  .service-grid > .service-link,
+  .aktualita-card,
+  .sortiment-card,
+  .about-split > .about-card,
+  .cert-grid > .cert,
+  .team > article,
+  .stores .store,
+  .about-photo,
+  .form-card,
+  .contact-side,
+  .aktualita-detail,
+  main > .prose,
+  .section .container > .prose,
+  .about-band .prose,
+  .brand-strip,
+  main > .photo-collage,
+  .section .container > .photo-collage,
+  main > .media-row,
+  .section-head,
+  .certs-group
+) {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
 @media (scripting: none) {
   .reveal,
-  .reveal-child {
+  .reveal-child,
+  .ref-feature,
+  .service-grid > .service-link,
+  .aktualita-card,
+  .sortiment-card,
+  .about-split > .about-card,
+  .cert-grid > .cert,
+  .team > article,
+  .stores .store,
+  .about-photo,
+  .form-card,
+  .contact-side,
+  .aktualita-detail,
+  main > .prose,
+  .section .container > .prose,
+  .about-band .prose,
+  .brand-strip,
+  main > .photo-collage,
+  .section .container > .photo-collage,
+  main > .media-row,
+  .section-head,
+  .certs-group {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
@@ -1379,16 +1486,28 @@ html.scroll-fast .reveal-child {
 }
 
 @media (max-width: 700px) {
-  .reveal:not(.is-visible) {
+  html.js .reveal:not(.is-visible) {
     transform: translate3d(-16px, 6px, 0);
   }
 
-  .reveal.reveal--right:not(.is-visible) {
+  html.js .reveal.reveal--right:not(.is-visible) {
     transform: translate3d(16px, 6px, 0);
   }
 
-  .reveal:not(.is-visible) .reveal-child {
+  html.js .reveal:not(.is-visible) .reveal-child {
     transform: translate3d(-12px, 4px, 0);
+  }
+
+  html.js :is(
+    .ref-feature,
+    .store,
+    .about-photo,
+    main > .photo-collage,
+    main > .media-row
+  ):not(.is-visible),
+  html.js .photo-collage.reveal:not(.is-visible),
+  html.js .reveal.reveal--soft:not(.is-visible) {
+    transform: translate3d(0, 14px, 0);
   }
 }
 
@@ -1406,12 +1525,35 @@ html.scroll-fast .reveal-child {
   }
 
   .hero-continue span,
-  .hero--split .hero-continue {
+  .hero--split .hero-continue,
+  .page-hero {
     animation: none !important;
   }
 
   .reveal,
-  .reveal-child {
+  .reveal-child,
+  .ref-feature,
+  .service-grid > .service-link,
+  .aktualita-card,
+  .sortiment-card,
+  .about-split > .about-card,
+  .cert-grid > .cert,
+  .team > article,
+  .stores .store,
+  .about-photo,
+  .form-card,
+  .contact-side,
+  .aktualita-detail,
+  main > .prose,
+  .section .container > .prose,
+  .about-band .prose,
+  .brand-strip,
+  main > .photo-collage,
+  .section .container > .photo-collage,
+  main > .media-row,
+  .section-head,
+  .certs-group,
+  .page-hero {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
@@ -4520,15 +4662,8 @@ html[data-theme="dark"] .brand-strip img:hover {
   }
 }
 
-.page-hero + *,
-.aktualita-detail {
-  animation: pageIn 0.75s var(--ease) 0.1s both;
-}
-
 @media (max-width: 700px) {
-  .page-hero,
-  .page-hero + *,
-  .aktualita-detail {
+  .page-hero {
     animation-name: pageInMobile;
   }
 }
@@ -4579,8 +4714,6 @@ html[data-theme="dark"] .brand-strip img:hover {
 
 @media (prefers-reduced-motion: reduce) {
   .page-hero,
-  .page-hero + *,
-  .aktualita-detail,
   .nav.is-open .nav-links a,
   .brand,
   .brand img,
