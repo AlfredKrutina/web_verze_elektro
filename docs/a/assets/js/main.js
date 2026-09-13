@@ -48,16 +48,17 @@
     return `
       <footer class="site-footer">
         <div class="container footer-grid">
-          <div>
-            <h2>ELEKTRO EURON spol. s r.o.</h2>
-            <p>Zelená 1844/6, 350 02 Cheb<br />
+          <div class="footer-company">
+            <h2>Elektro Euron spol. s r.o.</h2>
+            <p class="footer-address">Zelená 1844/6, 350 02 Cheb<br />
             IČO 49192876 · DIČ CZ49192876<br />
             Datová schránka: c3t3kpd</p>
-            <p>
-              <a href="mailto:info@elektro-euron.cz">info@elektro-euron.cz</a><br />
-              Objednávky: <a href="mailto:objednavky@elektro-euron.cz">objednavky@elektro-euron.cz</a><br />
-              Fakturace: <a href="mailto:fakturace@elektro-euron.cz">fakturace@elektro-euron.cz</a>
-            </p>
+            <ul class="footer-contact">
+              <li><a href="tel:+420354437476">+420 354 437 476</a></li>
+              <li><a href="mailto:info@elektro-euron.cz">info@elektro-euron.cz</a></li>
+              <li>Objednávky: <a href="mailto:objednavky@elektro-euron.cz">objednavky@elektro-euron.cz</a></li>
+              <li>Fakturace: <a href="mailto:fakturace@elektro-euron.cz">fakturace@elektro-euron.cz</a></li>
+            </ul>
           </div>
           <div>
             <h3>Navigace</h3>
@@ -71,16 +72,36 @@
             </ul>
           </div>
           <div>
+            <h3>Co děláme</h3>
+            <ul>
+              <li><a href="${root}/sluzby/nizke-napeti/">Nízké napětí</a></li>
+              <li><a href="${root}/sluzby/vysoke-napeti/">Vysoké napětí</a></li>
+              <li><a href="${root}/sluzby/fve/">Fotovoltaika</a></li>
+              <li><a href="${root}/sluzby/rozvadece/">Rozvaděče</a></li>
+              <li><a href="${root}/sluzby/slaboproud/">Slaboproud</a></li>
+              <li><a href="${root}/sluzby/revize/">Revize a projekce</a></li>
+            </ul>
+          </div>
+          <div>
             <h3>Prodejna Cheb</h3>
             <ul>
               <li>Zelená 1844/6, Cheb</li>
-              <li>po–pá 7:00–17:00 · so 8:00–12:00</li>
-              <li><a href="tel:+420354437476">+420 354 437 476</a></li>
+              <li>po–pá 7:00–17:00</li>
+              <li>so 8:00–12:00</li>
+              <li><a href="${root}/obchod/">Sortiment a značky</a></li>
             </ul>
           </div>
         </div>
-        <div class="container footer-meta">
-          © ${new Date().getFullYear()} Elektro Euron spol. s r.o. · Elektromontáže, projekce a prodej materiálu od roku 1993
+        <div class="footer-claim">
+          <div class="container footer-claim-inner">
+            <p>Elektrika <span class="hl">od jističe po trafostanici</span></p>
+            <a class="btn btn-primary" href="${root}/kontakt/">Poptat montáž</a>
+          </div>
+        </div>
+        <div class="footer-bar">
+          <div class="container footer-meta">
+            © ${new Date().getFullYear()} Elektro Euron spol. s r.o. · Elektromontáže, projekce a prodej materiálu od roku 1993
+          </div>
         </div>
       </footer>
     `;
@@ -562,4 +583,207 @@
       window.location.href = mailto;
     });
   }
+
+  /* ===== Karusel =====
+     Posun dělá nativní scroll (scroll-snap), takže bez JS zůstane vodorovný
+     scroller plně použitelný. JS jen dokresluje šipky, tečky, hlášení pro
+     čtečky a označení středového slidu. */
+  function setupCarousel(root) {
+    const viewport = root.querySelector(".carousel-viewport");
+    const track = root.querySelector(".carousel-track");
+    if (!viewport || !track) return;
+
+    const real = Array.from(track.querySelectorAll(".cslide"));
+    if (real.length < 2) return;
+
+    const label = root.dataset.carouselLabel || "Galerie";
+    const smooth = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+
+    /* Nekonečné rolování: před a za skutečné slidy se vloží jejich kopie, takže
+       po stranách nikdy nezůstane prázdné místo. Když se scroll zastaví
+       v oblasti kopií, posuneme ho o šířku jedné sady — obsah je totožný,
+       takže je skok neviditelný. Kopie jsou pro čtečky i tabulátor skryté. */
+    const n = real.length;
+    const loop = n >= 3;
+
+    function cloneSet() {
+      const frag = document.createDocumentFragment();
+      real.forEach((slide) => {
+        const copy = slide.cloneNode(true);
+        copy.setAttribute("aria-hidden", "true");
+        copy.dataset.clone = "true";
+        copy.querySelectorAll("a").forEach((a) => a.setAttribute("tabindex", "-1"));
+        frag.appendChild(copy);
+      });
+      return frag;
+    }
+
+    if (loop) {
+      track.appendChild(cloneSet());
+      track.insertBefore(cloneSet(), track.firstChild);
+    }
+
+    const slides = Array.from(track.querySelectorAll(".cslide"));
+    const offset = loop ? n : 0;
+
+    viewport.setAttribute("role", "group");
+    viewport.setAttribute("aria-roledescription", "karusel");
+    viewport.setAttribute("aria-label", label);
+    viewport.setAttribute("tabindex", "0");
+
+    const prev = document.createElement("button");
+    prev.type = "button";
+    prev.className = "carousel-nav carousel-prev";
+    prev.setAttribute("aria-label", "Předchozí");
+    prev.innerHTML = "<span aria-hidden='true'></span>";
+
+    const next = document.createElement("button");
+    next.type = "button";
+    next.className = "carousel-nav carousel-next";
+    next.setAttribute("aria-label", "Další");
+    next.innerHTML = "<span aria-hidden='true'></span>";
+
+    const dots = document.createElement("div");
+    dots.className = "carousel-dots";
+
+    const status = document.createElement("p");
+    status.className = "sr-only";
+    status.setAttribute("aria-live", "polite");
+
+    const dotButtons = real.map((slide, i) => {
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.className = "carousel-dot";
+      const title = slide.querySelector(".cslide__title");
+      dot.setAttribute("aria-label", title ? title.textContent.trim() : `Položka ${i + 1} z ${n}`);
+      dot.addEventListener("click", () => goToDom(offset + i));
+      dots.appendChild(dot);
+      return dot;
+    });
+
+    root.append(prev, next, dots, status);
+
+    let dom = offset;
+
+    function centerOffset(slide) {
+      return Math.max(
+        0,
+        Math.min(
+          slide.offsetLeft - (viewport.clientWidth - slide.offsetWidth) / 2,
+          viewport.scrollWidth - viewport.clientWidth
+        )
+      );
+    }
+
+    function goToDom(i) {
+      const target = Math.max(0, Math.min(i, slides.length - 1));
+      viewport.scrollTo({ left: centerOffset(slides[target]), behavior: smooth });
+    }
+
+    function nearestIndex() {
+      const center = viewport.scrollLeft + viewport.clientWidth / 2;
+      let best = 0;
+      let bestDist = Infinity;
+      slides.forEach((slide, i) => {
+        const dist = Math.abs(slide.offsetLeft + slide.offsetWidth / 2 - center);
+        if (dist < bestDist) {
+          bestDist = dist;
+          best = i;
+        }
+      });
+      return best;
+    }
+
+    // aria-current se u neaktivních teček odebírá (ne nastavuje na "false"),
+    // aby čtečky nehlásily jako aktuální všechny položky
+    function markDots(i) {
+      dotButtons.forEach((dot, k) => {
+        if (k === i) dot.setAttribute("aria-current", "true");
+        else dot.removeAttribute("aria-current");
+      });
+    }
+
+    function sync() {
+      const i = nearestIndex();
+      if (i === dom) return;
+      dom = i;
+      const realIndex = ((i - offset) % n + n) % n;
+      slides.forEach((slide, k) => slide.classList.toggle("is-active", k === i));
+      markDots(realIndex);
+      status.textContent = `Položka ${realIndex + 1} z ${n}`;
+    }
+
+    // Posun z oblasti kopií zpět do skutečné sady — až po zastavení scrollu
+    function rewind() {
+      if (!loop) return;
+      const setWidth = slides[2 * n].offsetLeft - slides[n].offsetLeft;
+      if (!setWidth) return;
+      if (dom < n) {
+        viewport.scrollLeft += setWidth;
+      } else if (dom >= 2 * n) {
+        viewport.scrollLeft -= setWidth;
+      }
+      dom = nearestIndex();
+      slides.forEach((slide, k) => slide.classList.toggle("is-active", k === dom));
+    }
+
+    slides[dom].classList.add("is-active");
+    markDots(0);
+    status.textContent = `Položka 1 z ${n}`;
+
+    let raf = 0;
+    let settle = 0;
+    viewport.addEventListener(
+      "scroll",
+      () => {
+        if (!raf) {
+          raf = requestAnimationFrame(() => {
+            raf = 0;
+            sync();
+          });
+        }
+        window.clearTimeout(settle);
+        settle = window.setTimeout(rewind, 160);
+      },
+      { passive: true }
+    );
+
+    prev.addEventListener("click", () => goToDom(dom - 1));
+    next.addEventListener("click", () => goToDom(dom + 1));
+
+    viewport.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        goToDom(dom + 1);
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        goToDom(dom - 1);
+      } else if (e.key === "Home") {
+        e.preventDefault();
+        goToDom(offset);
+      } else if (e.key === "End") {
+        e.preventDefault();
+        goToDom(offset + n - 1);
+      }
+    });
+
+    // Změna šířky okna mění šířku slidů — dorovnat středování
+    if ("ResizeObserver" in window) {
+      let first = true;
+      new ResizeObserver(() => {
+        if (first) {
+          first = false;
+          return;
+        }
+        viewport.scrollTo({ left: centerOffset(slides[dom]), behavior: "auto" });
+      }).observe(viewport);
+    }
+
+    // Start na první skutečné položce (mezi kopiemi)
+    viewport.scrollTo({ left: centerOffset(slides[dom]), behavior: "auto" });
+
+    root.setAttribute("data-carousel-ready", "");
+  }
+
+  document.querySelectorAll("[data-carousel]").forEach(setupCarousel);
 })();

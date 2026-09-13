@@ -49,9 +49,11 @@
     />
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
     <link
-      href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=cabinet-grotesk@700,800&display=swap"
+      href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap"
       rel="stylesheet"
     />
+    <link rel="preload" as="font" type="font/woff2" href="assets/fonts/sofia-sans-condensed-700-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="assets/fonts/sofia-sans-condensed-700-latin-ext.woff2" crossorigin />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="icon" href="assets/media/logo_nove.png" type="image/png" />
   </head>
@@ -72,10 +74,6 @@
             </a>
             <h1>Elektromontáže, projekce a prodej materiálu v Chebu od roku 1993.</h1>
             <p class="hero-lead">Od jističe po trafostanici — nechte elektriku na nás.</p>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="kontakt/">Poptat montáž</a>
-              <a class="hero-secondary" href="#prodejna">Otevírací doba prodejny</a>
-            </div>
           </div>
           <div class="hero-media">
             <img
@@ -86,187 +84,481 @@
               fetchpriority="high"
             />
           </div>
-          <a class="hero-continue" href="#cesty" aria-label="Pokračovat na obsah webu">
+          <a class="hero-continue" href="#o-firme" aria-label="Pokračovat na obsah webu">
             <span aria-hidden="true"></span>
           </a>
         </section>
 
-        <section class="paths reveal" id="cesty" aria-label="Vyberte cestu">
-          <a class="path" href="sluzby/">
+        <section class="claim" id="o-firme">
+          <div class="container claim-inner">
+            <h2>Komplexní <span class="hl">elektro partner</span> pro firmy, obce i domácnosti</h2>
+            <p>
+              Od roku 1993 montujeme, projektujeme a revidujeme elektroinstalace v Chebu
+              a celém Karlovarském kraji. Pod jednou firmou máte silnoproud, slaboproud,
+              fotovoltaiku i vlastní velkoobchod s materiálem — od první konzultace
+              po předání s revizí.
+            </p>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="co-delame">
+          <div class="container">
+            <div class="section-head">
+              <h2 id="co-delame">Co děláme</h2>
+              <p>Silnoproud, slaboproud, fotovoltaika, projekce i revize — vlastními lidmi a technikou.</p>
+            </div>
+          </div>
+
+          <div class="carousel bleed" data-carousel data-carousel-label="Služby Elektro Euron">
+            <div class="carousel-viewport">
+              <ul class="carousel-track">
+                <li class="cslide">
+                  <a class="cslide-link" href="sluzby/nizke-napeti/">
+                    <img
+                      src="assets/media/carousel/nizke-napeti-1600.jpg"
+                      srcset="assets/media/carousel/nizke-napeti-900.jpg 900w, assets/media/carousel/nizke-napeti-1600.jpg 1600w"
+                      sizes="(max-width: 700px) 82vw, 38vw"
+                      alt=""
+                      width="1600"
+                      height="1000"
+                      loading="lazy"
+                    />
+                    <span class="cslide__overlay">
+                      <span class="cslide__mark" aria-hidden="true"></span>
+                      <span class="cslide__eyebrow">Silnoproud</span>
+                      <h3 class="cslide__title">Nízké napětí</h3>
+                      <span class="cslide__sub">Instalace, rekonstrukce a servis pro domácnosti, firmy i průmysl.</span>
+                    </span>
+                  </a>
+                </li>
+                <li class="cslide">
+                  <a class="cslide-link" href="sluzby/vysoke-napeti/">
+                    <img
+                      src="assets/media/carousel/vysoke-napeti-1600.jpg"
+                      srcset="assets/media/carousel/vysoke-napeti-900.jpg 900w, assets/media/carousel/vysoke-napeti-1600.jpg 1600w"
+                      sizes="(max-width: 700px) 82vw, 38vw"
+                      alt=""
+                      width="1600"
+                      height="1000"
+                      loading="lazy"
+                    />
+                    <span class="cslide__overlay">
+                      <span class="cslide__mark" aria-hidden="true"></span>
+                      <span class="cslide__eyebrow">Silnoproud</span>
+                      <h3 class="cslide__title">Vysoké napětí</h3>
+                      <span class="cslide__sub">Trafostanice, vedení, veřejné osvětlení a kabelové soubory.</span>
+                    </span>
+                  </a>
+                </li>
+                <li class="cslide">
+                  <a class="cslide-link" href="sluzby/fve/">
+                    <img
+                      src="assets/media/carousel/fotovoltaika-1600.jpg"
+                      srcset="assets/media/carousel/fotovoltaika-900.jpg 900w, assets/media/carousel/fotovoltaika-1600.jpg 1600w"
+                      sizes="(max-width: 700px) 82vw, 38vw"
+                      alt=""
+                      width="1600"
+                      height="1000"
+                      loading="lazy"
+                    />
+                    <span class="cslide__overlay">
+                      <span class="cslide__mark" aria-hidden="true"></span>
+                      <span class="cslide__eyebrow">Obnovitelné zdroje</span>
+                      <h3 class="cslide__title">Fotovoltaika</h3>
+                      <span class="cslide__sub">Solární elektrárny na klíč včetně administrativy a připojení k síti.</span>
+                    </span>
+                  </a>
+                </li>
+                <li class="cslide">
+                  <a class="cslide-link" href="sluzby/rozvadece/">
+                    <img
+                      src="assets/media/carousel/rozvadece-1600.jpg"
+                      srcset="assets/media/carousel/rozvadece-900.jpg 900w, assets/media/carousel/rozvadece-1600.jpg 1600w"
+                      sizes="(max-width: 700px) 82vw, 38vw"
+                      alt=""
+                      width="1600"
+                      height="1000"
+                      loading="lazy"
+                    />
+                    <span class="cslide__overlay">
+                      <span class="cslide__mark" aria-hidden="true"></span>
+                      <span class="cslide__eyebrow">Vlastní výroba</span>
+                      <h3 class="cslide__title">Rozvaděče</h3>
+                      <span class="cslide__sub">Kusová výroba průmyslových, staveništních i speciálních rozvaděčů.</span>
+                    </span>
+                  </a>
+                </li>
+                <li class="cslide">
+                  <a class="cslide-link" href="sluzby/slaboproud/">
+                    <img
+                      src="assets/media/carousel/slaboproud-1600.jpg"
+                      srcset="assets/media/carousel/slaboproud-900.jpg 900w, assets/media/carousel/slaboproud-1600.jpg 1600w"
+                      sizes="(max-width: 700px) 82vw, 38vw"
+                      alt=""
+                      width="1600"
+                      height="1000"
+                      loading="lazy"
+                    />
+                    <span class="cslide__overlay">
+                      <span class="cslide__mark" aria-hidden="true"></span>
+                      <span class="cslide__eyebrow">Slaboproud</span>
+                      <h3 class="cslide__title">Datové sítě a zabezpečení</h3>
+                      <span class="cslide__sub">Datové sítě, kamery, EZS, požární signalizace, zvonky a automatizace.</span>
+                    </span>
+                  </a>
+                </li>
+                <li class="cslide">
+                  <a class="cslide-link" href="sluzby/projekce/">
+                    <img
+                      src="assets/media/carousel/projekce-1600.jpg"
+                      srcset="assets/media/carousel/projekce-900.jpg 900w, assets/media/carousel/projekce-1600.jpg 1600w"
+                      sizes="(max-width: 700px) 82vw, 38vw"
+                      alt=""
+                      width="1600"
+                      height="1000"
+                      loading="lazy"
+                    />
+                    <span class="cslide__overlay">
+                      <span class="cslide__mark" aria-hidden="true"></span>
+                      <span class="cslide__eyebrow">Příprava</span>
+                      <h3 class="cslide__title">Projekce</h3>
+                      <span class="cslide__sub">Dokumentace od přípojky po trafostanici a slaboproud.</span>
+                    </span>
+                  </a>
+                </li>
+                <li class="cslide">
+                  <a class="cslide-link" href="sluzby/revize/">
+                    <img
+                      src="assets/media/carousel/revize-1600.jpg"
+                      srcset="assets/media/carousel/revize-900.jpg 900w, assets/media/carousel/revize-1600.jpg 1600w"
+                      sizes="(max-width: 700px) 82vw, 38vw"
+                      alt=""
+                      width="1600"
+                      height="1000"
+                      loading="lazy"
+                    />
+                    <span class="cslide__overlay">
+                      <span class="cslide__mark" aria-hidden="true"></span>
+                      <span class="cslide__eyebrow">Bezpečnost</span>
+                      <h3 class="cslide__title">Revize</h3>
+                      <span class="cslide__sub">Výchozí, pravidelné i mimořádné revize bez omezení napětí.</span>
+                    </span>
+                  </a>
+                </li>
+                <li class="cslide">
+                  <a class="cslide-link" href="sluzby/zemni-prace/">
+                    <img
+                      src="assets/media/carousel/zemni-prace-1600.jpg"
+                      srcset="assets/media/carousel/zemni-prace-900.jpg 900w, assets/media/carousel/zemni-prace-1600.jpg 1600w"
+                      sizes="(max-width: 700px) 82vw, 38vw"
+                      alt=""
+                      width="1600"
+                      height="1000"
+                      loading="lazy"
+                    />
+                    <span class="cslide__overlay">
+                      <span class="cslide__mark" aria-hidden="true"></span>
+                      <span class="cslide__eyebrow">Doprovodné práce</span>
+                      <h3 class="cslide__title">Zemní a stavební práce</h3>
+                      <span class="cslide__sub">Výkopy, protlaky, plošiny a zednické doprovodné práce.</span>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="section-more">
+              <a class="btn btn-ghost" href="sluzby/">Všechny služby</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="banner-cta" aria-labelledby="banner-claim">
+          <div class="banner-cta-media" aria-hidden="true">
             <img
-              src="assets/media/20130515_161317__4dd0f8c0d0.jpg"
+              src="assets/media/carousel/vysoke-napeti-1600.jpg"
               alt=""
               width="1600"
-              height="1200"
+              height="1000"
+              loading="lazy"
             />
-            <div class="path-body">
-              <h2>Potřebuji montáž nebo projekt</h2>
-              <p>Nízké i vysoké napětí, fotovoltaika, rozvaděče, slaboproud, projekce i revize.</p>
-              <span class="path-cta">Prohlédnout služby →</span>
+          </div>
+          <div class="container banner-cta-inner">
+            <div>
+              <h2 id="banner-claim">Od jističe po trafostanici — <span class="hl">nechte elektriku na nás</span></h2>
+              <p>
+                Vlastní montážní tým, projektanti i revizní technici. Jeden dodavatel
+                od návrhu přes realizaci až po revizi a servis.
+              </p>
             </div>
-          </a>
-          <a class="path path-shop" href="obchod/">
-            <img
-              src="assets/media/sortiment-elektromaterial.jpg"
-              alt="Jističe, chrániče a modulární přístroje na liště — sortiment prodejny"
-              width="1280"
-              height="853"
-            />
-            <div class="path-body">
-              <h2>Jdu nakoupit materiál</h2>
-              <p>Velkoobchod i maloobchod elektromateriálu se skladem v Chebu.</p>
-              <span class="path-cta">Prodejna a sortiment →</span>
+            <div class="btn-group">
+              <a class="btn btn-primary" href="kontakt/">Poptat montáž</a>
+              <a class="btn btn-ghost" href="reference/">Naše realizace</a>
             </div>
-          </a>
+          </div>
         </section>
 
-        <section class="section section-comp">
+        <section class="section section--alt" aria-labelledby="jak-pracujeme">
           <div class="container">
             <div class="section-head">
-              <h2>Od návrhu k realizaci</h2>
-              <p>Komplexní elektro partner pro firmy, obce i domácnosti v Karlovarském kraji.</p>
+              <h2 id="jak-pracujeme">Jak pracujeme</h2>
+              <p>Čtyři kroky, které u každé zakázky vypadají stejně — od telefonu po předané dílo.</p>
             </div>
-            <div class="comp-featured">
-              <a class="comp-feature" href="sluzby/nizke-napeti/">
-                <span class="comp-media">
-                  <img src="assets/media/IMG_20211020_110258__13f3822493.jpg" alt="" width="1200" height="750" />
-                </span>
-                <span class="comp-feature-label">
-                  <strong>Nízké napětí</strong>
-                </span>
-              </a>
-              <a class="comp-feature" href="sluzby/vysoke-napeti/">
-                <span class="comp-media">
-                  <img src="assets/media/VN__55be26fb82.png" alt="" width="1200" height="750" />
-                </span>
-                <span class="comp-feature-label">
-                  <strong>Vysoké napětí</strong>
-                </span>
-              </a>
-              <a class="comp-feature" href="sluzby/fve/">
-                <span class="comp-media">
-                  <img src="assets/media/alternativnizdroje__5679b1bc4a.png" alt="" width="1200" height="750" />
-                </span>
-                <span class="comp-feature-label">
-                  <strong>Fotovoltaika</strong>
-                </span>
-              </a>
+            <div class="stack-grid reveal">
+              <article class="card-stack">
+                <div class="card-stack-body">
+                  <h3><span class="card-step">01</span>Poptávka a konzultace</h3>
+                  <p>
+                    Ozvěte se telefonem, e-mailem nebo přijďte na prodejnu. Projdeme
+                    zadání, termín i rozsah — a rovnou řekneme, co je reálné.
+                  </p>
+                </div>
+                <img src="assets/media/cheb_sidlo.jpg" alt="" width="1440" height="1080" loading="lazy" />
+              </article>
+              <article class="card-stack">
+                <div class="card-stack-body">
+                  <h3><span class="card-step">02</span>Návrh a projekt</h3>
+                  <p>
+                    Zpracujeme dokumentaci od přípojky po trafostanici i slaboproud,
+                    včetně podkladů pro úřady a distributora.
+                  </p>
+                </div>
+                <img src="assets/media/carousel/projekce-900.jpg" alt="" width="900" height="562" loading="lazy" />
+              </article>
+              <article class="card-stack">
+                <div class="card-stack-body">
+                  <h3><span class="card-step">03</span>Realizace</h3>
+                  <p>
+                    Montáž vede vlastní tým s technikou i zemními pracemi. Materiál
+                    bereme z vlastního skladu, takže stavba nečeká na dodávky.
+                  </p>
+                </div>
+                <img src="assets/media/carousel/tosta-plesna-900.jpg" alt="" width="900" height="562" loading="lazy" />
+              </article>
+              <article class="card-stack">
+                <div class="card-stack-body">
+                  <h3><span class="card-step">04</span>Revize a servis</h3>
+                  <p>
+                    Dílo předáme s výchozí revizí a dokumentací. Pravidelné revize
+                    i servis pak držíme dál — bez omezení napětí.
+                  </p>
+                </div>
+                <img src="assets/media/carousel/revize-900.jpg" alt="" width="900" height="562" loading="lazy" />
+              </article>
             </div>
-            <ul class="comp-list">
-              <li>
-                <a href="sluzby/rozvadece/">
-                  <strong>Rozvaděče</strong>
-                </a>
-              </li>
-              <li>
-                <a href="sluzby/slaboproud/">
-                  <strong>Slaboproud</strong>
-                </a>
-              </li>
-              <li>
-                <a href="sluzby/projekce/">
-                  <strong>Projekce</strong>
-                </a>
-              </li>
-              <li>
-                <a href="sluzby/revize/">
-                  <strong>Revize</strong>
-                </a>
-              </li>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="realizace-head">
+          <div class="container">
+            <div class="section-head">
+              <h2 id="realizace-head">Realizace</h2>
+              <p>Řemeslo, které obstojí v průmyslu, na památkách i ve výstavních prostorech.</p>
+            </div>
+          </div>
+
+          <div class="carousel bleed" data-carousel data-carousel-label="Realizace Elektro Euron">
+            <div class="carousel-viewport">
+              <ul class="carousel-track">
+                <li class="cslide">
+                  <a class="cslide-link" href="aktuality/tosta-plesna/">
+                    <img
+                      src="assets/media/carousel/tosta-plesna-1600.jpg"
+                      srcset="assets/media/carousel/tosta-plesna-900.jpg 900w, assets/media/carousel/tosta-plesna-1600.jpg 1600w"
+                      sizes="(max-width: 700px) 82vw, 38vw"
+                      alt=""
+                      width="1600"
+                      height="1000"
+                      loading="lazy"
+                    />
+                    <span class="cslide__overlay">
+                      <span class="cslide__mark" aria-hidden="true"></span>
+                      <span class="cslide__eyebrow">Průmysl</span>
+                      <h3 class="cslide__title">TOSTA Plesná</h3>
+                      <span class="cslide__sub">Silnoproud, požární rozvody, EPS, EZS a nouzové osvětlení v textilní továrně.</span>
+                    </span>
+                  </a>
+                </li>
+                <li class="cslide">
+                  <a class="cslide-link" href="aktuality/narodni-muzeum/">
+                    <img
+                      src="assets/media/carousel/narodni-muzeum-1600.jpg"
+                      srcset="assets/media/carousel/narodni-muzeum-900.jpg 900w, assets/media/carousel/narodni-muzeum-1600.jpg 1600w"
+                      sizes="(max-width: 700px) 82vw, 38vw"
+                      alt=""
+                      width="1600"
+                      height="1000"
+                      loading="lazy"
+                    />
+                    <span class="cslide__overlay">
+                      <span class="cslide__mark" aria-hidden="true"></span>
+                      <span class="cslide__eyebrow">Kultura</span>
+                      <h3 class="cslide__title">Národní muzeum</h3>
+                      <span class="cslide__sub">Elektroinstalace stálé výstavy Dějiny 20. století včetně řízení osvětlení.</span>
+                    </span>
+                  </a>
+                </li>
+                <li class="cslide">
+                  <a class="cslide-link" href="aktuality/chebsky-hrad-kaple/">
+                    <img
+                      src="assets/media/carousel/chebsky-hrad-1600.jpg"
+                      srcset="assets/media/carousel/chebsky-hrad-900.jpg 900w, assets/media/carousel/chebsky-hrad-1600.jpg 1600w"
+                      sizes="(max-width: 700px) 82vw, 38vw"
+                      alt=""
+                      width="1600"
+                      height="1000"
+                      loading="lazy"
+                    />
+                    <span class="cslide__overlay">
+                      <span class="cslide__mark" aria-hidden="true"></span>
+                      <span class="cslide__eyebrow">Památky</span>
+                      <h3 class="cslide__title">Chebský hrad</h3>
+                      <span class="cslide__sub">Hradní kaple sv. Erharda a Uršuly — rozvody a osvětlení v památce.</span>
+                    </span>
+                  </a>
+                </li>
+                <li class="cslide">
+                  <a class="cslide-link" href="aktuality/fve-sidlo/">
+                    <img
+                      src="assets/media/carousel/fve-sidlo-1600.jpg"
+                      srcset="assets/media/carousel/fve-sidlo-900.jpg 900w, assets/media/carousel/fve-sidlo-1600.jpg 1600w"
+                      sizes="(max-width: 700px) 82vw, 38vw"
+                      alt=""
+                      width="1600"
+                      height="1000"
+                      loading="lazy"
+                    />
+                    <span class="cslide__overlay">
+                      <span class="cslide__mark" aria-hidden="true"></span>
+                      <span class="cslide__eyebrow">Fotovoltaika</span>
+                      <h3 class="cslide__title">FVE na sídle firmy</h3>
+                      <span class="cslide__sub">Vlastní solární elektrárna v Chebu — energii na projekční práci máme ze slunce.</span>
+                    </span>
+                  </a>
+                </li>
+                <li class="cslide">
+                  <a class="cslide-link" href="reference/">
+                    <img
+                      src="assets/media/carousel/skalna-1600.jpg"
+                      srcset="assets/media/carousel/skalna-900.jpg 900w, assets/media/carousel/skalna-1600.jpg 1600w"
+                      sizes="(max-width: 700px) 82vw, 38vw"
+                      alt=""
+                      width="1600"
+                      height="1000"
+                      loading="lazy"
+                    />
+                    <span class="cslide__overlay">
+                      <span class="cslide__mark" aria-hidden="true"></span>
+                      <span class="cslide__eyebrow">Obce</span>
+                      <h3 class="cslide__title">Veřejné osvětlení Skalná</h3>
+                      <span class="cslide__sub">Modernizace osvětlení obce — stožáry, svítidla a napájení.</span>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="container">
+            <p class="logo-strip-label">Značky, které držíme skladem</p>
+            <ul class="logo-strip">
+              <li><img src="assets/media/abb_logo2__33bca2be02.jpg" alt="ABB" loading="lazy" /></li>
+              <li><img src="assets/media/Schneider1__0e6fbbf59b.jpg" alt="Schneider Electric" loading="lazy" /></li>
+              <li><img src="assets/media/PHILIPS1__2e453cb346.jpg" alt="Philips" loading="lazy" /></li>
+              <li><img src="assets/media/Jablotron1__01842ead4d.jpg" alt="Jablotron" loading="lazy" /></li>
+              <li><img src="assets/media/logo_kopos1__4ba628f6a9.jpg" alt="Kopos" loading="lazy" /></li>
+              <li><img src="assets/media/EMOS1__3b24a6abd9.jpg" alt="EMOS" loading="lazy" /></li>
+              <li><img src="assets/media/Kanlux1__16ba125f1e.jpg" alt="Kanlux" loading="lazy" /></li>
             </ul>
+            <div class="section-more">
+              <a class="btn btn-ghost" href="reference/">Všechny realizace</a>
+            </div>
           </div>
         </section>
 
-        <section class="section section-refs">
+        <section class="section section--alt" aria-labelledby="aktuality-head">
           <div class="container">
             <div class="section-head">
-              <h2>Realizace</h2>
-              <p>Řemeslo, které obstojí i ve výstavních a industriálních prostorech.</p>
+              <h2 id="aktuality-head">Aktuality</h2>
+              <p>Co se u nás děje a na čem pracujeme.</p>
             </div>
-
-            <article class="ref-feature reveal">
-              <div class="ref-copy">
-                <h3>TOSTA Plesná — industriální elektroinstalace</h3>
-                <p>
-                  Kompletní realizace silnoproudu, požárních rozvodů, nouzového osvětlení,
-                  elektronické požární signalizace (EPS) a zabezpečení (EZS)
-                  v rekonstruované textilní továrně.
-                </p>
-                <a class="btn btn-secondary on-light" href="reference/">Další realizace</a>
-              </div>
-              <div class="ref-media photo-collage photo-collage--3" role="group" aria-label="Fotografie TOSTA Plesná">
-                <img
-                  src="assets/media/IMG_20211020_124231__025795fbf4.jpg"
-                  alt="Industriální elektroinstalace TOSTA Plesná"
-                  width="1200"
-                  height="800"
-                />
-                <img
-                  src="assets/media/IMG_20211020_104529__3049ae1e64.jpg"
-                  alt="Kabelové rozvody TOSTA"
-                  width="800"
-                  height="600"
-                />
-                <img
-                  src="assets/media/IMG_20211020_102604__04a992ee5f.jpg"
-                  alt="Rozvaděče TOSTA"
-                  width="800"
-                  height="600"
-                />
-              </div>
-            </article>
-
-            <article class="ref-feature">
-              <div class="ref-copy">
-                <h3>Veřejné osvětlení — Skalná</h3>
-                <p>
-                  Modernizace veřejného osvětlení ve Skalné — stožáry, svítidla a napájení
-                  pro bezpečnější a úspornější provoz obce.
-                </p>
-                <a class="btn btn-secondary on-light" href="reference/">Zobrazit realizace</a>
-              </div>
-              <div class="ref-media photo-collage photo-collage--2" role="group" aria-label="Fotografie veřejného osvětlení Skalná">
-                <img
-                  src="assets/media/skalna1__32816c2a01.png"
-                  alt="Veřejné osvětlení na výjezdu ze Skalné"
-                  width="1200"
-                  height="800"
-                />
-                <img
-                  src="assets/media/skalna2__08f13037d9.png"
-                  alt="Stožáry veřejného osvětlení Skalná"
-                  width="800"
-                  height="600"
-                />
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section class="section" id="prodejna">
-          <div class="container">
-            <div class="section-head">
-              <h2>Prodejna</h2>
-              <p>Přijďte si pro materiál osobně — velkoobchod i maloobchod se skladem v Chebu.</p>
-            </div>
-            <div class="stores stores--single">
-              <article class="store store--wide">
-                <img src="assets/media/cheb_sidlo.jpg" alt="Sídlo a prodejna Elektro Euron Cheb" width="1440" height="1080" loading="lazy" />
-                <div class="store-body">
-                  <h3>Velkoobchod a maloobchod Cheb</h3>
-                  <p>Zelená 1844/6, 350 02 Cheb</p>
-                  <p><a href="tel:+420354437476">+420 354 437 476</a> · <a href="mailto:objednavky@elektro-euron.cz">objednavky@elektro-euron.cz</a></p>
-                  <p class="hours">po–pá 7:00–17:00<br />so 8:00–12:00</p>
-                  <div class="store-actions">
-                    <a class="btn btn-primary" href="https://www.google.com/maps/place/Elektro+Euron+spol.+s.r.o./@50.0843032,12.3693536,17z/data=!4m6!3m5!1s0x47a0f6a338801ae7:0xe449dc1f2c91838e!8m2!3d50.0843032!4d12.3693536!16s%2Fg%2F1tftq2g3" target="_blank" rel="noopener">Navigovat</a>
-                    <a class="btn btn-secondary on-light" href="obchod/">Více o obchodě</a>
-                  </div>
+            <div class="news-grid">
+              <article class="news-card">
+                <img src="assets/media/IMG_20211020_104529__3049ae1e64.jpg" alt="" width="800" height="600" loading="lazy" />
+                <div class="news-card-body">
+                  <time datetime="2021-10-22">22. 10. 2021</time>
+                  <h3><a href="aktuality/tosta-plesna/">TOSTA Plesná</a></h3>
+                  <p>
+                    Kompletní industriální elektroinstalace v rekonstruované textilní
+                    továrně: silnoproud, požární rozvody, EPS, EZS a nouzové osvětlení.
+                  </p>
+                  <a class="news-more" href="aktuality/tosta-plesna/">Číst celý článek →</a>
+                </div>
+              </article>
+              <article class="news-card">
+                <img src="assets/media/carousel/narodni-muzeum-900.jpg" alt="" width="900" height="562" loading="lazy" />
+                <div class="news-card-body">
+                  <time datetime="2021-07-25">25. 7. 2021</time>
+                  <h3><a href="aktuality/narodni-muzeum/">Národní muzeum — Dějiny 20. století</a></h3>
+                  <p>
+                    Projekční příprava elektroinstalace stálé výstavy včetně řízení
+                    osvětlení a multimédií přes DALI.
+                  </p>
+                  <a class="news-more" href="aktuality/narodni-muzeum/">Číst celý článek →</a>
+                </div>
+              </article>
+              <article class="news-card">
+                <img src="assets/media/carousel/fve-sidlo-900.jpg" alt="" width="900" height="562" loading="lazy" />
+                <div class="news-card-body">
+                  <time datetime="2019-11-15">15. 11. 2019</time>
+                  <h3><a href="aktuality/fve-sidlo/">FVE na sídle Elektro Euron</a></h3>
+                  <p>
+                    Vlastní fotovoltaická elektrárna v Chebu — energii pro projekční
+                    práci získáváme ze slunce.
+                  </p>
+                  <a class="news-more" href="aktuality/fve-sidlo/">Číst celý článek →</a>
                 </div>
               </article>
             </div>
-            <p class="trust-line">
-              <strong>Od roku 1993</strong> · Oprávnění TIČR · Cheb · Karlovarský kraj
-            </p>
+            <div class="section-more">
+              <a class="btn btn-ghost" href="aktuality/">Všechny aktuality</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="section section--panel" aria-labelledby="kontakt-head">
+          <div class="container contact-teaser">
+            <div class="contact-teaser-copy">
+              <h2 id="kontakt-head">Nenašli jste, co jste hledali?</h2>
+              <p>
+                Zavolejte nebo napište — poptávku probereme a ozveme se s termínem.
+                Materiál si můžete vyzvednout osobně na prodejně v Chebu.
+              </p>
+              <div class="btn-group">
+                <a class="btn btn-primary" href="kontakt/">Poslat poptávku</a>
+                <a class="btn btn-ghost" href="obchod/">Prodejna a sortiment</a>
+              </div>
+            </div>
+            <ul class="contact-teaser-list">
+              <li>
+                <span>Telefon</span>
+                <a href="tel:+420354437476">+420 354 437 476</a>
+              </li>
+              <li>
+                <span>Poptávky a dotazy</span>
+                <a href="mailto:info@elektro-euron.cz">info@elektro-euron.cz</a>
+              </li>
+              <li>
+                <span>Objednávky materiálu</span>
+                <a href="mailto:objednavky@elektro-euron.cz">objednavky@elektro-euron.cz</a>
+              </li>
+              <li>
+                <span>Prodejna Cheb</span>
+                <strong>Zelená 1844/6 · po–pá 7:00–17:00, so 8:00–12:00</strong>
+              </li>
+            </ul>
           </div>
         </section>
       </main>
