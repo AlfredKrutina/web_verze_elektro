@@ -4,6 +4,9 @@ Poslední audit a archiv: 2026-09-08
 Živý web: https://www.elektro-euron.cz/  
 Lokální archiv (volitelný, v `.gitignore`): `web_assets/`
 
+> Tento dokument popisuje **původní** web. Údaje o pobočce Aš a o kontaktních osobách už neplatí —
+> aktuální stav (Aš zrušena k 31. 7. 2026, kontakty, objednavky@) je v `context/zmeny_2026-09.md`.
+
 ---
 
 ## 1. Verdikt v jedné větě

@@ -20,10 +20,10 @@ Na GitHub Pages je stejná cesta pod `/a/` (kořen Pages přesměruje sem automa
 |-------|--------|
 | `index.html` | Homepage |
 | `sluzby/` | Přehled + NN, VN, FVE, rozvaděče, projekce, revize, zemní práce, slaboproud |
-| `obchod/` | Prodejny Cheb/Aš + sortiment |
+| `obchod/` | Prodejna Cheb + sortiment |
 | `reference/` | Realizace |
 | `aktuality/` | Statické novinky / články |
-| `o-nas/` | Historie, certifikáty, tým |
+| `o-nas/` | Historie, certifikáty (lightbox, obrázky z `scripts/gen_certifikaty.py`), vedení |
 | `kontakt/` | Poptávka (mailto) + telefony |
 | `assets/` | CSS, JS, media |
 

@@ -797,6 +797,161 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
   }
 }
 
+/* Hero — dělený: text na pozadí stránky vlevo (zarovnaný s containerem),
+   fotka sídla vpravo až k okraji okna */
+.hero.hero--split {
+  display: grid;
+  grid-template-columns:
+    minmax(var(--gutter), 1fr)
+    minmax(0, calc(var(--max) / 2))
+    minmax(0, calc(var(--max) / 2))
+    minmax(var(--gutter), 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  align-items: stretch;
+  background: var(--paper);
+  color: var(--ink);
+  min-height: min(72svh, 42rem);
+  min-height: min(72dvh, 42rem);
+}
+
+.hero--split .hero-content {
+  grid-column: 2;
+  grid-row: 1;
+  width: auto;
+  max-width: none;
+  margin: 0;
+  padding: clamp(2.5rem, 6vw, 4rem) clamp(1.5rem, 4vw, 3.5rem) clamp(4rem, 7vw, 5.25rem) 0;
+  justify-content: flex-end;
+}
+
+.hero--split .hero-brand img {
+  filter: var(--logo-filter);
+}
+
+.hero--split .hero-brand:hover img {
+  filter: var(--logo-filter);
+}
+
+.hero--split h1 {
+  color: var(--ink);
+  text-shadow: none;
+}
+
+.hero--split .hero-lead {
+  color: var(--muted);
+  text-shadow: none;
+}
+
+.hero--split .hero-secondary {
+  color: var(--ink-soft);
+}
+
+.hero--split .hero-secondary:hover,
+.hero--split .hero-secondary:focus-visible {
+  color: var(--green-dark);
+}
+
+.hero--split .hero-media {
+  grid-column: 3 / 5;
+  grid-row: 1;
+  position: relative;
+  inset: auto;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.hero--split .hero-media img {
+  object-position: 55% 48%;
+}
+
+.hero--split .hero-media::after {
+  background: none;
+}
+
+/* Šipka „pokračovat“ na středu stránky */
+.hero--split .hero-continue {
+  left: 50%;
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  width: var(--touch);
+  height: var(--touch);
+  padding: 0;
+  display: grid;
+  place-items: center;
+  gap: 0;
+  /* Šipka leží na švu světlý panel / tmavá fotka. Střední šedá drží kontrast
+     nad 3 : 1 na obou polovinách; v tmavém režimu je pod ní tma, proto bílá. */
+  --arrow: #737373;
+  color: var(--arrow);
+  transition: color 0.25s;
+  animation: hero-drift 1.6s var(--ease) infinite;
+}
+
+html[data-theme="dark"] .hero--split .hero-continue {
+  --arrow: #ffffff;
+}
+
+.hero--split .hero-continue:hover,
+.hero--split .hero-continue:focus-visible {
+  color: var(--green);
+  animation-play-state: paused;
+}
+
+.hero--split .hero-continue:focus-visible {
+  outline: 3px solid var(--green);
+  outline-offset: 2px;
+}
+
+/* Šipka je otočený kvadrát se dvěma okraji — kresba leží v dolní polovině
+   svého obalu, proto posun vzhůru o čtvrtinu úhlopříčky (0,354 × strana). */
+.hero--split .hero-continue span {
+  width: 0.62rem;
+  height: 0.62rem;
+  margin: 0;
+  opacity: 1;
+  animation: none;
+  transform: translateY(-0.22rem) rotate(45deg);
+}
+
+/* Posouvá se celé tlačítko, ne kresba uvnitř — šipka tak zůstane vycentrovaná.
+   translateX(-50%) musí být součástí keyframů, jinak by se vyrušil. */
+@keyframes hero-drift {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, 0.3rem);
+  }
+}
+
+@media (max-width: 900px) {
+  .hero.hero--split {
+    grid-template-columns: minmax(var(--gutter), 1fr) minmax(0, var(--max)) minmax(var(--gutter), 1fr);
+    grid-template-rows: auto auto;
+    min-height: 0;
+  }
+
+  .hero--split .hero-media {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    aspect-ratio: 16 / 10;
+    max-height: 46svh;
+    max-height: 46dvh;
+    min-height: 0;
+  }
+
+  .hero--split .hero-content {
+    grid-column: 2;
+    grid-row: 2;
+    padding: 1.75rem 0 4rem;
+  }
+
+  /* Sloupcový layout nemá šev — šipka leží celá na panelu a snese tmavší tón. */
+  .hero--split .hero-continue {
+    --arrow: var(--muted);
+  }
+}
+
 /* Sections */
 .section {
   padding: clamp(3.25rem, 7vw, 5.5rem) 0 clamp(2.75rem, 6vw, 4.5rem);
@@ -923,7 +1078,8 @@ html.scroll-fast .reveal-child {
     transform: none !important;
   }
 
-  .hero-continue span {
+  .hero-continue span,
+  .hero--split .hero-continue {
     animation: none !important;
   }
 
@@ -993,7 +1149,7 @@ html.scroll-fast .reveal-child {
 }
 
 .path-shop img {
-  object-position: center 42%;
+  object-position: center 30%;
 }
 
 .path:hover::after,
@@ -1472,9 +1628,42 @@ html.scroll-fast .reveal-child {
   margin-top: 1.15rem;
 }
 
+/* Jediná prodejna — široká karta: fotka vlevo, údaje vpravo */
+.stores--single {
+  grid-template-columns: 1fr;
+}
+
+.store--wide {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+}
+
+.store--wide > img {
+  height: 100%;
+  min-height: 17rem;
+  max-height: none;
+  aspect-ratio: auto;
+  object-position: 55% 50%;
+}
+
+.store--wide .store-body {
+  align-self: center;
+  padding: clamp(1.5rem, 3vw, 2.4rem) clamp(1.4rem, 3vw, 2.4rem);
+}
+
 @media (max-width: 760px) {
   .stores {
     grid-template-columns: 1fr;
+  }
+
+  .store--wide {
+    grid-template-columns: 1fr;
+  }
+
+  .store--wide > img {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 10;
   }
 }
 
@@ -1900,6 +2089,15 @@ html[data-theme="dark"] .brand-strip img {
   margin: 0 0 1rem;
 }
 
+.contact-photo {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: 55% 50%;
+  border-radius: 0.25rem;
+  margin: 0 0 1.25rem;
+}
+
 .contact-list {
   list-style: none;
   padding: 0;
@@ -1921,20 +2119,247 @@ html[data-theme="dark"] .brand-strip img {
   }
 }
 
-.certs {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
-  gap: 1rem;
-  margin-top: 1.5rem;
+/* O nás — jedna fotka sídla */
+.about-photo {
+  margin: 0 0 2.5rem;
 }
 
-.certs img {
+.about-photo img {
   width: 100%;
-  height: auto;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+  object-position: 55% 52%;
+  border-radius: 0.25rem;
+}
+
+.about-photo figcaption {
+  margin-top: 0.6rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 640px) {
+  .about-photo img {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* Certifikáty a oprávnění */
+.certs-section {
+  margin: 3.5rem 0 0;
+}
+
+.certs-section .section-head {
+  max-width: 46rem;
+}
+
+.certs-group {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  margin: 2.25rem 0 1.1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+  color: var(--ink-soft);
+}
+
+.cert-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 14.5rem), 1fr));
+  gap: clamp(1.1rem, 2.2vw, 1.75rem) clamp(1rem, 2vw, 1.5rem);
+}
+
+.cert {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+.cert-open {
+  display: block;
+  position: relative;
+  border-radius: 0.25rem;
+  overflow: hidden;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 0.35rem;
+  text-decoration: none;
+  transition: border-color 0.25s, transform 0.25s var(--ease);
+}
+
+.cert-open img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 210 / 297;
+  object-fit: cover;
+  object-position: top;
   padding: 0.5rem;
+  background: var(--surface);
+}
+
+.cert-open::after {
+  content: "Zobrazit";
+  position: absolute;
+  right: 0.6rem;
+  bottom: 0.6rem;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  background: rgba(17, 17, 17, 0.72);
+  border-radius: 0.2rem;
+  transition: background-color 0.25s;
+}
+
+.cert-open:hover,
+.cert-open:focus-visible {
+  border-color: var(--green);
+}
+
+.cert-open:hover::after,
+.cert-open:focus-visible::after {
+  background: var(--green-dark);
+}
+
+.cert-open:focus-visible {
+  outline: 3px solid var(--green);
+  outline-offset: 3px;
+}
+
+.cert-open:active {
+  transform: scale(0.99);
+}
+
+.cert-body h4 {
+  margin: 0 0 0.3rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.cert-body p {
+  margin: 0 0 0.3rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.cert-body .cert-meta {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* Lightbox (dialog) pro dokumenty */
+.lightbox {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  max-width: min(96vw, 100rem);
+  max-height: 96vh;
+  overflow: visible;
+}
+
+.lightbox::backdrop {
+  background: rgba(7, 9, 8, 0.86);
+}
+
+body:has(dialog.lightbox[open]) {
+  overflow: hidden;
+}
+
+.lightbox-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.lightbox-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  width: 100%;
+  color: var(--white);
+}
+
+.lightbox-caption {
+  margin: 0;
+  flex: 1 1 16rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.lightbox-open {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.9rem;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.lightbox-open:hover,
+.lightbox-open:focus-visible {
+  color: var(--white);
+}
+
+.lightbox-close {
+  width: var(--touch);
+  height: var(--touch);
+  flex: 0 0 auto;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--white);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus-visible {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.lightbox-close:focus-visible,
+.lightbox-open:focus-visible {
+  outline: 3px solid var(--green);
+  outline-offset: 2px;
+}
+
+.lightbox img {
+  display: block;
+  max-width: min(96vw, 100rem);
+  max-height: calc(96vh - 4.75rem);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  background: var(--white);
+  border-radius: 0.25rem;
+}
+
+.lightbox.is-loading img {
+  min-width: min(80vw, 22rem);
+  min-height: 12rem;
+  opacity: 0;
+}
+
+.lightbox.is-loading .lightbox-frame::after {
+  content: "Načítám dokument…";
+  position: absolute;
+  inset: 4.5rem 0 0;
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+}
+
+.lightbox-frame {
+  position: relative;
 }
 
 .team {

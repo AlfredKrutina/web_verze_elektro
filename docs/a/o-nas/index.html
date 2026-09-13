@@ -45,16 +45,15 @@
         <header class="page-hero">
           <h1>O nás</h1>
           <p>
-            Od roku 1993 děláme elektromontáže nízkého i vysokého napětí a prodáváme materiál v Chebu, Aši a okolí.
+            Od roku 1993 děláme elektromontáže nízkého i vysokého napětí a prodáváme materiál v Chebu a okolí.
             Specializujeme se na průmysl, zemědělství, bytovou výstavbu i lázeňské objekty — včetně projekce.
           </p>
         </header>
 
-        <div class="photo-collage photo-collage--3" role="group" aria-label="Provozovny Elektro Euron" style="margin: 0 0 2.5rem">
-          <img src="../assets/media/cheb_sidlo.jpg" alt="Sídlo Elektro Euron Cheb" width="1440" height="1080" />
-          <img src="../assets/media/cheb1__401fedd7dd.jpg" alt="Areál sídla Cheb s FVE" width="800" height="600" />
-          <img src="../assets/media/shop_as_enhanced.jpg" alt="Maloobchod Aš" width="640" height="640" />
-        </div>
+        <figure class="about-photo">
+          <img src="../assets/media/cheb_sidlo.jpg" alt="Sídlo Elektro Euron, Zelená 1844/6, Cheb" width="1440" height="1080" />
+          <figcaption>Sídlo, sklad a prodejna — Zelená 1844/6, Cheb</figcaption>
+        </figure>
 
         <div class="prose">
           <p>
@@ -71,42 +70,169 @@
           </ul>
         </div>
 
-        <section style="margin: 3rem 0">
-          <h2 style="font-family: var(--font-display); margin: 0 0 0.75rem">Certifikáty</h2>
-          <p style="color: var(--muted); margin: 0 0 1rem">Pravidelně obnovované systémy managementu.</p>
-          <div class="certs">
-            <img src="../assets/media/certifikat9001_2016__144eca3be1.png" alt="ISO 9001" />
-            <img src="../assets/media/certifikat14001_2016__2a2b08efc1.png" alt="ISO 14001" />
-            <img src="../assets/media/certifikat18001_2008__1fedbec3f3.png" alt="OHSAS 18001" />
+        <section class="certs-section" id="certifikaty" aria-labelledby="certs-title">
+          <div class="section-head">
+            <h2 id="certs-title">Certifikáty a oprávnění</h2>
+            <p>
+              Systémy managementu, oprávnění Technické inspekce ČR a školení výrobců systémů, které montujeme
+              a projektujeme. Kliknutím na náhled zobrazíte celý dokument. Osobní údaje pracovníků jsou
+              z dokumentů odstraněny.
+            </p>
           </div>
+
+          <h3 class="certs-group">Systémy managementu</h3>
+          <ul class="cert-grid">
+            <li class="cert">
+              <a class="cert-open" href="../assets/media/certifikaty/iso-9001.jpg" data-lightbox data-caption="ČSN EN ISO 9001 — systém managementu kvality">
+                <img src="../assets/media/certifikaty/iso-9001-thumb.jpg" alt="Certifikát ČSN EN ISO 9001" width="520" height="738" loading="lazy" />
+              </a>
+              <div class="cert-body">
+                <h4>ČSN EN ISO 9001</h4>
+                <p>Systém managementu kvality.</p>
+              </div>
+            </li>
+            <li class="cert">
+              <a class="cert-open" href="../assets/media/certifikaty/iso-14001.jpg" data-lightbox data-caption="ČSN EN ISO 14001 — systém environmentálního managementu">
+                <img src="../assets/media/certifikaty/iso-14001-thumb.jpg" alt="Certifikát ČSN EN ISO 14001" width="520" height="740" loading="lazy" />
+              </a>
+              <div class="cert-body">
+                <h4>ČSN EN ISO 14001</h4>
+                <p>Systém environmentálního managementu.</p>
+              </div>
+            </li>
+          </ul>
+
+          <h3 class="certs-group">Oprávnění a kvalifikace</h3>
+          <ul class="cert-grid">
+            <li class="cert">
+              <a class="cert-open" href="../assets/media/certifikaty/ticr-opravneni.jpg" data-lightbox data-caption="Oprávnění TIČR ev. č. 3276/4/19/EZ-M,O,R,Z-E1A,E1B — montáže, opravy, revize a zkoušky elektrických zařízení (2 strany)">
+                <img src="../assets/media/certifikaty/ticr-opravneni-thumb.jpg" alt="Oprávnění Technické inspekce ČR k montážím, opravám, revizím a zkouškám elektrických zařízení" width="520" height="735" loading="lazy" />
+              </a>
+              <div class="cert-body">
+                <h4>Oprávnění TIČR</h4>
+                <p>Montáže, opravy, revize a zkoušky elektrických zařízení bez omezení napětí, včetně hromosvodů — i v prostředí s nebezpečím výbuchu (E1A, E1B).</p>
+                <p class="cert-meta">Technická inspekce ČR · ev. č. 3276/4/19/EZ-M,O,R,Z-E1A,E1B</p>
+              </div>
+            </li>
+            <li class="cert">
+              <a class="cert-open" href="../assets/media/certifikaty/soue-ppn-nn.jpg" data-lightbox data-caption="Osvědčení o odborné způsobilosti pro práce pod napětím na zařízení NN — dva pracovníci (2 strany)">
+                <img src="../assets/media/certifikaty/soue-ppn-nn-thumb.jpg" alt="Osvědčení o odborné způsobilosti pro práce pod napětím na zařízení nízkého napětí" width="520" height="735" loading="lazy" />
+              </a>
+              <div class="cert-body">
+                <h4>Práce pod napětím na zařízení NN</h4>
+                <p>Osvědčení o odborné způsobilosti podle ČSN EN 50110-1 a PNE 33 0000-6 — vedoucí práce i provádějící pracovník PPN NN.</p>
+                <p class="cert-meta">SOUE Plzeň · 2 pracovníci · 2025</p>
+              </div>
+            </li>
+            <li class="cert">
+              <a class="cert-open" href="../assets/media/certifikaty/profesni-kvalifikace-fve.jpg" data-lightbox data-caption="Osvědčení o získání profesní kvalifikace Elektromontér fotovoltaických systémů (26-014-H), 2 strany">
+                <img src="../assets/media/certifikaty/profesni-kvalifikace-fve-thumb.jpg" alt="Osvědčení o získání profesní kvalifikace Elektromontér fotovoltaických systémů" width="520" height="735" loading="lazy" />
+              </a>
+              <div class="cert-body">
+                <h4>Elektromontér fotovoltaických systémů</h4>
+                <p>Osvědčení o získání profesní kvalifikace 26-014-H podle zákona č. 179/2006 Sb.</p>
+                <p class="cert-meta">Autorizace MPO · 2024</p>
+              </div>
+            </li>
+            <li class="cert">
+              <a class="cert-open" href="../assets/media/certifikaty/lpe-ochrana-pred-bleskem.jpg" data-lightbox data-caption="Osvědčení o absolvování školení Aktuální stav ochrany před bleskem a přepětím v ČR (LPE s.r.o.)">
+                <img src="../assets/media/certifikaty/lpe-ochrana-pred-bleskem-thumb.jpg" alt="Osvědčení o absolvování školení ochrany před bleskem a přepětím" width="520" height="736" loading="lazy" />
+              </a>
+              <div class="cert-body">
+                <h4>Ochrana před bleskem a přepětím</h4>
+                <p>Akreditované školení k aktuálnímu stavu ochrany před bleskem a přepětím v ČR, zařazené do celoživotního vzdělávání ČKAIT.</p>
+                <p class="cert-meta">LPE s.r.o. · 2021</p>
+              </div>
+            </li>
+          </ul>
+
+          <h3 class="certs-group">Školení výrobců — požární a zabezpečovací systémy</h3>
+          <ul class="cert-grid">
+            <li class="cert">
+              <a class="cert-open" href="../assets/media/certifikaty/schrack-integral-montaz.jpg" data-lightbox data-caption="Schrack Seconet — EPS řady INTEGRAL: montáž, servis, uvedení do provozu, kontrola provozuschopnosti">
+                <img src="../assets/media/certifikaty/schrack-integral-montaz-thumb.jpg" alt="Certifikát Schrack Seconet — montáž a servis EPS řady INTEGRAL" width="520" height="735" loading="lazy" />
+              </a>
+              <div class="cert-body">
+                <h4>EPS Schrack Seconet INTEGRAL — montáž a servis</h4>
+                <p>Montáž, servis, uvedení do provozu a kontrola provozuschopnosti podle vyhlášky č. 246/2001 Sb.</p>
+                <p class="cert-meta">Schrack Seconet · platnost do 05/2028</p>
+              </div>
+            </li>
+            <li class="cert">
+              <a class="cert-open" href="../assets/media/certifikaty/schrack-integral-projekce.jpg" data-lightbox data-caption="Schrack Seconet — EPS řady INTEGRAL: projekce a návrh systému">
+                <img src="../assets/media/certifikaty/schrack-integral-projekce-thumb.jpg" alt="Certifikát Schrack Seconet — projekce EPS řady INTEGRAL" width="520" height="735" loading="lazy" />
+              </a>
+              <div class="cert-body">
+                <h4>EPS Schrack Seconet INTEGRAL — projekce</h4>
+                <p>Projekce a návrh systému elektrické požární signalizace.</p>
+                <p class="cert-meta">Schrack Seconet · platnost do 10/2028</p>
+              </div>
+            </li>
+            <li class="cert">
+              <a class="cert-open" href="../assets/media/certifikaty/schrack-aprosys.jpg" data-lightbox data-caption="Schrack Seconet — systém APS APROSYS: montáž, servis, uvedení do provozu, kontrola provozuschopnosti">
+                <img src="../assets/media/certifikaty/schrack-aprosys-thumb.jpg" alt="Certifikát Schrack Seconet — systém APS APROSYS" width="520" height="735" loading="lazy" />
+              </a>
+              <div class="cert-body">
+                <h4>APS APROSYS (Schrack Seconet)</h4>
+                <p>Montáž, servis, uvedení do provozu a kontrola provozuschopnosti.</p>
+                <p class="cert-meta">Schrack Seconet · 2025</p>
+              </div>
+            </li>
+            <li class="cert">
+              <a class="cert-open" href="../assets/media/certifikaty/schrack-potvrzeni-eps.jpg" data-lightbox data-caption="Potvrzení Schrack Seconet — Elektro Euron je výrobcem proškolená firma pro instalaci, montáž a servis EPS">
+                <img src="../assets/media/certifikaty/schrack-potvrzeni-eps-thumb.jpg" alt="Potvrzení Schrack Seconet o proškolení firmy pro EPS" width="520" height="735" loading="lazy" />
+              </a>
+              <div class="cert-body">
+                <h4>Potvrzení výrobce — EPS Schrack Seconet</h4>
+                <p>Instalaci, montáž a servis EPS smí provádět pouze výrobcem proškolená firma. Elektro Euron takovou firmou je.</p>
+                <p class="cert-meta">Schrack Seconet · 2023</p>
+              </div>
+            </li>
+            <li class="cert">
+              <a class="cert-open" href="../assets/media/certifikaty/honeywell-esser-projekce.jpg" data-lightbox data-caption="Honeywell — EPS ESSER 8000 a FlexES: projektování">
+                <img src="../assets/media/certifikaty/honeywell-esser-projekce-thumb.jpg" alt="Certifikát Honeywell — projektování EPS ESSER 8000 a FlexES" width="520" height="735" loading="lazy" />
+              </a>
+              <div class="cert-body">
+                <h4>EPS ESSER by Honeywell — projektování</h4>
+                <p>Projektování systémů EPS ESSER 8000 a FlexES.</p>
+                <p class="cert-meta">Honeywell Fire and PA/VA Solutions · platnost do 03/2030</p>
+              </div>
+            </li>
+            <li class="cert">
+              <a class="cert-open" href="../assets/media/certifikaty/zettler-eps-expert.jpg" data-lightbox data-caption="ZETTLER Expert — projektování, montáž, servis a kontrola provozuschopnosti EPS (ústředny ZX, MZX, PROFILE)">
+                <img src="../assets/media/certifikaty/zettler-eps-expert-thumb.jpg" alt="Certifikát ZETTLER Expert — EPS" width="520" height="735" loading="lazy" />
+              </a>
+              <div class="cert-body">
+                <h4>EPS ZETTLER Expert</h4>
+                <p>Projektování, montáž, servis a kontrola provozuschopnosti — ústředny ZX, MZX, PROFILE, PROFILE Flexible a PROFILE Lite.</p>
+                <p class="cert-meta">Tyco Fire &amp; Security · platnost do 02/2028</p>
+              </div>
+            </li>
+            <li class="cert">
+              <a class="cert-open" href="../assets/media/certifikaty/jablotron-100.jpg" data-lightbox data-caption="Certifikát o absolvování odborného kurzu JABLOTRON 100+ a Mercury">
+                <img src="../assets/media/certifikaty/jablotron-100-thumb.jpg" alt="Certifikát Jablotron — odborný kurz JABLOTRON 100+ a Mercury" width="520" height="735" loading="lazy" />
+              </a>
+              <div class="cert-body">
+                <h4>JABLOTRON 100+ a Mercury</h4>
+                <p>Odborný kurz montáže zabezpečovacích systémů Jablotron.</p>
+                <p class="cert-meta">Jablotron Alarms · platnost do 12/2026</p>
+              </div>
+            </li>
+          </ul>
         </section>
 
-        <section style="margin-bottom: 4rem">
-          <h2 style="font-family: var(--font-display); margin: 0">Tým</h2>
+        <section class="team-section" aria-labelledby="team-title">
+          <div class="section-head">
+            <h2 id="team-title">Vedení</h2>
+          </div>
           <div class="team">
             <article>
-              <h3>Radovan Liďák</h3>
-              <p>Jednatel · <a href="tel:+420602425529">+420 602 425 529</a></p>
+              <h3>Ing. Jana Kuchynková</h3>
+              <p>Výkonná ředitelka, prokurista · <a href="tel:+420723966741">+420 723 966 741</a></p>
             </article>
             <article>
               <h3>Petr Kýček</h3>
-              <p>Realizace zakázek · <a href="tel:+420733641628">+420 733 641 628</a></p>
-            </article>
-            <article>
-              <h3>Veronika Papoušková</h3>
-              <p>Koordinace zakázek · <a href="tel:+420735175969">+420 735 175 969</a></p>
-            </article>
-            <article>
-              <h3>Karel Rossmüller</h3>
-              <p>Revize · <a href="tel:+420737266952">+420 737 266 952</a></p>
-            </article>
-            <article>
-              <h3>David Domčík</h3>
-              <p>Cenové nabídky · <a href="tel:+420602120929">+420 602 120 929</a></p>
-            </article>
-            <article>
-              <h3>Ing. Radek Pupák</h3>
-              <p>Projekce · <a href="tel:+420606726452">+420 606 726 452</a></p>
+              <p>Vedoucí realizace · <a href="tel:+420733641628">+420 733 641 628</a></p>
             </article>
           </div>
           <p style="margin-top: 1.5rem"><a class="btn btn-primary" href="../kontakt/">Kompletní kontakty</a></p>

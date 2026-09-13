@@ -6,7 +6,7 @@ Implementace: `docs/` pro GitHub Pages. Primární demo = **varianta A** (`docs/
 
 ## Problém dnešního webu
 
-Katalog služeb z éry ~2012: homepage = starý blog, hluboké menu, slabé CTA. Firma nabízí silný příběh — od 1993, Cheb + Aš, montáže + sklad + projekce/revize. Moderní verze musí ten příběh ukázat vizuálně a převést návštěvníka na telefon / návštěvu prodejny / poptávku.
+Katalog služeb z éry ~2012: homepage = starý blog, hluboké menu, slabé CTA. Firma nabízí silný příběh — od 1993, Cheb (pobočka Aš zrušena 7/2026), montáže + sklad + projekce/revize. Moderní verze musí ten příběh ukázat vizuálně a převést návštěvníka na telefon / návštěvu prodejny / poptávku.
 
 ## Vizuální směrnice
 

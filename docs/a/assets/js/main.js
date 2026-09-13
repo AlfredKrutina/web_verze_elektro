@@ -55,6 +55,7 @@
             Datová schránka: c3t3kpd</p>
             <p>
               <a href="mailto:info@elektro-euron.cz">info@elektro-euron.cz</a><br />
+              Objednávky: <a href="mailto:objednavky@elektro-euron.cz">objednavky@elektro-euron.cz</a><br />
               Fakturace: <a href="mailto:fakturace@elektro-euron.cz">fakturace@elektro-euron.cz</a>
             </p>
           </div>
@@ -70,12 +71,11 @@
             </ul>
           </div>
           <div>
-            <h3>Prodejny</h3>
+            <h3>Prodejna Cheb</h3>
             <ul>
-              <li>Cheb · po–pá 7:00–17:00 · so 8:00–12:00</li>
-              <li>Aš · po, st–pá 8:00–16:00 · út do 14:30</li>
-              <li><a href="tel:+420354437476">Cheb +420 354 437 476</a></li>
-              <li><a href="tel:+420354525284">Aš +420 354 525 284</a></li>
+              <li>Zelená 1844/6, Cheb</li>
+              <li>po–pá 7:00–17:00 · so 8:00–12:00</li>
+              <li><a href="tel:+420354437476">+420 354 437 476</a></li>
             </ul>
           </div>
         </div>
@@ -274,6 +274,71 @@
     });
   } else {
     revealAllPending(true);
+  }
+
+  // Lightbox pro dokumenty (certifikáty). Bez JS odkaz otevře obrázek napřímo.
+  const lightboxLinks = document.querySelectorAll("a[data-lightbox]");
+  if (lightboxLinks.length && typeof HTMLDialogElement === "function") {
+    const dlg = document.createElement("dialog");
+    dlg.className = "lightbox";
+    dlg.setAttribute("aria-labelledby", "lightbox-caption");
+    dlg.innerHTML = `
+      <div class="lightbox-frame">
+        <div class="lightbox-bar">
+          <p class="lightbox-caption" id="lightbox-caption"></p>
+          <a class="lightbox-open" href="#" target="_blank" rel="noopener">Otevřít v novém okně</a>
+          <button type="button" class="lightbox-close" aria-label="Zavřít">&times;</button>
+        </div>
+        <img alt="" />
+      </div>`;
+    document.body.appendChild(dlg);
+
+    const img = dlg.querySelector("img");
+    const caption = dlg.querySelector(".lightbox-caption");
+    const openNew = dlg.querySelector(".lightbox-open");
+    const closeBtn = dlg.querySelector(".lightbox-close");
+    let opener = null;
+
+    const close = () => {
+      if (dlg.open) dlg.close();
+    };
+
+    closeBtn.addEventListener("click", close);
+    dlg.addEventListener("click", (e) => {
+      if (e.target === dlg) close(); // klik na backdrop
+    });
+    dlg.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        close();
+      }
+    });
+    dlg.addEventListener("close", () => {
+      img.removeAttribute("src");
+      dlg.classList.remove("is-loading");
+      if (opener) opener.focus();
+    });
+    img.addEventListener("load", () => dlg.classList.remove("is-loading"));
+    img.addEventListener("error", () => {
+      dlg.classList.remove("is-loading");
+      caption.textContent = "Dokument se nepodařilo načíst — zkuste jej otevřít v novém okně.";
+    });
+
+    lightboxLinks.forEach((a) => {
+      a.addEventListener("click", (e) => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+        e.preventDefault();
+        opener = a;
+        const thumb = a.querySelector("img");
+        caption.textContent = a.dataset.caption || (thumb && thumb.alt) || "";
+        img.alt = (thumb && thumb.alt) || "";
+        openNew.href = a.href;
+        dlg.classList.add("is-loading");
+        img.src = a.href;
+        dlg.showModal();
+        closeBtn.focus();
+      });
+    });
   }
 
   const form = document.querySelector("[data-inquiry-form]");

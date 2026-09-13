@@ -25,6 +25,12 @@ context/aktuality_security.md
 # Lokální zálohy originálů (nepotřebné pro Pages)
 docs/a/assets/media/originals_backup/
 
+# Zdrojové certifikáty (obsahují osobní údaje — jména, data narození, bydliště).
+# Na web jdou jen anonymizované obrázky z scripts/gen_certifikaty.py.
+context/certifikaty/
+*.zip
+*.eml
+
 # Scrapy / starší exporty — mockup běží z docs/
 web_assets/
 site/
