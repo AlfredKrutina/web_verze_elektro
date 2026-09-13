@@ -6,6 +6,7 @@
         var p = location.pathname;
         if (!p.endsWith("/") && !/\.[a-zA-Z0-9]+$/.test(p)) {
           location.replace(p + "/" + location.search + location.hash);
+        }
         try {
           var k = "ee-theme";
           var s = localStorage.getItem(k);
@@ -45,6 +46,9 @@
           <h1>Zvonkové systémy</h1>
           <p>Audio i video telefony pro bytové i komerční objekty.</p>
         </header>
+        <figure class="page-cover">
+          <img src="../../../assets/media/brands/jablotron-ovladani.jpg" alt="Ovládací panel Jablotron u vstupu" width="500" height="500" />
+        </figure>
         <div class="prose">
           <p>Dodáme a namontujeme zvonkové tabulky, vnitřní jednotky a napájení. Poradíme s výběrem podle dispozice domu.</p>
           <div class="btn-group" style="margin: 2rem 0 3rem">

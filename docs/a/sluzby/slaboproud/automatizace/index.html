@@ -6,6 +6,7 @@
         var p = location.pathname;
         if (!p.endsWith("/") && !/\.[a-zA-Z0-9]+$/.test(p)) {
           location.replace(p + "/" + location.search + location.hash);
+        }
         try {
           var k = "ee-theme";
           var s = localStorage.getItem(k);
@@ -45,6 +46,9 @@
           <h1>Domovní automatizace</h1>
           <p>Řízení osvětlení, vytápění a dalších prvků domu podle vašich potřeb.</p>
         </header>
+        <figure class="page-cover">
+          <img src="../../../assets/media/brands/jablotron-klavesnice.jpg" alt="Dotyková klávesnice Jablotron pro řízení objektu" width="633" height="600" />
+        </figure>
         <div class="prose">
           <p>Navrhneme praktickou míru automatizace — od jednoduchého řízení až po komplexnější instalace napojené na slaboproud objektu.</p>
           <div class="btn-group" style="margin: 2rem 0 3rem">

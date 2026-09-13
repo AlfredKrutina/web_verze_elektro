@@ -6,6 +6,7 @@
         var p = location.pathname;
         if (!p.endsWith("/") && !/\.[a-zA-Z0-9]+$/.test(p)) {
           location.replace(p + "/" + location.search + location.hash);
+        }
         try {
           var k = "ee-theme";
           var s = localStorage.getItem(k);
@@ -45,6 +46,9 @@
           <h1>Zabezpečení — elektronické zabezpečovací systémy (EZS)</h1>
           <p>Montáž a projekce elektronických zabezpečovacích systémů včetně dokumentace pro pult centrální ochrany.</p>
         </header>
+        <figure class="page-cover">
+          <img src="../../../assets/media/brands/jablotron-ezs.jpg" alt="Ústředna a prvky Jablotron na zdi" width="1600" height="467" />
+        </figure>
         <div class="prose">
           <p>Realizujeme ústředny, klávesnice, detektory a periferie. Pomůžeme s uvedením do provozu a napojením na pult centrální ochrany.</p>
           <div class="btn-group" style="margin: 2rem 0 3rem">

@@ -6,6 +6,7 @@
         var p = location.pathname;
         if (!p.endsWith("/") && !/\.[a-zA-Z0-9]+$/.test(p)) {
           location.replace(p + "/" + location.search + location.hash);
+        }
         try {
           var k = "ee-theme";
           var s = localStorage.getItem(k);
@@ -45,6 +46,9 @@
           <h1>Požární signalizace — elektronická požární signalizace (EPS)</h1>
           <p>Montáž a projekce elektronické požární signalizace včetně podkladů pro kolaudaci.</p>
         </header>
+        <figure class="page-cover">
+          <img src="../../../assets/media/brands/jablotron-detektory.jpg" alt="Detektor Jablotron pro signalizaci a dohled" width="500" height="500" />
+        </figure>
         <div class="prose">
           <p>Zajistíme návrh, instalaci a oživení systému. Spolupracujeme s dalšími profesemi při komplexních stavbách.</p>
           <div class="btn-group" style="margin: 2rem 0 3rem">
