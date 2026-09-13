@@ -1,45 +1,116 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="cs" translate="no" class="notranslate">
   <head>
+    <script>
+      (function () {
+        var p = location.pathname;
+        if (!p.endsWith("/") && !/\.[a-zA-Z0-9]+$/.test(p)) {
+          location.replace(p + "/" + location.search + location.hash);
+        }
+        try {
+          var k = "ee-theme";
+          var s = localStorage.getItem(k);
+          var t = s === "light" || s === "dark" ? s : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+          document.documentElement.setAttribute("data-theme", t);
+          document.documentElement.style.colorScheme = t;
+        } catch (e) {}
+      })();
+    </script>
+
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Obchod | Elektro Euron — Design B</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Obchod | Elektro Euron</title>
+    <meta name="description" content="Velkoobchod a maloobchod elektromateriálu v Chebu a maloobchod v Aši." />
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="cs_CZ" />
+    <meta property="og:site_name" content="Elektro Euron" />
+    <meta property="og:title" content="Obchod | Elektro Euron" />
+    <meta property="og:description" content="Velkoobchod a maloobchod elektromateriálu v Chebu a maloobchod v Aši." />
+    <meta property="og:image" content="https://alfredkrutina.github.io/web_verze_elektro/b/assets/media/cheb_sidlo.jpg" />
+    <meta property="og:url" content="https://alfredkrutina.github.io/web_verze_elektro/b/obchod/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Obchod | Elektro Euron" />
+    <meta name="twitter:description" content="Velkoobchod a maloobchod elektromateriálu v Chebu a maloobchod v Aši." />
+    <meta name="twitter:image" content="https://alfredkrutina.github.io/web_verze_elektro/b/assets/media/cheb_sidlo.jpg" />
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
-    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=syne@700,800&display=swap" rel="stylesheet" />
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=cabinet-grotesk@700,800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/css/main.css" />
-    <link rel="icon" href="../assets/media/mark.svg" type="image/svg+xml" />
+    <link rel="icon" href="../assets/media/logo_nove.png" type="image/png" />
   </head>
   <body data-root=".." data-page="obchod">
-    <div data-header></div>
-    <main id="main" class="container">
-      <header class="page-hero reveal">
-        <h1>Obchod s materiálem</h1>
-        <p>Velkoobchod a maloobchod v Chebu, maloobchod v Aši. Kabely, přístroje, svítidla, rozvaděče.</p>
-      </header>
-      <div class="stores reveal" style="margin-bottom: 4rem">
-        <article class="store">
-          <img src="../../shared/media/cheb3__19d67c969a.jpg" alt="Cheb" />
-          <div class="store-body">
-            <h3>Cheb — VO / MO</h3>
-            <p>Zelená 1844/6, 350 02 Cheb</p>
-            <p>po–pá 7:00–17:00 · so 8:00–12:00</p>
-            <p><a href="tel:+420354437476">+420 354 437 476</a></p>
-            <p style="margin-top:1rem"><a class="btn btn-primary" href="https://maps.google.com/?q=Zelená+1844/6,+Cheb" target="_blank" rel="noopener">Navigovat</a></p>
+    <div class="site">
+      <div data-header></div>
+      <main id="main">
+        <header class="page-hero container">
+          <h1>Obchod</h1>
+          <p>
+            Velkoobchodní i maloobchodní prodej elektroinstalačního materiálu, přístrojů a spotřebičů.
+            Přijďte k nám osobně — nejsme e-shop, jsme sklad s lidmi.
+          </p>
+        </header>
+
+        <section class="section" style="padding-top: 0">
+          <div class="container">
+            <div class="stores">
+              <article class="store">
+                <img src="../assets/media/cheb_sidlo.jpg" alt="Sídlo a prodejna Elektro Euron Cheb" width="1440" height="1080" />
+                <div class="store-body">
+                  <h3>Velkoobchod a maloobchod Cheb</h3>
+                  <p>Zelená 1844/6, 350 02 Cheb</p>
+                  <p><a href="tel:+420354437476">+420 354 437 476</a></p>
+                  <p class="hours">po–pá 7:00–17:00<br />so 8:00–12:00</p>
+                  <div class="store-actions">
+                    <a class="btn btn-primary" href="https://www.google.com/maps/place/Elektro+Euron+spol.+s.r.o./@50.0843032,12.3693536,17z/data=!4m6!3m5!1s0x47a0f6a338801ae7:0xe449dc1f2c91838e!8m2!3d50.0843032!4d12.3693536!16s%2Fg%2F1tftq2g3" target="_blank" rel="noopener">Navigovat</a>
+                  </div>
+                </div>
+              </article>
+              <article class="store">
+                <img src="../assets/media/shop_as_enhanced.jpg" alt="Maloobchod Aš" width="640" height="640" />
+                <div class="store-body">
+                  <h3>Maloobchod Aš</h3>
+                  <p>Hlavní 1066/37, 352 01 Aš</p>
+                  <p><a href="tel:+420354525284">+420 354 525 284</a></p>
+                  <p class="hours">po, st–pá 8:00–12:00 a 12:30–16:00<br />úterý 9:00–12:00 a 12:30–14:30</p>
+                  <div class="store-actions">
+                    <a class="btn btn-primary" href="https://www.google.com/maps/place/Elektro+-+Elektro+Proton/@50.2217884,12.1877606,17z/data=!4m6!3m5!1s0x47a0e33f6724823d:0xcdea6dcdfbe4cec0!8m2!3d50.2217884!4d12.1877606!16s%2Fg%2F113h343df" target="_blank" rel="noopener">Navigovat</a>
+                  </div>
+                </div>
+              </article>
+            </div>
           </div>
-        </article>
-        <article class="store">
-          <img src="../../shared/media/as3__1cc7df396b.jpg" alt="Aš" />
-          <div class="store-body">
-            <h3>Aš — maloobchod</h3>
-            <p>Hlavní 1066/37, 352 01 Aš</p>
-            <p>po, st–pá 8–16 · út do 14:30</p>
-            <p><a href="tel:+420354525284">+420 354 525 284</a></p>
-            <p style="margin-top:1rem"><a class="btn btn-primary" href="https://maps.google.com/?q=Hlavní+1066/37,+Aš" target="_blank" rel="noopener">Navigovat</a></p>
+        </section>
+
+        <section class="section" style="padding-top: 0">
+          <div class="container">
+            <div class="section-head">
+              <h2>Sortiment</h2>
+              <p>Kabely, svítidla, přístroje, rozvaděče, úložný materiál, topení a další — značky, které montéři znají.</p>
+            </div>
+            <div class="brand-strip">
+              <img src="../assets/media/abb_logo2__33bca2be02.jpg" alt="ABB" />
+              <img src="../assets/media/Schneider1__0e6fbbf59b.jpg" alt="Schneider Electric" />
+              <img src="../assets/media/PHILIPS1__2e453cb346.jpg" alt="Philips" />
+              <img src="../assets/media/Jablotron1__01842ead4d.jpg" alt="Jablotron" />
+              <img src="../assets/media/logo_kopos1__4ba628f6a9.jpg" alt="Kopos" />
+              <img src="../assets/media/EMOS1__3b24a6abd9.jpg" alt="EMOS" />
+              <img src="../assets/media/Kanlux1__16ba125f1e.jpg" alt="Kanlux" />
+            </div>
+            <div class="prose" style="margin-top: 2rem">
+              <ul>
+                <li>vodiče a kabely (silnoproud, slaboproud, bezhalogenové…)</li>
+                <li>svítidla a světelné zdroje</li>
+                <li>jističe, chrániče, stykače, přepěťové ochrany</li>
+                <li>rozvaděče a úložný materiál</li>
+                <li>topení a ohřev vody</li>
+              </ul>
+              <p>Nabízíme také výkup kabelových bubnů podle podmínek dodavatelů a informace ke zpětnému odběru EEZ.</p>
+            </div>
           </div>
-        </article>
-      </div>
-    </main>
-    <div data-footer></div>
+        </section>
+      </main>
+      <div data-footer></div>
+    </div>
     <script src="../assets/js/main.js"></script>
   </body>
 </html>

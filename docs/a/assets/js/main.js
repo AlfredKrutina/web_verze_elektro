@@ -45,62 +45,47 @@
   }
 
   function footerHtml() {
+    const maps =
+      "https://www.google.com/maps/place/Elektro+Euron+spol.+s.r.o./@50.0843032,12.3693536,17z/data=!4m6!3m5!1s0x47a0f6a338801ae7:0xe449dc1f2c91838e!8m2!3d50.0843032!4d12.3693536!16s%2Fg%2F1tftq2g3";
     return `
       <footer class="site-footer">
-        <div class="container footer-grid">
-          <div class="footer-company">
-            <h2>Elektro Euron spol. s r.o.</h2>
-            <p class="footer-address">Zelená 1844/6, 350 02 Cheb<br />
-            IČO 49192876 · DIČ CZ49192876<br />
-            Datová schránka: c3t3kpd</p>
-            <ul class="footer-contact">
-              <li><a href="tel:+420354437476">+420 354 437 476</a></li>
-              <li><a href="mailto:info@elektro-euron.cz">info@elektro-euron.cz</a></li>
-              <li>Objednávky: <a href="mailto:objednavky@elektro-euron.cz">objednavky@elektro-euron.cz</a></li>
-              <li>Fakturace: <a href="mailto:fakturace@elektro-euron.cz">fakturace@elektro-euron.cz</a></li>
-            </ul>
-          </div>
-          <div>
-            <h3>Navigace</h3>
-            <ul>
-              <li><a href="${root}/sluzby/">Služby</a></li>
-              <li><a href="${root}/obchod/">Obchod</a></li>
-              <li><a href="${root}/reference/">Realizace</a></li>
-              <li><a href="${root}/aktuality/">Aktuality</a></li>
-              <li><a href="${root}/o-nas/">O nás</a></li>
-              <li><a href="${root}/kontakt/">Kontakty</a></li>
-            </ul>
-          </div>
-          <div>
-            <h3>Co děláme</h3>
-            <ul>
-              <li><a href="${root}/sluzby/nizke-napeti/">Nízké napětí</a></li>
-              <li><a href="${root}/sluzby/vysoke-napeti/">Vysoké napětí</a></li>
-              <li><a href="${root}/sluzby/fve/">Fotovoltaika</a></li>
-              <li><a href="${root}/sluzby/rozvadece/">Rozvaděče</a></li>
-              <li><a href="${root}/sluzby/slaboproud/">Slaboproud</a></li>
-              <li><a href="${root}/sluzby/revize/">Revize a projekce</a></li>
-            </ul>
-          </div>
-          <div>
-            <h3>Prodejna Cheb</h3>
-            <ul>
-              <li>Zelená 1844/6, Cheb</li>
-              <li>po–pá 7:00–17:00</li>
-              <li>so 8:00–12:00</li>
-              <li><a href="${root}/obchod/">Sortiment a značky</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="footer-claim">
-          <div class="container footer-claim-inner">
-            <p>Elektrika <span class="hl">od jističe po trafostanici</span></p>
-            <a class="btn btn-primary" href="${root}/kontakt/">Poptat montáž</a>
+        <div class="footer-place">
+          <div class="container footer-place-inner">
+            <div class="footer-map">
+              <iframe
+                title="Sídlo Elektro Euron na mapě — Zelená 1844/6, Cheb"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=12.3648%2C50.0818%2C12.3738%2C50.0868&amp;layer=mapnik&amp;marker=50.0843032%2C12.3693536"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+            <div class="footer-place-copy">
+              <h2>Sídlo a prodejna Cheb</h2>
+              <address>
+                Zelená 1844/6, 350 02 Cheb<br />
+                po–pá 7:00–17:00 · so 8:00–12:00
+              </address>
+              <p><a href="tel:+420354437476">+420 354 437 476</a></p>
+              <div class="btn-group">
+                <a class="btn btn-primary" href="${maps}" target="_blank" rel="noopener">Navigovat</a>
+                <a class="btn btn-ghost" href="${root}/kontakt/">Poptat montáž</a>
+              </div>
+            </div>
           </div>
         </div>
         <div class="footer-bar">
-          <div class="container footer-meta">
-            © ${new Date().getFullYear()} Elektro Euron spol. s r.o. · Elektromontáže, projekce a prodej materiálu od roku 1993
+          <div class="container footer-bar-inner">
+            <p class="footer-meta">© ${new Date().getFullYear()} Elektro Euron spol. s r.o. · IČO 49192876 · Cheb</p>
+            <nav aria-label="Patička">
+              <ul class="footer-nav">
+                <li><a href="${root}/sluzby/">Služby</a></li>
+                <li><a href="${root}/obchod/">Obchod</a></li>
+                <li><a href="${root}/reference/">Realizace</a></li>
+                <li><a href="${root}/aktuality/">Aktuality</a></li>
+                <li><a href="${root}/o-nas/">O nás</a></li>
+                <li><a href="${root}/kontakt/">Kontakty</a></li>
+              </ul>
+            </nav>
           </div>
         </div>
       </footer>
