@@ -1155,7 +1155,7 @@ html.scroll-fast .reveal-child {
 }
 
 .path-shop img {
-  object-position: center 30%;
+  object-position: center 55%;
 }
 
 .path:hover::after,
@@ -1279,9 +1279,7 @@ html.scroll-fast .reveal-child {
 }
 
 .comp-feature-label {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+  display: block;
   padding: 0.85rem 0 0;
 }
 
@@ -1297,24 +1295,18 @@ html.scroll-fast .reveal-child {
 .comp-feature-label strong::after {
   content: " →";
   font-weight: 700;
-  color: var(--green-dark);
+  color: inherit;
 }
 
-.comp-feature-label small {
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  font-weight: 500;
-  line-height: 1.35;
-  color: var(--muted);
+.comp-feature:hover .comp-feature-label strong,
+.comp-feature:focus-visible .comp-feature-label strong,
+.comp-feature:active .comp-feature-label strong {
+  color: var(--green);
 }
 
 .comp-feature:focus-visible .comp-media {
   outline: 3px solid var(--green);
   outline-offset: 3px;
-}
-
-.comp-feature:active .comp-feature-label strong {
-  color: var(--green);
 }
 
 .comp-list {
@@ -1329,21 +1321,22 @@ html.scroll-fast .reveal-child {
 }
 
 .comp-list a {
-  display: grid;
-  grid-template-columns: minmax(8rem, 12rem) 1fr auto;
-  gap: 0.75rem 1.25rem;
-  align-items: baseline;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
   padding: 0.95rem 0;
   text-decoration: none;
-  color: inherit;
+  color: var(--green-dark);
 }
 
 .comp-list a:focus-visible {
   outline-offset: 4px;
 }
 
-.comp-list a:active strong,
-.comp-list a:active::after {
+.comp-list a:hover,
+.comp-list a:focus-visible,
+.comp-list a:active {
   color: var(--green);
 }
 
@@ -1351,22 +1344,15 @@ html.scroll-fast .reveal-child {
   font-family: var(--font-display);
   font-weight: 800;
   font-size: 1.05rem;
-  color: var(--green-dark);
+  color: inherit;
 }
 
 .comp-list a::after {
   content: "→";
-  color: var(--green-dark);
+  color: inherit;
   font-weight: 700;
   font-size: 1.15rem;
   line-height: 1;
-  justify-self: end;
-  align-self: center;
-}
-
-.comp-list span {
-  color: var(--muted);
-  font-size: 0.95rem;
 }
 
 /* Legacy equal-card grid kept for any leftover markup */
@@ -1447,20 +1433,6 @@ html.scroll-fast .reveal-child {
 @media (max-width: 900px) {
   .comp-featured {
     grid-template-columns: 1fr;
-  }
-
-  .comp-list a {
-    grid-template-columns: 1fr auto;
-    gap: 0.2rem 0.75rem;
-  }
-
-  .comp-list span {
-    grid-column: 1 / -1;
-  }
-
-  .comp-list a::after {
-    grid-column: 2;
-    grid-row: 1;
   }
 }
 
@@ -1749,10 +1721,20 @@ html.scroll-fast .reveal-child {
   max-width: 42rem;
 }
 
+.prose p {
+  margin: 0 0 1rem;
+}
+
 .prose h2 {
   font-family: var(--font-display);
   margin: 2rem 0 0.75rem;
   font-size: 1.45rem;
+}
+
+.prose h3 {
+  font-family: var(--font-display);
+  margin: 1.5rem 0 0.5rem;
+  font-size: 1.15rem;
 }
 
 .prose ul {
@@ -2645,10 +2627,6 @@ body:has(dialog.lightbox[open]) {
     transform: scale(1.03);
   }
 
-  .comp-list a:hover strong,
-  .comp-list a:hover::after,
-  .comp-feature:hover .comp-feature-label strong,
-  .comp-feature:hover .comp-feature-label strong::after,
   .service-link:hover h3,
   .service-link:hover::after {
     color: #d8ffd9;
