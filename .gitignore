@@ -34,3 +34,6 @@ context/certifikaty/
 # Scrapy / starší exporty — mockup běží z docs/
 web_assets/
 site/
+
+# Pomocné snímky z měření UI (dočasné, nepatří do repozitáře)
+.tmp-*
