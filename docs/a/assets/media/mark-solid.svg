@@ -1,9 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 64" width="210" height="64" aria-hidden="true">
-  <!-- Single-colour silhouette of the company mark. Used as a CSS mask, so the
-       artwork is black and the colour always comes from the masked element. -->
-  <g fill="none" stroke="#000" stroke-width="5" stroke-linejoin="round">
-    <path d="M40 6 L64 54 H16 Z" />
-    <path d="M170 6 L194 54 H146 Z" />
-  </g>
-  <path d="M71 54 L105 6 L139 54 Z" fill="#000" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 68" width="160" height="68" aria-hidden="true">
+  <!-- Real company mark: two outlined peaks sharing a filled valley. -->
+  <path fill="#1FA03A" d="M42 8 L118 8 L80 64 Z"/>
+  <path fill="none" stroke="#1FA03A" stroke-width="5.2" stroke-linejoin="miter" stroke-miterlimit="2.4" d="M8 64 L42 8 L80 64 Z"/>
+  <path fill="none" stroke="#1FA03A" stroke-width="5.2" stroke-linejoin="miter" stroke-miterlimit="2.4" d="M80 64 L118 8 L152 64 Z"/>
 </svg>

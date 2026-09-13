@@ -62,9 +62,9 @@
             <div class="footer-place-copy">
               <h2>Sídlo a prodejna Cheb</h2>
               <address>
-                Zelená 1844/6, 350 02 Cheb<br />
-                po–pá 7:00–17:00 · so 8:00–12:00
+                Zelená 1844/6, 350 02 Cheb
               </address>
+              <div data-hours="compact" data-hours-theme="dark"></div>
               <p><a href="tel:+420354437476">+420 354 437 476</a></p>
               <div class="btn-group">
                 <a class="btn btn-primary" href="${maps}" target="_blank" rel="noopener">Navigovat</a>
@@ -100,6 +100,305 @@
   if (mountFooter) {
     mountFooter.outerHTML = footerHtml();
   }
+
+  const HOURS_FALLBACK = {
+    source:
+      "https://www.google.com/maps/place/Elektro+Euron+spol.+s.r.o./@50.0843032,12.3693536,17z",
+    timezone: "Europe/Prague",
+    status: "operational",
+    statusNote: "",
+    holidaysClosed: true,
+    weekly: {
+      1: [{ open: "07:00", close: "17:00" }],
+      2: [{ open: "07:00", close: "17:00" }],
+      3: [{ open: "07:00", close: "17:00" }],
+      4: [{ open: "07:00", close: "17:00" }],
+      5: [{ open: "07:00", close: "17:00" }],
+      6: [{ open: "08:00", close: "12:00" }],
+      0: [],
+    },
+    exceptions: [],
+  };
+
+  const DAY_NAMES = ["neděle", "pondělí", "úterý", "středa", "čtvrtek", "pátek", "sobota"];
+  const DAY_SHORT = ["Ne", "Po", "Út", "St", "Čt", "Pá", "So"];
+
+  function pad2(n) {
+    return String(n).padStart(2, "0");
+  }
+
+  function parseHm(hm) {
+    const [h, m] = hm.split(":").map(Number);
+    return h * 60 + m;
+  }
+
+  function formatHm(hm) {
+    const [h, m] = hm.split(":");
+    return `${Number(h)}:${m}`;
+  }
+
+  function esc(value) {
+    return String(value).replace(/[&<>"']/g, (ch) =>
+      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch])
+    );
+  }
+
+  function easterSundayIso(year) {
+    const a = year % 19;
+    const b = Math.floor(year / 100);
+    const c = year % 100;
+    const d = Math.floor(b / 4);
+    const e = b % 4;
+    const f = Math.floor((b + 8) / 25);
+    const g = Math.floor((b - f + 1) / 3);
+    const h = (19 * a + b - d - g + 15) % 30;
+    const i = Math.floor(c / 4);
+    const k = c % 4;
+    const l = (32 + 2 * e + 2 * i - h - k) % 7;
+    const m = Math.floor((a + 11 * h + 22 * l) / 451);
+    const month = Math.floor((h + l - 7 * m + 114) / 31);
+    const day = ((h + l - 7 * m + 114) % 31) + 1;
+    return `${year}-${pad2(month)}-${pad2(day)}`;
+  }
+
+  function czechHoliday(iso) {
+    const [y, mo, d] = iso.split("-").map(Number);
+    const md = `${pad2(mo)}-${pad2(d)}`;
+    const names = {
+      "01-01": "Nový rok",
+      "05-01": "Svátek práce",
+      "05-08": "Den vítězství",
+      "07-05": "Den slovanských věrozvěstů Cyrila a Metoděje",
+      "07-06": "Den upálení mistra Jana Husa",
+      "09-28": "Den české státnosti",
+      "10-28": "Den vzniku samostatného československého státu",
+      "11-17": "Den boje za svobodu a demokracii",
+      "12-24": "Štědrý den",
+      "12-25": "1. svátek vánoční",
+      "12-26": "2. svátek vánoční",
+    };
+    if (names[md]) return names[md];
+    const easter = easterSundayIso(y);
+    if (iso === addDaysIso(easter, -2)) return "Velký pátek";
+    if (iso === addDaysIso(easter, 1)) return "Velikonoční pondělí";
+    return "";
+  }
+
+  function pragueParts(date) {
+    const parts = new Intl.DateTimeFormat("en-GB", {
+      timeZone: "Europe/Prague",
+      weekday: "short",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hourCycle: "h23",
+    }).formatToParts(date);
+    const get = (t) => parts.find((p) => p.type === t).value;
+    const wd = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 }[get("weekday")];
+    return {
+      weekday: wd,
+      iso: `${get("year")}-${get("month")}-${get("day")}`,
+      minutes: Number(get("hour")) * 60 + Number(get("minute")),
+    };
+  }
+
+  function addDaysIso(iso, days) {
+    const [y, m, d] = iso.split("-").map(Number);
+    const dt = new Date(Date.UTC(y, m - 1, d + days));
+    return `${dt.getUTCFullYear()}-${pad2(dt.getUTCMonth() + 1)}-${pad2(dt.getUTCDate())}`;
+  }
+
+  function weekdayFromIso(iso) {
+    const [y, m, d] = iso.split("-").map(Number);
+    return new Date(Date.UTC(y, m - 1, d)).getUTCDay();
+  }
+
+  function periodsFor(cfg, iso) {
+    const exception = (cfg.exceptions || []).find((x) => x.date === iso);
+    if (exception) {
+      if (exception.closed) return { periods: [], note: exception.note || "mimořádně zavřeno", exception: true };
+      return { periods: exception.periods || [], note: exception.note || "", exception: true };
+    }
+    if (cfg.holidaysClosed) {
+      const holiday = czechHoliday(iso);
+      if (holiday) return { periods: [], note: holiday, holiday: true };
+    }
+    const wd = weekdayFromIso(iso);
+    return { periods: cfg.weekly[String(wd)] || cfg.weekly[wd] || [], note: "", holiday: false };
+  }
+
+  function isOpenNow(periods, minutes) {
+    return periods.some((p) => minutes >= parseHm(p.open) && minutes < parseHm(p.close));
+  }
+
+  function untilClose(periods, minutes) {
+    const cur = periods.find((p) => minutes >= parseHm(p.open) && minutes < parseHm(p.close));
+    return cur ? formatHm(cur.close) : "";
+  }
+
+  function nextOpen(cfg, fromIso, fromMinutes) {
+    for (let i = 0; i < 21; i += 1) {
+      const iso = addDaysIso(fromIso, i);
+      const { periods } = periodsFor(cfg, iso);
+      if (!periods.length) continue;
+      if (i === 0) {
+        const later = periods.find((p) => parseHm(p.open) > fromMinutes);
+        if (later) return { iso, weekday: weekdayFromIso(iso), time: later.open, today: true };
+        continue;
+      }
+      return { iso, weekday: weekdayFromIso(iso), time: periods[0].open, today: false };
+    }
+    return null;
+  }
+
+  function nextOpenLabel(next, todayIso) {
+    if (!next) return "";
+    const when = `v ${formatHm(next.time)}`;
+    if (next.today) return `Otevřeme dnes ${when}`;
+    if (next.iso === addDaysIso(todayIso, 1)) return `Otevřeme zítra ${when}`;
+    return `Otevřeme v ${DAY_NAMES[next.weekday]} ${when}`;
+  }
+
+  function hoursState(cfg, now = new Date()) {
+    const t = pragueParts(now);
+    if (cfg.status === "closed" || cfg.status === "closed_temporarily") {
+      return {
+        open: false,
+        label: "Dočasně zavřeno",
+        detail: cfg.statusNote || "Prodejna je teď mimo provoz.",
+        t,
+        shutdown: true,
+      };
+    }
+    if (cfg.status === "closed_permanently") {
+      return { open: false, label: "Trvale zavřeno", detail: cfg.statusNote || "", t, shutdown: true };
+    }
+    const today = periodsFor(cfg, t.iso);
+    if (isOpenNow(today.periods, t.minutes)) {
+      return {
+        open: true,
+        label: `Otevřeno do ${untilClose(today.periods, t.minutes)}`,
+        detail: today.note,
+        t,
+      };
+    }
+    const next = nextOpen(cfg, t.iso, t.minutes);
+    const detail = [today.note, nextOpenLabel(next, t.iso)].filter(Boolean).join(" · ");
+    return {
+      open: false,
+      label: "Zavřeno",
+      detail,
+      t,
+    };
+  }
+
+  function formatPeriods(periods) {
+    if (!periods || !periods.length) return "zavřeno";
+    return periods.map((p) => `${formatHm(p.open)}–${formatHm(p.close)}`).join(", ");
+  }
+
+  function weekline(cfg) {
+    const days = [1, 2, 3, 4, 5, 6, 0].map((wd) => ({
+      wd,
+      text: formatPeriods(cfg.weekly[String(wd)] || cfg.weekly[wd] || []),
+    }));
+    const groups = [];
+    days.forEach((day) => {
+      const last = groups[groups.length - 1];
+      if (last && last.text === day.text && day.wd !== 0 && last.end === day.wd - 1) {
+        last.end = day.wd;
+        return;
+      }
+      groups.push({ start: day.wd, end: day.wd, text: day.text });
+    });
+    return groups
+      .map((group) => {
+        const name =
+          group.start === group.end
+            ? DAY_SHORT[group.start]
+            : `${DAY_SHORT[group.start]}–${DAY_SHORT[group.end].toLocaleLowerCase("cs")}`;
+        return `${name} ${group.text}`;
+      })
+      .join(" · ");
+  }
+
+  function weekRows(cfg, todayIso) {
+    const start = weekdayFromIso(todayIso) === 1 ? todayIso : (() => {
+      const wd = weekdayFromIso(todayIso);
+      const back = wd === 0 ? 6 : wd - 1;
+      return addDaysIso(todayIso, -back);
+    })();
+    return [0, 1, 2, 3, 4, 5, 6].map((_, i) => {
+      const iso = addDaysIso(start, i);
+      const info = periodsFor(cfg, iso);
+      const hours = info.periods.length ? formatPeriods(info.periods) : "Zavřeno";
+      return {
+        iso,
+        weekday: weekdayFromIso(iso),
+        hours,
+        note: info.note,
+        today: iso === todayIso,
+      };
+    });
+  }
+
+  function renderHours(el, cfg) {
+    const variant = el.getAttribute("data-hours") || "compact";
+    const theme = el.getAttribute("data-hours-theme") || "light";
+    const state = hoursState(cfg);
+    const rows = weekRows(cfg, state.t.iso);
+    const statusClass = state.open ? "is-open" : "is-closed";
+    const week = state.shutdown
+      ? ""
+      : variant === "panel"
+        ? `<table class="hours-week">
+            <caption class="sr-only">Otevírací doba prodejny v Chebu</caption>
+            <tbody>
+              ${rows
+                .map(
+                  (r) => `<tr${r.today ? ' class="is-today"' : ""}>
+                    <th scope="row">${DAY_SHORT[r.weekday]}</th>
+                    <td>${esc(r.hours)}${r.note ? ` · ${esc(r.note)}` : ""}</td>
+                  </tr>`
+                )
+                .join("")}
+            </tbody>
+          </table>`
+        : `<p class="hours-weekline">${esc(weekline(cfg))}</p>`;
+
+    el.className = `hours-box hours-box--${variant} hours-box--${theme}`;
+    el.innerHTML = `
+      <p class="hours-status ${statusClass}" role="status">
+        <span class="hours-dot" aria-hidden="true"></span>
+        ${esc(state.label)}
+      </p>
+      ${state.detail ? `<p class="hours-detail">${esc(state.detail)}</p>` : ""}
+      ${week}
+      ${
+        variant === "panel"
+          ? `<p class="hours-source"><a href="${esc(cfg.source)}" target="_blank" rel="noopener">Otevírací doba podle Google Maps</a></p>`
+          : ""
+      }
+    `;
+  }
+
+  function mountHours(cfg) {
+    document.querySelectorAll("[data-hours]").forEach((el) => renderHours(el, cfg));
+  }
+
+  const hoursUrl = `${root}/assets/data/oteviraci-doba.json`;
+  let hoursCfg = HOURS_FALLBACK;
+  fetch(hoursUrl, { cache: "no-cache" })
+    .then((r) => (r.ok ? r.json() : Promise.reject()))
+    .then((data) => {
+      hoursCfg = { ...HOURS_FALLBACK, ...data };
+      mountHours(hoursCfg);
+    })
+    .catch(() => mountHours(hoursCfg));
+
+  setInterval(() => mountHours(hoursCfg), 60000);
 
   const THEME_KEY = "ee-theme";
 
@@ -266,18 +565,33 @@
           io.unobserve(e.target);
         });
       },
-      { threshold: 0.08, rootMargin: "0px 0px -6% 0px" }
+      {
+        threshold: 0.01,
+        rootMargin: window.matchMedia("(max-width: 700px)").matches
+          ? "0px 0px 0px 0px"
+          : "0px 0px -6% 0px",
+      }
     );
 
     reveals.forEach((el) => {
       const rect = el.getBoundingClientRect();
-      // Already on screen at load → show without waiting
-      if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) {
-        revealNow(el, true);
+      if (rect.top < window.innerHeight * 0.96 && rect.bottom > 0) {
+        window.requestAnimationFrame(() => revealNow(el, false));
       } else {
         io.observe(el);
       }
     });
+
+    window.setTimeout(() => {
+      reveals.forEach((el) => {
+        if (el.classList.contains("is-visible")) return;
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 1.05 && rect.bottom > -40) {
+          revealNow(el, false);
+          io.unobserve(el);
+        }
+      });
+    }, 1400);
   } else {
     revealAllPending(true);
   }
@@ -755,12 +1069,16 @@
     // Změna šířky okna mění šířku slidů — dorovnat středování
     if ("ResizeObserver" in window) {
       let first = true;
+      let resizeTimer = 0;
       new ResizeObserver(() => {
         if (first) {
           first = false;
           return;
         }
-        viewport.scrollTo({ left: centerOffset(slides[dom]), behavior: "auto" });
+        window.clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(() => {
+          viewport.scrollTo({ left: centerOffset(slides[dom]), behavior: "auto" });
+        }, 160);
       }).observe(viewport);
     }
 
@@ -768,6 +1086,73 @@
     viewport.scrollTo({ left: centerOffset(slides[dom]), behavior: "auto" });
 
     root.setAttribute("data-carousel-ready", "");
+
+    let userTouched = false;
+    const markTouched = () => {
+      userTouched = true;
+    };
+    let pointerX = 0;
+    let pointerY = 0;
+    viewport.addEventListener(
+      "pointerdown",
+      (e) => {
+        pointerX = e.clientX;
+        pointerY = e.clientY;
+      },
+      { passive: true }
+    );
+    viewport.addEventListener(
+      "pointermove",
+      (e) => {
+        if (userTouched || !e.isPrimary) return;
+        const dx = e.clientX - pointerX;
+        const dy = e.clientY - pointerY;
+        if (Math.abs(dx) > 18 && Math.abs(dx) > Math.abs(dy)) markTouched();
+      },
+      { passive: true }
+    );
+    prev.addEventListener("click", markTouched);
+    next.addEventListener("click", markTouched);
+    dots.addEventListener("click", markTouched);
+    viewport.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight" || e.key === "ArrowLeft" || e.key === "Home" || e.key === "End") {
+        markTouched();
+      }
+    });
+
+    function playIntro() {
+      if (reduceMotion || userTouched || root.dataset.introPlayed) return;
+      root.dataset.introPlayed = "true";
+      const narrow = window.matchMedia("(max-width: 700px)").matches;
+      const steps = narrow ? 1 : 2;
+      const startDelay = root.getBoundingClientRect().top < window.innerHeight * 0.78 ? 720 : 240;
+      let step = 0;
+      const tick = () => {
+        if (userTouched) return;
+        goToDom(dom + 1);
+        step += 1;
+        if (step < steps) window.setTimeout(tick, narrow ? 560 : 640);
+      };
+      window.setTimeout(tick, startDelay);
+    }
+
+    if ("IntersectionObserver" in window && !reduceMotion) {
+      const narrow = window.matchMedia("(max-width: 700px)").matches;
+      const introIo = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            playIntro();
+            introIo.unobserve(entry.target);
+          });
+        },
+        {
+          threshold: narrow ? 0.08 : 0.2,
+          rootMargin: narrow ? "0px 0px 0px 0px" : "0px 0px -8% 0px",
+        }
+      );
+      introIo.observe(root);
+    }
   }
 
   document.querySelectorAll("[data-carousel]").forEach(setupCarousel);

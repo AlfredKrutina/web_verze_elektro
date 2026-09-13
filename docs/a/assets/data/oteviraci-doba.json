@@ -1,0 +1,18 @@
+{
+  "source": "https://www.google.com/maps/place/Elektro+Euron+spol.+s.r.o./@50.0843032,12.3693536,17z",
+  "timezone": "Europe/Prague",
+  "updated": "2026-09-13",
+  "status": "operational",
+  "statusNote": "",
+  "holidaysClosed": true,
+  "weekly": {
+    "1": [{ "open": "07:00", "close": "17:00" }],
+    "2": [{ "open": "07:00", "close": "17:00" }],
+    "3": [{ "open": "07:00", "close": "17:00" }],
+    "4": [{ "open": "07:00", "close": "17:00" }],
+    "5": [{ "open": "07:00", "close": "17:00" }],
+    "6": [{ "open": "08:00", "close": "12:00" }],
+    "0": []
+  },
+  "exceptions": []
+}
