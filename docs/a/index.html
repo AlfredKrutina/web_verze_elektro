@@ -61,6 +61,14 @@
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/sofia-sans-condensed-700-latin.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/sofia-sans-condensed-700-latin-ext.woff2" crossorigin />
     <link rel="stylesheet" href="assets/css/main.css" />
+    <link
+      rel="preload"
+      as="image"
+      href="assets/media/carousel/nizke-napeti-900.jpg"
+      imagesrcset="assets/media/carousel/nizke-napeti-900.jpg 900w, assets/media/carousel/nizke-napeti-1600.jpg 1600w"
+      imagesizes="(max-width: 700px) 82vw, 38vw"
+      fetchpriority="high"
+    />
     <link rel="icon" href="assets/media/logo_nove.png" type="image/png" />
   </head>
   <body data-root="." data-page="home">
@@ -115,7 +123,7 @@
             </div>
           </div>
 
-          <div class="carousel bleed reveal" data-carousel data-carousel-label="Služby Elektro Euron">
+          <div class="carousel bleed" data-carousel data-carousel-label="Služby Elektro Euron">
             <div class="carousel-viewport">
               <ul class="carousel-track">
                 <li class="cslide">
@@ -127,7 +135,9 @@
                       alt=""
                       width="1600"
                       height="1000"
-                      loading="lazy"
+                      loading="eager"
+                      fetchpriority="high"
+                      decoding="async"
                     />
                     <span class="cslide__overlay">
                       <span class="cslide__mark" aria-hidden="true"></span>
@@ -146,7 +156,8 @@
                       alt=""
                       width="1600"
                       height="1000"
-                      loading="lazy"
+                      loading="eager"
+                      decoding="async"
                     />
                     <span class="cslide__overlay">
                       <span class="cslide__mark" aria-hidden="true"></span>
@@ -165,7 +176,8 @@
                       alt=""
                       width="1600"
                       height="1000"
-                      loading="lazy"
+                      loading="eager"
+                      decoding="async"
                     />
                     <span class="cslide__overlay">
                       <span class="cslide__mark" aria-hidden="true"></span>
@@ -364,7 +376,7 @@
             </div>
           </div>
 
-          <div class="carousel bleed reveal" data-carousel data-carousel-label="Realizace Elektro Euron">
+          <div class="carousel bleed" data-carousel data-carousel-label="Realizace Elektro Euron">
             <div class="carousel-viewport">
               <ul class="carousel-track">
                 <li class="cslide">
@@ -376,7 +388,8 @@
                       alt=""
                       width="1600"
                       height="1000"
-                      loading="lazy"
+                      loading="eager"
+                      decoding="async"
                     />
                     <span class="cslide__overlay">
                       <span class="cslide__mark" aria-hidden="true"></span>
@@ -395,7 +408,8 @@
                       alt=""
                       width="1600"
                       height="1000"
-                      loading="lazy"
+                      loading="eager"
+                      decoding="async"
                     />
                     <span class="cslide__overlay">
                       <span class="cslide__mark" aria-hidden="true"></span>

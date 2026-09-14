@@ -1329,7 +1329,8 @@ html[data-theme="dark"] .hero--split .hero-continue {
 
 html.js :is(
   .reveal,
-  .ref-feature,
+  .reveal-img,
+  .ref-copy,
   .service-grid > .service-link,
   .aktualita-card,
   .sortiment-card,
@@ -1337,7 +1338,6 @@ html.js :is(
   .cert-grid > .cert,
   .team > article,
   .stores .store,
-  .about-photo,
   .form-card,
   .contact-side,
   .aktualita-detail,
@@ -1345,9 +1345,6 @@ html.js :is(
   .section .container > .prose,
   .about-band .prose,
   .brand-strip,
-  main > .photo-collage,
-  .section .container > .photo-collage,
-  main > .media-row,
   .section-head,
   .certs-group
 ) {
@@ -1359,7 +1356,7 @@ html.js :is(
 
 html.js :is(
   .reveal,
-  .ref-feature,
+  .ref-copy,
   .service-grid > .service-link,
   .aktualita-card,
   .sortiment-card,
@@ -1367,7 +1364,6 @@ html.js :is(
   .cert-grid > .cert,
   .team > article,
   .stores .store,
-  .about-photo,
   .form-card,
   .contact-side,
   .aktualita-detail,
@@ -1375,9 +1371,6 @@ html.js :is(
   .section .container > .prose,
   .about-band .prose,
   .brand-strip,
-  main > .photo-collage,
-  .section .container > .photo-collage,
-  main > .media-row,
   .section-head,
   .certs-group
 ):not(.is-visible) {
@@ -1391,7 +1384,7 @@ html.js :is(
 
 html.js :is(
   .reveal,
-  .ref-feature,
+  .ref-copy,
   .service-grid > .service-link,
   .aktualita-card,
   .sortiment-card,
@@ -1399,7 +1392,6 @@ html.js :is(
   .cert-grid > .cert,
   .team > article,
   .stores .store,
-  .about-photo,
   .form-card,
   .contact-side,
   .aktualita-detail,
@@ -1407,9 +1399,6 @@ html.js :is(
   .section .container > .prose,
   .about-band .prose,
   .brand-strip,
-  main > .photo-collage,
-  .section .container > .photo-collage,
-  main > .media-row,
   .section-head,
   .certs-group
 ).is-visible {
@@ -1418,25 +1407,43 @@ html.js :is(
 }
 
 .reveal.is-instant,
+.reveal-img.is-instant,
 html.scroll-fast .reveal,
-html.scroll-fast .reveal.is-visible {
+html.scroll-fast .reveal.is-visible,
+html.scroll-fast .reveal-img,
+html.scroll-fast .reveal-img.is-visible {
   transition: none !important;
   transition-delay: 0ms !important;
 }
 
-html.js :is(
-  .ref-feature,
-  .store,
-  .about-photo,
-  main > .photo-collage,
-  main > .media-row
-):not(.is-visible),
-html.js .photo-collage.reveal:not(.is-visible) {
-  transform: translate3d(0, 18px, 0);
-}
-
 html.js .reveal.reveal--soft:not(.is-visible) {
   transform: translate3d(0, 16px, 0);
+}
+
+/* Fotky najíždějí ze stran — střídavě vlevo / vpravo, mírně přiblížené. */
+html.js .reveal-img {
+  --reveal-x: clamp(2.75rem, 16vw, 6.5rem);
+  transition:
+    opacity 0.85s var(--ease),
+    transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+html.js .reveal-img:not(.is-visible) {
+  opacity: 0;
+}
+
+html.js .reveal-img.reveal-img--from-left:not(.is-visible) {
+  transform: translate3d(calc(var(--reveal-x) * -1), 8px, 0) scale(1.07);
+}
+
+html.js .reveal-img.reveal-img--from-right:not(.is-visible) {
+  transform: translate3d(var(--reveal-x), 8px, 0) scale(1.07);
+}
+
+html.js .reveal-img.is-visible {
+  opacity: 1;
+  transform: none;
 }
 
 .reveal-child {
@@ -1463,8 +1470,9 @@ html.scroll-fast .reveal-child {
 
 html.reveals-fallback :is(
   .reveal,
+  .reveal-img,
   .reveal-child,
-  .ref-feature,
+  .ref-copy,
   .service-grid > .service-link,
   .aktualita-card,
   .sortiment-card,
@@ -1472,7 +1480,6 @@ html.reveals-fallback :is(
   .cert-grid > .cert,
   .team > article,
   .stores .store,
-  .about-photo,
   .form-card,
   .contact-side,
   .aktualita-detail,
@@ -1480,9 +1487,6 @@ html.reveals-fallback :is(
   .section .container > .prose,
   .about-band .prose,
   .brand-strip,
-  main > .photo-collage,
-  .section .container > .photo-collage,
-  main > .media-row,
   .section-head,
   .certs-group
 ) {
@@ -1493,8 +1497,9 @@ html.reveals-fallback :is(
 
 @media (scripting: none) {
   .reveal,
+  .reveal-img,
   .reveal-child,
-  .ref-feature,
+  .ref-copy,
   .service-grid > .service-link,
   .aktualita-card,
   .sortiment-card,
@@ -1502,7 +1507,6 @@ html.reveals-fallback :is(
   .cert-grid > .cert,
   .team > article,
   .stores .store,
-  .about-photo,
   .form-card,
   .contact-side,
   .aktualita-detail,
@@ -1510,9 +1514,6 @@ html.reveals-fallback :is(
   .section .container > .prose,
   .about-band .prose,
   .brand-strip,
-  main > .photo-collage,
-  .section .container > .photo-collage,
-  main > .media-row,
   .section-head,
   .certs-group {
     opacity: 1 !important;
@@ -1534,16 +1535,12 @@ html.reveals-fallback :is(
     transform: translate3d(-18px, 6px, 0);
   }
 
-  html.js :is(
-    .ref-feature,
-    .store,
-    .about-photo,
-    main > .photo-collage,
-    main > .media-row
-  ):not(.is-visible),
-  html.js .photo-collage.reveal:not(.is-visible),
   html.js .reveal.reveal--soft:not(.is-visible) {
     transform: translate3d(0, 14px, 0);
+  }
+
+  html.js .reveal-img {
+    --reveal-x: clamp(2.25rem, 22vw, 4.75rem);
   }
 }
 
@@ -1567,8 +1564,9 @@ html.reveals-fallback :is(
   }
 
   .reveal,
+  .reveal-img,
   .reveal-child,
-  .ref-feature,
+  .ref-copy,
   .service-grid > .service-link,
   .aktualita-card,
   .sortiment-card,
@@ -1576,7 +1574,6 @@ html.reveals-fallback :is(
   .cert-grid > .cert,
   .team > article,
   .stores .store,
-  .about-photo,
   .form-card,
   .contact-side,
   .aktualita-detail,
@@ -1584,9 +1581,6 @@ html.reveals-fallback :is(
   .section .container > .prose,
   .about-band .prose,
   .brand-strip,
-  main > .photo-collage,
-  .section .container > .photo-collage,
-  main > .media-row,
   .section-head,
   .certs-group,
   .page-hero {
@@ -2036,6 +2030,7 @@ html.reveals-fallback :is(
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(0.55rem, 1.2vw, 0.85rem);
   width: 100%;
+  overflow: hidden;
 }
 
 .ref-gallery img {
@@ -2540,6 +2535,7 @@ html.reveals-fallback :is(
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
   gap: clamp(0.75rem, 1.5vw, 1.1rem);
   margin: 0 0 clamp(2.5rem, 5vw, 4rem);
+  overflow: hidden;
 }
 
 .media-row img {
@@ -2995,6 +2991,7 @@ html[data-theme="dark"] .brand-strip img {
 .about-photo {
   width: min(100%, var(--stage));
   margin-inline: auto;
+  overflow: hidden;
 }
 
 .about-photo img {
