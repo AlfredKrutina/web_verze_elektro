@@ -1338,13 +1338,39 @@ html.js :is(
   main > .media-row,
   .section-head,
   .certs-group
-):not(.is-visible) {
-  opacity: 0;
-  transform: translate3d(-48px, 12px, 0);
+) {
   transition:
     opacity 0.95s var(--ease),
     transform 0.95s var(--ease);
   transition-delay: var(--reveal-delay, 0ms);
+}
+
+html.js :is(
+  .reveal,
+  .ref-feature,
+  .service-grid > .service-link,
+  .aktualita-card,
+  .sortiment-card,
+  .about-split > .about-card,
+  .cert-grid > .cert,
+  .team > article,
+  .stores .store,
+  .about-photo,
+  .form-card,
+  .contact-side,
+  .aktualita-detail,
+  main > .prose,
+  .section .container > .prose,
+  .about-band .prose,
+  .brand-strip,
+  main > .photo-collage,
+  .section .container > .photo-collage,
+  main > .media-row,
+  .section-head,
+  .certs-group
+):not(.is-visible) {
+  opacity: 0;
+  transform: translate3d(-48px, 12px, 0);
 }
 
 .reveal.reveal--right:not(.is-visible) {
