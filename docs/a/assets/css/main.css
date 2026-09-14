@@ -50,7 +50,9 @@ iframe.skiptranslate {
   visibility: hidden !important;
 }
 
-body {
+/* Translate toolbar posouvá body top — ale jen když není zamčený scroll menu.
+   Jinak !important přebije inline offset a po zavření menu stránka „umře“. */
+body:not(.nav-locked) {
   top: 0 !important;
 }
 
@@ -158,11 +160,17 @@ html[data-theme="dark"] {
 }
 
 html {
-  scroll-behavior: smooth;
+  /* clip na rootu rozbíjí IntersectionObserver i nativní scroll v Safari.
+     Smooth scroll se zapíná jen bez zámku menu — jinak JS scrollTo bojuje s prstem. */
   overflow-x: hidden;
-  overflow-x: clip;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:not(.nav-locked) {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -175,7 +183,6 @@ body {
   min-height: 100vh;
   min-height: 100dvh;
   overflow-x: hidden;
-  overflow-x: clip;
   transition: color 0.25s ease, background-color 0.25s ease;
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
@@ -621,13 +628,18 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
     display: none;
   }
 
+  html.nav-locked,
+  body.nav-locked {
+    overflow: hidden;
+    overscroll-behavior: none;
+    touch-action: none;
+  }
+
   body.nav-locked {
     position: fixed;
     left: 0;
     right: 0;
     width: 100%;
-    overflow: hidden;
-    touch-action: none;
   }
 }
 
@@ -1345,7 +1357,6 @@ html.js :is(
     opacity 0.7s var(--ease),
     transform 0.7s var(--ease);
   transition-delay: var(--reveal-delay, 0ms);
-  will-change: opacity, transform;
 }
 
 .reveal.reveal--right:not(.is-visible) {
@@ -1378,7 +1389,6 @@ html.js :is(
 ).is-visible {
   opacity: 1;
   transform: none;
-  will-change: auto;
 }
 
 .reveal.is-instant,

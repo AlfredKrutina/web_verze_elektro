@@ -452,20 +452,30 @@
   if (nav && toggle) {
     let lockScrollY = 0;
 
+    const unlockScroll = () => {
+      document.documentElement.classList.remove("nav-locked");
+      document.body.classList.remove("nav-locked");
+      document.body.style.removeProperty("top");
+      const y = lockScrollY;
+      window.scrollTo({ top: y, left: 0, behavior: "auto" });
+    };
+
     const setOpen = (open) => {
+      const isOpen = nav.classList.contains("is-open");
+      if (open === isOpen) return;
+
       nav.classList.toggle("is-open", open);
       toggle.setAttribute("aria-expanded", String(open));
       toggle.setAttribute("aria-label", open ? "Zavřít menu" : "Menu");
 
       if (open) {
         lockScrollY = window.scrollY || window.pageYOffset || 0;
-        document.body.style.top = `-${lockScrollY}px`;
+        document.documentElement.classList.add("nav-locked");
         document.body.classList.add("nav-locked");
+        document.body.style.setProperty("top", `-${lockScrollY}px`);
         if (header) header.classList.add("is-scrolled");
       } else {
-        document.body.classList.remove("nav-locked");
-        document.body.style.top = "";
-        window.scrollTo(0, lockScrollY);
+        unlockScroll();
       }
     };
 
@@ -473,7 +483,7 @@
       setOpen(!nav.classList.contains("is-open"));
     });
 
-    nav.querySelectorAll(".nav-links a").forEach((link) => {
+    nav.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => setOpen(false));
     });
 
@@ -482,7 +492,16 @@
     });
 
     window.addEventListener("resize", () => {
-      if (window.matchMedia("(min-width: 981px)").matches) setOpen(false);
+      if (nav.classList.contains("is-open") && window.matchMedia("(min-width: 981px)").matches) {
+        setOpen(false);
+      }
+    });
+
+    // bfcache / návrat z pozadí: lock nesmí zůstat viset (stránka „zamrzne“)
+    window.addEventListener("pageshow", () => setOpen(false));
+    window.addEventListener("pagehide", () => setOpen(false));
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "hidden") setOpen(false);
     });
   }
 
@@ -637,13 +656,13 @@
         lastY = y;
         lastT = now;
 
+        // IO odhalí běžný scroll. getBoundingClientRect na každém ticku
+        // forsuje layout a na mobilu umí scroll úplně zabít.
         if (speed > 1.8) {
           setFast(true);
           revealVisible(true, 1.15);
           window.clearTimeout(fastTimer);
           fastTimer = window.setTimeout(() => setFast(false), 140);
-        } else {
-          revealVisible(false, 1.02);
         }
       },
       { passive: true }
@@ -1088,18 +1107,32 @@
       status.textContent = `Položka ${realIndex + 1} z ${n}`;
     }
 
-    // Posun z oblasti kopií zpět do skutečné sady — až po zastavení scrollu
+    // Posun z oblasti kopií zpět do skutečné sady — až po zastavení scrollu.
+    // Snap se na dobu skoku vypne, jinak se s rewindem semele do smyčky
+    // a stránka přestane reagovat na svislý scroll.
+    let rewinding = false;
     function rewind() {
-      if (!loop) return;
-      const setWidth = slides[2 * n].offsetLeft - slides[n].offsetLeft;
+      if (!loop || rewinding) return;
+      const i = nearestIndex();
+      const end = slides[2 * n];
+      const start = slides[n];
+      if (!end || !start) return;
+      const setWidth = end.offsetLeft - start.offsetLeft;
       if (!setWidth) return;
-      if (dom < n) {
-        viewport.scrollLeft += setWidth;
-      } else if (dom >= 2 * n) {
-        viewport.scrollLeft -= setWidth;
+      if (i >= n && i < 2 * n) {
+        dom = i;
+        return;
       }
-      dom = nearestIndex();
-      slides.forEach((slide, k) => slide.classList.toggle("is-active", k === dom));
+      rewinding = true;
+      const snap = viewport.style.scrollSnapType;
+      viewport.style.scrollSnapType = "none";
+      if (i < n) viewport.scrollLeft += setWidth;
+      else viewport.scrollLeft -= setWidth;
+      window.requestAnimationFrame(() => {
+        sync();
+        viewport.style.scrollSnapType = snap;
+        rewinding = false;
+      });
     }
 
     slides[dom].classList.add("is-active");
@@ -1111,6 +1144,7 @@
     viewport.addEventListener(
       "scroll",
       () => {
+        if (rewinding) return;
         if (!raf) {
           raf = requestAnimationFrame(() => {
             raf = 0;
@@ -1118,7 +1152,7 @@
           });
         }
         window.clearTimeout(settle);
-        settle = window.setTimeout(rewind, 160);
+        settle = window.setTimeout(rewind, 280);
       },
       { passive: true }
     );
