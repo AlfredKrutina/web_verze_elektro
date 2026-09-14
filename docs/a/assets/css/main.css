@@ -1350,17 +1350,43 @@ html.js :is(
   main > .media-row,
   .section-head,
   .certs-group
-):not(.is-visible) {
-  opacity: 0;
-  transform: translate3d(-28px, 8px, 0);
+) {
   transition:
-    opacity 0.7s var(--ease),
-    transform 0.7s var(--ease);
+    opacity 0.95s var(--ease),
+    transform 0.95s var(--ease);
   transition-delay: var(--reveal-delay, 0ms);
 }
 
+html.js :is(
+  .reveal,
+  .ref-feature,
+  .service-grid > .service-link,
+  .aktualita-card,
+  .sortiment-card,
+  .about-split > .about-card,
+  .cert-grid > .cert,
+  .team > article,
+  .stores .store,
+  .about-photo,
+  .form-card,
+  .contact-side,
+  .aktualita-detail,
+  main > .prose,
+  .section .container > .prose,
+  .about-band .prose,
+  .brand-strip,
+  main > .photo-collage,
+  .section .container > .photo-collage,
+  main > .media-row,
+  .section-head,
+  .certs-group
+):not(.is-visible) {
+  opacity: 0;
+  transform: translate3d(-48px, 12px, 0);
+}
+
 .reveal.reveal--right:not(.is-visible) {
-  transform: translate3d(28px, 8px, 0);
+  transform: translate3d(40px, 10px, 0);
 }
 
 html.js :is(
@@ -1415,10 +1441,10 @@ html.js .reveal.reveal--soft:not(.is-visible) {
 
 .reveal-child {
   opacity: 0;
-  transform: translate3d(-18px, 6px, 0);
+  transform: translate3d(-28px, 8px, 0);
   transition:
-    opacity 0.55s var(--ease),
-    transform 0.55s var(--ease);
+    opacity 0.7s var(--ease),
+    transform 0.7s var(--ease);
   transition-delay: var(--reveal-delay, 0ms);
 }
 
@@ -1497,15 +1523,15 @@ html.reveals-fallback :is(
 
 @media (max-width: 700px) {
   html.js .reveal:not(.is-visible) {
-    transform: translate3d(-16px, 6px, 0);
+    transform: translate3d(-22px, 8px, 0);
   }
 
   html.js .reveal.reveal--right:not(.is-visible) {
-    transform: translate3d(16px, 6px, 0);
+    transform: translate3d(22px, 8px, 0);
   }
 
   html.js .reveal:not(.is-visible) .reveal-child {
-    transform: translate3d(-12px, 4px, 0);
+    transform: translate3d(-18px, 6px, 0);
   }
 
   html.js :is(
