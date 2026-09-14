@@ -526,6 +526,7 @@
     );
     mark(document.querySelectorAll("main > .media-row"), false);
     mark(document.querySelectorAll(".section-head:not(.reveal), .certs-group"), false);
+    mark(document.querySelectorAll("[data-carousel]"), false);
   }
 
   markPageReveals();
@@ -578,7 +579,7 @@
     const children = rootEl.querySelectorAll("[data-stagger], .reveal-child");
     children.forEach((child, i) => {
       if (!child.style.getPropertyValue("--reveal-delay")) {
-        child.style.setProperty("--reveal-delay", `${Math.min(i * 70, 420)}ms`);
+        child.style.setProperty("--reveal-delay", `${Math.min(90 + i * 95, 520)}ms`);
       }
       child.classList.add("reveal-child");
     });
@@ -596,80 +597,60 @@
   if (fallbackOn || reduceMotion || !reveals.length || !("IntersectionObserver" in window)) {
     revealAllPending(true);
   } else {
-    let lastY = window.scrollY;
-    let lastT = performance.now();
-    let fast = false;
-    let fastTimer = 0;
-
-    const setFast = (on) => {
-      fast = on;
-      document.documentElement.classList.toggle("scroll-fast", on);
-    };
-
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
           if (!e.isIntersecting) return;
-          revealNow(e.target, fast);
+          revealNow(e.target, false);
           io.unobserve(e.target);
         });
       },
       {
-        threshold: 0.01,
-        rootMargin: "12% 0px 18% 0px",
+        threshold: 0.12,
+        rootMargin: "0px 0px -12% 0px",
       }
     );
 
-    revealHash();
-    revealVisible(false, 0.98);
+    function watchPending() {
+      reveals.forEach((el) => {
+        if (!el.classList.contains("is-visible")) io.observe(el);
+      });
+    }
 
-    reveals.forEach((el) => {
-      if (!el.classList.contains("is-visible")) io.observe(el);
+    function playEntrance() {
+      revealHash();
+      const first = [];
+      reveals.forEach((el) => {
+        if (!el.classList.contains("is-visible") && inView(el, 0.78)) first.push(el);
+      });
+      first.forEach((el, i) => {
+        if (!el.style.getPropertyValue("--reveal-delay") && !el.dataset.delay) {
+          el.style.setProperty("--reveal-delay", `${140 + i * 110}ms`);
+        }
+        revealNow(el, false);
+      });
+      watchPending();
+    }
+
+    // Dva snímky: nejdřív se vykreslí skrytý stav, teprve potom is-visible.
+    // Bez toho prohlížeč obě třídy sloučí a nic se nehýbe.
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(playEntrance);
     });
 
-    window.addEventListener(
-      "scroll",
-      () => {
-        const now = performance.now();
-        const y = window.scrollY;
-        const dt = Math.max(now - lastT, 1);
-        const speed = Math.abs(y - lastY) / dt;
-        lastY = y;
-        lastT = now;
-
-        if (speed > 1.8) {
-          setFast(true);
-          revealVisible(true, 1.15);
-          window.clearTimeout(fastTimer);
-          fastTimer = window.setTimeout(() => setFast(false), 140);
-        } else {
-          revealVisible(false, 1.02);
-        }
-      },
-      { passive: true }
-    );
-
-    const flush = (instant) => {
+    const flushInView = (instant) => {
       revealHash();
-      revealVisible(instant, 1.08);
+      revealVisible(instant, 1);
       reveals.forEach((el) => {
         if (el.classList.contains("is-visible")) io.unobserve(el);
       });
     };
 
-    window.addEventListener("load", () => flush(false));
     window.addEventListener("pageshow", (e) => {
-      if (e.persisted) flush(true);
+      if (e.persisted) flushInView(true);
     });
     window.addEventListener("hashchange", () => revealHash());
-    window.addEventListener(
-      "resize",
-      () => {
-        revealVisible(true, 1.02);
-      },
-      { passive: true }
-    );
-    window.setTimeout(() => flush(false), 1200);
+    window.setTimeout(() => flushInView(false), 4000);
   }
 
   // Lightbox pro dokumenty (certifikáty). Bez JS odkaz otevře obrázek napřímo.

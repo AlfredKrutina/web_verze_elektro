@@ -4,7 +4,11 @@ Lehká inspirace [VR Education](https://vreducation.cz/) — nasunutí ze strany
 a krátký dojezd karuselu. Bez přebírání scrollu a bez nekonečného autoplay.
 
 - Hero: text zleva, fotka zprava
-- Sekce s `.reveal`: při příchodu do výhledu ze strany, děti se staggerují
+- Sekce s `.reveal`: při načtení první obrazovka naskakuje se zpožděním,
+  další bloky se při scrollu souvou zleva. Děti (`[data-stagger]`) jdou po sobě.
+  Skrytý stav se musí vykreslit o snímek dřív než `.is-visible` — jinak
+  prohlížeč animaci sloučí a nic se nehýbe. IO má těsný rootMargin, ať se
+  blok nerozsvítí ještě mimo obrazovku.
 - Karusel: po prvním zobrazení popojede o 1–2 slidy (na mobilu o 1), pak čeká
 - Svislý scroll karusel neruší; zruší ho až vodorovný swipe nebo šipky
 - Vnitřní stránky: `page-hero` plus jednotlivé bloky (realizace, služby
