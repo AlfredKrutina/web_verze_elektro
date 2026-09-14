@@ -9,6 +9,12 @@ a krátký dojezd karuselu. Bez přebírání scrollu a bez nekonečného autopl
   `transition` musí viset na `.reveal` pořád, ne jen na `:not(.is-visible)`.
   Jinak se při přidání `.is-visible` transition ztratí a blok naskočí bez
   pohybu. Skrytý stav se vykreslí o snímek dřív. IO má těsný rootMargin.
+- Fotky (`.reveal-img`) se nevážou na rodičovský blok. Collage, galerie,
+  media-row, cover a karty najíždějí ze stran (střídavě vlevo / vpravo)
+  až když dojedou do viewportu. Celý `.ref-feature` / `.photo-collage`
+  se proto nesmí schovávat jako jeden kus — jinak fotky jen vyskočí.
+- Homepage karusely nemají `.reveal` (nesmí čekat na IO). První 2–3 slidy
+  jdou `loading="eager"` + preload prvního slidu, intro delay je krátký.
 - Karusel: po prvním zobrazení popojede o 1–2 slidy (na mobilu o 1), pak čeká
 - Svislý scroll karusel neruší; zruší ho až vodorovný swipe nebo šipky
 - Vnitřní stránky: `page-hero` plus jednotlivé bloky (realizace, služby
