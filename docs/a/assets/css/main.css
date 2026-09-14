@@ -3194,7 +3194,7 @@ body:has(dialog.lightbox[open]) {
 }
 
 .lightbox.is-loading .lightbox-frame::after {
-  content: "Načítám dokument…";
+  content: "Načítám…";
   position: absolute;
   inset: 4.5rem 0 0;
   display: grid;
@@ -3697,9 +3697,132 @@ body:has(dialog.lightbox[open]) {
   margin: 0 0 1.25rem;
 }
 
-.aktualita-body p {
+.aktualita-body {
+  max-width: 46rem;
+}
+
+.aktualita-body p,
+.aktualita-body li {
   margin: 0 0 1rem;
   max-width: 42rem;
+}
+
+.aktualita-body h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 1.05rem + 0.6vw, 1.45rem);
+  line-height: 1.25;
+  margin: 1.75rem 0 0.75rem;
+}
+
+.aktualita-body figure {
+  margin: 1.5rem 0 1.75rem;
+}
+
+.aktualita-body figure a {
+  display: block;
+  border-radius: var(--r);
+  overflow: hidden;
+  text-decoration: none;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  transition:
+    border-color 0.25s,
+    box-shadow 0.25s;
+}
+
+.aktualita-body figure a:hover,
+.aktualita-body figure a:focus-visible {
+  border-color: var(--hover-border, var(--green-dark));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--green) 35%, transparent);
+}
+
+.aktualita-body figure a:focus-visible {
+  outline: 3px solid var(--green);
+  outline-offset: 3px;
+}
+
+.aktualita-body figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--r);
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.aktualita-body figure a img {
+  border: 0;
+  border-radius: 0;
+}
+
+.aktualita-body figcaption {
+  margin: 0.65rem 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.45;
+  max-width: 42rem;
+}
+
+.aktualita-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.55rem, 1.2vw, 0.85rem);
+  margin: 1.75rem 0 2rem;
+}
+
+.aktualita-gallery a {
+  display: block;
+  border-radius: var(--r);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  text-decoration: none;
+  transition:
+    border-color 0.25s,
+    transform 0.25s var(--ease),
+    box-shadow 0.25s;
+}
+
+.aktualita-gallery a:hover,
+.aktualita-gallery a:focus-visible {
+  border-color: var(--hover-border, var(--green-dark));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--green) 35%, transparent);
+}
+
+.aktualita-gallery a:focus-visible {
+  outline: 3px solid var(--green);
+  outline-offset: 3px;
+}
+
+.aktualita-gallery a:active {
+  transform: scale(0.99);
+}
+
+.aktualita-gallery img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.aktualita-body .aktualita-cta {
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .aktualita-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 420px) {
+  .aktualita-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .aktualita-gallery img {
+    aspect-ratio: 16 / 10;
+  }
 }
 
 .aktualita-foot {
