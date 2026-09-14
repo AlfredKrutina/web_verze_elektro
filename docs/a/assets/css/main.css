@@ -1340,10 +1340,10 @@ html.js :is(
   .certs-group
 ):not(.is-visible) {
   opacity: 0;
-  transform: translate3d(-40px, 10px, 0);
+  transform: translate3d(-48px, 12px, 0);
   transition:
-    opacity 0.85s var(--ease),
-    transform 0.85s var(--ease);
+    opacity 0.95s var(--ease),
+    transform 0.95s var(--ease);
   transition-delay: var(--reveal-delay, 0ms);
 }
 

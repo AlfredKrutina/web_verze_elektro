@@ -621,21 +621,21 @@
       revealHash();
       const first = [];
       reveals.forEach((el) => {
-        if (!el.classList.contains("is-visible") && inView(el, 0.78)) first.push(el);
+        if (!el.classList.contains("is-visible") && inView(el, 0.72)) first.push(el);
       });
-      first.forEach((el, i) => {
+      first.slice(0, 3).forEach((el, i) => {
         if (!el.style.getPropertyValue("--reveal-delay") && !el.dataset.delay) {
-          el.style.setProperty("--reveal-delay", `${140 + i * 110}ms`);
+          el.style.setProperty("--reveal-delay", `${80 + i * 140}ms`);
         }
         revealNow(el, false);
       });
       watchPending();
     }
 
-    // Dva snímky: nejdřív se vykreslí skrytý stav, teprve potom is-visible.
-    // Bez toho prohlížeč obě třídy sloučí a nic se nehýbe.
+    // Nejdřív se musí vykreslit skrytý stav. rAF + krátký timeout, ať se
+    // transition nesloučí do jednoho snímku (pak stránka jen „stojí“).
     window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(playEntrance);
+      window.setTimeout(playEntrance, 50);
     });
 
     const flushInView = (instant) => {
